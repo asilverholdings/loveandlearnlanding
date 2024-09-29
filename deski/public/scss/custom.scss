@@ -1,0 +1,136 @@
+// color: var(--blue-dark);
+
+.hoverPurple{
+    &:hover{
+         background: var(--purple-blue) !important;
+    }
+   
+}
+body{
+    .activeMenu{
+    color: var(--blue-dark) !important;
+}
+}
+.slick-dots{
+    li{
+        button{
+            &::before{
+                font-size: 0px !important;
+                width: 18px !important;
+    height: 18px !important;
+
+    opacity: .75 !important;
+            }
+            &::after{
+                left: -0.9px !important;
+    top: -0.9px !important;
+            }
+        }
+    }
+}
+.slick-dots {
+  
+    list-style : none !important;
+    text-align: center !important;
+}
+
+.slick-dots li {
+    position: relative !important;
+    display: inline-block !important;
+   
+    padding: 0 !important;
+}
+
+.slick-dots li,.slick-dots li button {
+    width: 20px  !important;
+    height: 20px !important;
+    cursor: pointer !important;
+}
+
+.slick-dots li button {
+    font-size: 0 !important;
+    line-height: 0 !important;
+    display: block !important;
+    padding: 5px !important;
+    color: transparent !important;
+    border: 0 !important;
+    outline: none !important;
+    background: transparent !important;
+}
+
+.slick-dots li button:focus,.slick-dots li button:hover {
+    outline: none !important;
+}
+
+.slick-dots li button:focus:before,.slick-dots li button:hover:before {
+    opacity: 1 !important;
+}
+
+.slick-dots li button:before {
+    font-family: slick !important;
+    font-size: 0px !important;
+    line-height: 20px !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 14px !important;
+    height: 14px !important;
+    content: "•" !important;
+    text-align: center !important;
+    opacity: .75 !important;
+    color: #000 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+.slick-dots li.slick-active button:before {
+    opacity: .75 !important;
+    color: #000 !important;
+}
+.slick-dots li button:after {
+    width: 14px;
+    height: 14px;
+    left:-0px!important; 
+  top:0px!important; 
+}
+.slider-customized{
+    .slick-next{
+        &:focus{
+            color: #fff !important;
+    background-color: #efc36f !important;
+
+        }
+        &:hover{
+            color: #fff !important;
+    background-color: #efc36f !important;
+
+        }
+
+    }
+    .slick-prev{
+        &:focus{
+            color: #fff !important;
+    background-color: #efc36f !important;
+
+        }
+        &:hover{
+            color: #fff !important;
+    background-color: #efc36f !important;
+
+        }
+
+    }
+   
+}
+
+.nav-item{
+    
+}
+.active-scroll-spy {
+    &>*{
+        border-bottom: 2px solid black;
+    }
+   
+   
+  }
+ 
