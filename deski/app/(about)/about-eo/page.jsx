@@ -11,13 +11,13 @@ import FooterFour from "../../../components/footer/FooterFour";
 import BlogStyle5 from "../../../components/blog/BlogStyle5";
 import Image from "next/image";
 export const metadata = {
-    title: 'About Event Organizer || Deski-Saas & Software Nextjs Template',
-    description: `Unleash the full potential of your software projects with our SaaS-focused Next.js template. Create engaging blogs, showcase your talented team, set up an online shop, provide helpful FAQs, and offer exceptional services with our feature-rich solution. Elevate your SaaS and software development with ease and drive growth. Try it now and take your projects to new heights.`,
-  } 
+  title: 'About Event Organizer || Deski-Saas & Software Nextjs Template',
+  description: `Unleash the full potential of your software projects with our SaaS-focused Next.js template. Create engaging blogs, showcase your talented team, set up an online shop, provide helpful FAQs, and offer exceptional services with our feature-rich solution. Elevate your SaaS and software development with ease and drive growth. Try it now and take your projects to new heights.`,
+}
 const EventOrganizer = () => {
   return (
     <div className="main-page-wrapper p0">
-  
+
       {/* End Page SEO Content */}
 
       <Header />
@@ -147,7 +147,7 @@ const EventOrganizer = () => {
               data-aos-duration="1200"
             >
               <div className="illustration-holder d-flex justify-content-end md-mt-50">
-                <Image width={509} height={633} style={{height:'fit-content'}} src="/images/media/img_58.png" alt="media" />
+                <Image width={509} height={633} style={{ height: 'fit-content' }} src="/images/media/img_58.png" alt="media" />
                 <Image width={179} height={397}
                   src="/images/shape/113.svg"
                   alt="media"

@@ -4,12 +4,16 @@ import Image from "next/image";
 const About = () => {
   return (
     <div className="row align-items-center">
-      <div className="col-lg-6" data-aos="fade-right" data-aos-duration="1200">
-        <Image width={550} height={649} style={{height:'fit-content'}}     src="/images/media/img_57.png" alt="about" className="m-auto" />
+      <h4>Inspirational quote</h4>
+      <div>
+        lorem ipsum
       </div>
+      {/* <div className="col-lg-6" data-aos="fade-right" data-aos-duration="1200">
+        <Image width={550} height={649} style={{ height: 'fit-content' }} src="/images/media/img_57.png" alt="about" className="m-auto" />
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6" data-aos="fade-left" data-aos-duration="1200">
+      {/* <div className="col-lg-6" data-aos="fade-left" data-aos-duration="1200">
         <div className="text-wrapper">
           <div className="client-info font-rubik">
             Over <span>150,000+ client</span>
@@ -27,9 +31,9 @@ const About = () => {
             We aim to answer any query in less than 10 minutes.
           </p>
           <div className="name font-slab">Mitchell Garner</div>
-        </div>
-        {/* /.text-wrapper */}
-      </div>
+        </div> */}
+      {/* /.text-wrapper */}
+      {/* </div> */}
       {/* End .col */}
     </div>
   );

@@ -24,26 +24,26 @@ const HeaderLanding = () => {
 
   const changeBackground = () => {
     if (typeof window !== "undefined") {
-       if (window.scrollY >= 90) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
+      if (window.scrollY >= 90) {
+        setNavbar(true);
+      } else {
+        setNavbar(false);
+      }
     }
-    }
-   
+
   };
 
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
-  
+
     return () => {
-       window.removeEventListener("scroll", changeBackground);
+      window.removeEventListener("scroll", changeBackground);
     }
   }, [])
-  
 
-  
- 
+
+
+
 
   return (
     <>
@@ -59,8 +59,8 @@ const HeaderLanding = () => {
       >
         <div className="d-flex align-items-center justify-content-center">
           <div className="logo">
-            <Link     href="/">
-              <Image width={138} height={47}      src={logo} alt="brand" />
+            <Link href="/">
+              <Image width={138} height={47} src={logo} alt="brand" />
             </Link>
           </div>
           {/* End logo */}
@@ -83,16 +83,16 @@ const HeaderLanding = () => {
                 id="navbarSupportedContent"
               >
                 <div className="d-lg-flex justify-content-between align-items-center">
-                <div 
+                  <div
                     className="navbar-nav  main-side-nav font-gordita"
-                   
+
                   >
                     <div data-to-scrollspy-id="home" className="nav-item dropdown position-static">
                       <a
                         className="nav-link dropdown-toggle"
                         href="#home"
                         data-toggle="dropdown"
-                       
+
                       >
                         Home
                       </a>
@@ -100,27 +100,27 @@ const HeaderLanding = () => {
                         <MegaMenuLanding />
                       </div>
                     </div>
-                    <div data-to-scrollspy-id="features"  className="nav-item">
+                    <div data-to-scrollspy-id="features" className="nav-item">
                       <a href="#features" className="nav-link">
                         Features
                       </a>
                     </div>
-                    <div data-to-scrollspy-id="about"  className="nav-item">
+                    <div data-to-scrollspy-id="about" className="nav-item">
                       <a href="#about" className="nav-link">
                         About
                       </a>
                     </div>
-                    <div data-to-scrollspy-id="product"  className="nav-item">
+                    <div data-to-scrollspy-id="product" className="nav-item">
                       <a href="#product" className="nav-link">
                         Product
                       </a>
                     </div>
-                   
-                    <div data-to-scrollspy-id="pricing"  className="nav-item">
+
+                    <div data-to-scrollspy-id="pricing" className="nav-item">
                       <a href="#pricing" className="nav-link">
                         Pricing
                       </a>
-                    </div> <div data-to-scrollspy-id="feedback"  className="nav-item">
+                    </div> <div data-to-scrollspy-id="feedback" className="nav-item">
                       <a href="#feedback" className="nav-link">
                         Feedback
                       </a>
@@ -143,49 +143,49 @@ const HeaderLanding = () => {
       {/* Mobile Menu Start */}
       <div className={click ? "mobile-menu  menu-open" : "mobile-menu"}>
         <div className="logo order-md-1">
-          <Link     href="/">
-            <Image width={138} height={47} style={{width:'100%',height:'fit-content'}}     src="/images/logo/deski_06.svg" alt="brand" />
+          <Link href="/">
+            <Image width={138} height={47} style={{ width: '100%', height: 'fit-content' }} src="/images/logo/deski_06.svg" alt="brand" />
           </Link>
           <div className="fix-icon text-dark" onClick={handleClick}>
-            <Image  width="14" height="14"  src="/images/icon/close.svg" alt="icon" />
+            <Image width="14" height="14" src="/images/icon/close.svg" alt="icon" />
           </div>
           {/* Mobile Menu close icon */}
         </div>
 
-        <div 
-         
-         >
-           <p  data-to-scrollspy-id="home" className="nav-item">
-             <a href="#home" className="nav-link" onClick={handleClick}>
-               Home
-             </a>
-           </p>
-           <div data-to-scrollspy-id="features" className="nav-item">
-             <a href="#features" className="nav-link" onClick={handleClick}>
-               Features
-             </a>
-           </div>
-           <div data-to-scrollspy-id="about" className="nav-item">
-             <a href="#about" className="nav-link" onClick={handleClick}>
-               About
-             </a>
-           </div>
-           <div data-to-scrollspy-id="product" className="nav-item">
-             <a href="#product" className="nav-link" onClick={handleClick}>
-               Product
-             </a>
-           </div>
-           
-           <div data-to-scrollspy-id="pricing" className="nav-item">
-             <a href="#pricing" className="nav-link" onClick={handleClick}>
-               Pricing
-             </a>
-           </div><div data-to-scrollspy-id="feedback" className="nav-item">
-             <a href="#feedback" className="nav-link" onClick={handleClick}>
-               Feedback
-             </a>
-           </div>
-         </div>
+        <div
+
+        >
+          <p data-to-scrollspy-id="home" className="nav-item">
+            <a href="#home" className="nav-link" onClick={handleClick}>
+              Home
+            </a>
+          </p>
+          <div data-to-scrollspy-id="features" className="nav-item">
+            <a href="#features" className="nav-link" onClick={handleClick}>
+              Features
+            </a>
+          </div>
+          <div data-to-scrollspy-id="about" className="nav-item">
+            <a href="#about" className="nav-link" onClick={handleClick}>
+              About
+            </a>
+          </div>
+          <div data-to-scrollspy-id="product" className="nav-item">
+            <a href="#product" className="nav-link" onClick={handleClick}>
+              Product
+            </a>
+          </div>
+
+          <div data-to-scrollspy-id="pricing" className="nav-item">
+            <a href="#pricing" className="nav-link" onClick={handleClick}>
+              Pricing
+            </a>
+          </div><div data-to-scrollspy-id="feedback" className="nav-item">
+            <a href="#feedback" className="nav-link" onClick={handleClick}>
+              Feedback
+            </a>
+          </div>
+        </div>
       </div>
       {/* Mobile Menu End */}
 
@@ -200,7 +200,7 @@ const HeaderLanding = () => {
         <div className="box_inner ">
           <main className="main-body box_inner modal-content clearfix">
             <button className="close" onClick={toggleModalOne}>
-              <Image  width="14" height="14"  src="/images/icon/close.svg" alt="close" />
+              <Image width="14" height="14" src="/images/icon/close.svg" alt="close" />
             </button>
             {/* End close icon */}
 

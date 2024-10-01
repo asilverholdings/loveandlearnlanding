@@ -3,19 +3,19 @@ import Image from "next/image";
 const FeatureContent = [
   {
     icon: "ils_15",
-    meta: "Join Our Platform",
+    meta: "Comprehensive Process",
     subTitle: `  It only takes 5 minutes. Set up is smooth and simple fully lorem
     qui.`,
   },
   {
     icon: "ils_16",
-    meta: "Manage you event",
+    meta: "Dependable Service",
     subTitle: `Choose a price package to suit you or pay per ticket. Sell on your
     website,`,
   },
   {
     icon: "ils_17",
-    meta: "Start selling ticket",
+    meta: "Continued Support",
     subTitle: `Get payments, detailed data on tickets sales & message guests lorem`,
   },
 ];
@@ -32,7 +32,7 @@ const FeatureNine = () => {
         >
           <div className="block-style-fourteen">
             <div className="illustration">
-              <Image width={240} height={230} style={{objectFit:'contain'}}     src={`/images/assets/${val.icon}.svg`} alt="icon" />
+              <Image width={240} height={230} style={{ objectFit: 'contain' }} src={`/images/assets/${val.icon}.svg`} alt="icon" />
             </div>
             <div className="title">{val.meta}</div>
             <p className="font-rubik">{val.subTitle}</p>
