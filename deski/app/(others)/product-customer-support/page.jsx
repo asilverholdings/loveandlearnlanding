@@ -4,7 +4,7 @@ import HeaderTwo from "../../../components/header/HeaderTwo";
 import Social from "../../../components/social/Social";
 import FooterTwo from "../../../components/footer/FooterTwo";
 import CopyRightTwo from "../../../components/footer/CopyRightTwo";
-import AboutFour from "../../../components/about/AboutFour";
+import AboutFour from "../../../components/quote/AboutFour";
 import CallToActionThree from "../../../components/call-to-action/CallToActionThree";
 import Image from "next/image";
 export const metadata = {

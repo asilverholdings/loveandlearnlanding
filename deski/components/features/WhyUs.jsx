@@ -1,31 +1,35 @@
 import React from "react";
 import Image from "next/image";
+
 const FeatureContent = [
   {
     icon: "ils_15",
     meta: "Comprehensive Process",
-    subTitle: `  It only takes 5 minutes. Set up is smooth and simple fully lorem
-    qui.`,
+    subTitle: `We make finding the perfect nanny easy and stress-free`,
   },
   {
     icon: "ils_16",
     meta: "Dependable Service",
-    subTitle: `Choose a price package to suit you or pay per ticket. Sell on your
-    website,`,
+    subTitle: `If your nanny is unavailable due to emergencies, we provide a backup nanny at no extra cost.`,
   },
   {
     icon: "ils_17",
     meta: "Continued Support",
-    subTitle: `Get payments, detailed data on tickets sales & message guests lorem`,
+    subTitle: `If you feel the nanny you’ve hired isn’t the right fit, we offer a 90 day replacement guarantee.`,
+  },
+  {
+    icon: "ils_15",
+    meta: "Curriculum",
+    subTitle: `Our curriculum equips nannies with structured activities to foster your child's development.`,
   },
 ];
 
-const FeatureNine = () => {
+const WhyUs = () => {
   return (
     <div className="row justify-content-center">
       {FeatureContent.map((val, i) => (
         <div
-          className="col-lg-4 col-md-6"
+          className="col-lg-3 col-md-6"
           key={i}
           data-aos="fade-up"
           data-aos-duration="1200"
@@ -41,8 +45,7 @@ const FeatureNine = () => {
         </div>
       ))}
     </div>
-    // /.row
   );
 };
 
-export default FeatureNine;
+export default WhyUs;

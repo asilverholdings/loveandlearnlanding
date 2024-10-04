@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import FeaturesEight from "../features/FeaturesEight";
 import Image from "next/image";
+import { auto } from "@popperjs/core";
 
 const HeroBannerFour = () => {
   return (
@@ -30,30 +31,35 @@ const HeroBannerFour = () => {
       {/* Full-width wrapper for the image */}
       <div>
         <Image
-          src="https://placehold.co/900x400/png"
+          src="https://placehold.co/900x200/png"
           alt="image"
           className="banner"
           layout="responsive"  // Use layout responsive
           width={900}
-          height={400}
+          height={200}
         />
       </div>
 
 
       <div className="fancy-feature-eight mt-160 md-mt-100">
         <div className="container">
-          <h3>Our Story</h3>
+          <section id="our-story">
+            <h3>Our Story</h3>
+            
+            {/* INSERT STORY */}
+            
+          </section>
         </div>
       </div>
       <div style={{ height: '500px' }}></div>
       <div>
         <Image
-          src="https://placehold.co/600x175/png"
+          src="https://placehold.co/900x200/png"
           alt="image"
           className="banner"
           layout="responsive"  // Use layout responsive
           width={600}
-          height={175}
+          height={200}
         />
       </div>
       {/* /.fancy-feature-eight */}

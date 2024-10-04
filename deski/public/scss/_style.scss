@@ -8949,6 +8949,12 @@ body .shop-btn-two:hover {
 }
 
 /*-------------Fancy Feature Eight -----------*/
+
+#our-story {
+  padding-top: 100px;
+  margin-top: -100px;
+}
+
 .fancy-feature-eight .bg-wrapper {
   position: relative;
   z-index: 5;
@@ -9009,6 +9015,19 @@ body .shop-btn-two:hover {
 }
 
 /*------------------ Fancy Text block Nineteen ----------------*/
+.fancy-text-block-nineteen .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 200px;
+}
+
+.fancy-text-block-nineteen .container .author {
+  display: flex;
+  justify-content: start;
+}
+
 .fancy-text-block-nineteen .text-wrapper .client-info {
   font-size: 24px;
   padding-bottom: 20px;
@@ -9046,6 +9065,12 @@ body .shop-btn-two:hover {
 }
 
 /*------------------ Fancy Feature Nine --------------*/
+
+#why-us {
+  padding-top: 100px;
+  margin-top: -100px;
+}
+
 .fancy-feature-nine {
   position: relative;
   background: #dff1ee;

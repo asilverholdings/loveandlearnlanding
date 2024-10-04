@@ -2,8 +2,8 @@ import React from "react";
 
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import Social from "../../../components/social/Social";
-import AboutThree from "../../../components/about/AboutThree";
-import AboutFive from "../../../components/about/AboutFive";
+import AboutThree from "../../../components/quote/AboutThree";
+import AboutFive from "../../../components/quote/AboutFive";
 import CounterThree from "../../../components/counter/CounterThree";
 import FooterTwo from "../../../components/footer/FooterTwo";
 import CopyRightTwo from "../../../components/footer/CopyRightTwo";

@@ -5,7 +5,7 @@ import HeroBannerTwo from "../../../components/hero-banner/HeroBannerTwo";
 import FeatureFour from "../../../components/features/FeatureFour";
 import Faq from "../../../components/faq/Faq";
 import CounterThree from "../../../components/counter/CounterThree";
-import AboutTwo from "../../../components/about/AboutTwo";
+import AboutTwo from "../../../components/quote/AboutTwo";
 import Social from "../../../components/social/Social";
 import Testimonial from "../../../components/testimonial/Testimonial";
 import CallToActionThree from "../../../components/call-to-action/CallToActionThree";

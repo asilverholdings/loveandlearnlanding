@@ -5728,7 +5728,7 @@ button:focus {
 }
 @media (max-width: 768px) {
   .pagination-wrapper .post-pagination {
-    margin-to: 30px;
+    margin-top: 30px;
   }
 }
 .pagination-wrapper .post-pagination li {
@@ -10155,3 +10155,4 @@ figure figcaption {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+

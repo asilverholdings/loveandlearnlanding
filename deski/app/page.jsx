@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import Header from "../components/header/HeaderFour";
 import HeroBannerFour from "../components/hero-banner/HeroBannerFour";
-import About from "../components/about/About";
-import FeatureNine from "../components/features/FeatureNine";
+import About from "../components/quote/Quote";
+import FeatureNine from "../components/features/WhyUs";
 import Faq from "../components/faq/Faq";
 import PricingThree from "../components/pricing/PricingThree";
 import TestimonialThree from "../components/testimonial/TestimonialThree";
@@ -12,6 +12,8 @@ import FaqFour from "../components/faq/FaqFour";
 import FooterFour from "../components/footer/FooterFour";
 import CallToActionFive from "../components/call-to-action/CallToActionFive";
 import Image from "next/image";
+import WhyUs from "../components/features/WhyUs";
+import Quote from "../components/quote/Quote";
 
 
 export const metadata = {
@@ -37,7 +39,7 @@ export default function Home() {
 		============================================== */}
       <div className="fancy-text-block-nineteen mt-250 mb-200 md-mt-150 md-mb-150">
         <div className="container">
-          <About />
+          <Quote />
         </div>
       </div>
       {/* End  .fancy-text-block-nineteen*/}
@@ -88,17 +90,18 @@ export default function Home() {
 
         <div className="container">
           <div className="title-style-five text-center mb-60 md-mb-30">
-            <h6>GET STARTED IN MINUTES</h6>
+          <section id="why-us">
+            <h6>Love and Learn</h6>
+          </section>
             <h2>
-              <span>Why Us?</span>
+                <span>Why Us?</span>
             </h2>
           </div>
           {/* End title */}
 
-          <FeatureNine />
+          <WhyUs />
         </div>
       </div>
-      {/* /.fancy-feature-nine */}
 
       {/* 
      =============================================
