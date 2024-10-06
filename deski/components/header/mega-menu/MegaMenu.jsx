@@ -247,18 +247,18 @@ const MegaMenu = () => {
 
         <ul className="dropdown-menu">
           <li className="dropdown-item">
-            <a 
-              href="/services/for-families" 
-              className={pathname === '/services/for-families' ? "active" : ""}
-            >
-              For Families
-            </a>
+          <a 
+            href={Services[0].routerPath}
+            className={pathname === Services[0].routerPath ? "active" : ""}
+          >
+            For Families
+          </a>
           </li>
           
           <li className="dropdown-item">
             <a 
-              href="/services/screening-and-matchmaking" 
-              className={pathname === '/services/screening-and-matchmaking' ? "active" : ""}
+              href={Services[1].routerPath}
+              className={pathname ===  Services[1].routerPath ? "active" : ""}
             >
               Screening & Matchmaking
             </a>
@@ -266,8 +266,8 @@ const MegaMenu = () => {
           
           <li className="dropdown-item">
             <a 
-              href="/services/for-nannies" 
-              className={pathname === '/services/for-nannies' ? "active" : ""}
+              href={Services[2].routerPath} 
+              className={pathname === Services[2].routerPath ? "active" : ""}
             >
               For Nannies
             </a>

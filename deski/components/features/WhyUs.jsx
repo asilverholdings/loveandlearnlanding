@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const FeatureContent = [
   {
@@ -26,24 +27,46 @@ const FeatureContent = [
 
 const WhyUs = () => {
   return (
-    <div className="row justify-content-center">
-      {FeatureContent.map((val, i) => (
-        <div
-          className="col-lg-3 col-md-6"
-          key={i}
+    <div>
+      <div className="row justify-content-center">
+        {FeatureContent.map((val, i) => (
+          <div
+            className="col-lg-3 col-md-6"
+            key={i}
+            data-aos="fade-up"
+            data-aos-duration="1200"
+          >
+            <div className="block-style-fourteen">
+              <div className="illustration">
+                <Image
+                  width={240}
+                  height={230}
+                  style={{ objectFit: 'contain' }}
+                  src={`/images/assets/${val.icon}.svg`}
+                  alt="icon"
+                />
+              </div>
+              <div className="title">{val.meta}</div>
+              <p className="font-rubik">{val.subTitle}</p>
+            </div>
+            {/* /.block-style-fourteen */}
+          </div>
+        ))}
+      </div>
+      
+      {/* Center the button */}
+      <div className="row justify-content-center mt-4">
+        <Link
+          href="/about"
+          className="theme-btn-five"
           data-aos="fade-up"
           data-aos-duration="1200"
+          data-aos-delay="200"
+          style={{ width: '15%' }}
         >
-          <div className="block-style-fourteen">
-            <div className="illustration">
-              <Image width={240} height={230} style={{ objectFit: 'contain' }} src={`/images/assets/${val.icon}.svg`} alt="icon" />
-            </div>
-            <div className="title">{val.meta}</div>
-            <p className="font-rubik">{val.subTitle}</p>
-          </div>
-          {/* /.block-style-fourteen */}
-        </div>
-      ))}
+          Learn more
+        </Link>
+      </div>
     </div>
   );
 };
