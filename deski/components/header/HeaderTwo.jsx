@@ -59,38 +59,6 @@ const HeaderThree = () => {
                   <MegaMenu />
                   {/* End MegaMenu */}
 
-                  <ul className="right-widget">
-                    <li className="d-sm-flex">
-                      <ul className="language-button-group d-flex align-items-center justify-content-center">
-                        <li>
-                          <a href="#" className="eng-lang active">
-                            En.{" "}
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" className="ru-lang">
-                            Ru.
-                          </a>
-                        </li>
-                      </ul>
-                      {/* End ul */}
-
-                      <ul className="user-login-button d-flex align-items-center justify-content-center">
-                        <li>
-                          <Link     href="/login" className="signIn-action">
-                            Login
-                          </Link>
-                        </li>
-                        <li>
-                          <Link     href="/signup" className="signUp-action">
-                            Sign Up
-                          </Link>
-                        </li>
-                      </ul>
-                      {/* End ul */}
-                    </li>
-                  </ul>
-                  {/* End right-button-group  */}
                 </div>
               </div>
             </div>

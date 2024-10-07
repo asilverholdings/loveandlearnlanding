@@ -79,7 +79,7 @@ const HeaderThree = () => {
                       </Link>
                     </li>
                   </ul>
-                  {/* End right-button-group  */}
+                  End right-button-group 
                 </div>
               </div>
             </div>

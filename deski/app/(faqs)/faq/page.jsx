@@ -6,6 +6,7 @@ import CopyRight from "../../../components/footer/CopyRight";
 import Link from "next/link";
 import FaqForm from "@/components/form/FaqForm";
 import Image from "next/image";
+import HeaderTwo from "../../../components/header/HeaderTwo";
 import { FaqContent } from "@/data/faqs";
 export const metadata = {
     title: 'Faq || Deski-Saas & Software Nextjs Template',
@@ -21,7 +22,7 @@ const Faq = () => {
 
       {/* End Page SEO Content */}
 
-      <Header />
+      <HeaderTwo />
       {/* End Header */}
 
       {/* =============================================

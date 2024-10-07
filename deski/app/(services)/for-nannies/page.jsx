@@ -6,32 +6,30 @@ import CopyRightFour from "../../../components/footer/CopyRightFour";
 import FancyFeatureThirtyFive from "../../../components/features/FancyFeatureThirtyFive";
 import CounterSix from "../../../components/counter/CounterSix";
 import Image from "next/image";
+import HeaderTwo from "../../../components/header/HeaderTwo";
+
 export const metadata = {
-    title: 'Service Version 3 || Deski-Saas & Software Nextjs Template',
-    description: `Unleash the full potential of your software projects with our SaaS-focused Next.js template. Create engaging blogs, showcase your talented team, set up an online shop, provide helpful FAQs, and offer exceptional services with our feature-rich solution. Elevate your SaaS and software development with ease and drive growth. Try it now and take your projects to new heights.`,
-  } 
+    title: 'Nanny Service || Screening & Matchmaking',
+    description: `Explore our comprehensive screening and matchmaking services for families and nannies. We ensure a perfect match by conducting thorough background checks and personality assessments.`,
+}
+
 const ServiceV3 = () => {
   return (
     <div className="main-page-wrapper">
-
-      {/* End Page SEO Content */}
-
-      <HeaderThree />
-      {/* End Header */}
+      <HeaderTwo />
 
       {/* =============================================
-            Fancy Hero One
-        ==============================================  */}
+          Hero Section
+      ============================================== */}
       <div className="fancy-hero-one">
         <div className="container">
           <div className="row">
             <div className="col-xl-10 m-auto">
-              <h2 className="font-rubik">Our Services</h2>
+              <h2 className="font-rubik">For Nannies</h2>
             </div>
             <div className="col-xl-9 m-auto">
               <p className="font-rubik">
-                We are a creative company that focuses on establishing long-term
-                relationships with customers.
+                We help families find the perfect nanny and support nannies in securing their ideal job.
               </p>
             </div>
           </div>
@@ -43,162 +41,183 @@ const ServiceV3 = () => {
         <div className="bubble-five"></div>
         <div className="bubble-six"></div>
       </div>
-      {/* <!-- /.fancy-hero-one --> */}
-
       {/* =============================================
-            Fancy Feature Thirty Two
-        ==============================================  */}
-      <div className="fancy-feature-thirtyTwo pt-110 pb-160 md-pt-90 md-pb-100">
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div
-              className="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-duration="1200"
-            >
-              <div className="title-style-eleven">
-                <h2>Explore our service.</h2>
-              </div>
-            </div>
-            {/* End .col */}
-            <FancyFeatureThirtyFive />
-          </div>
-        </div>
-      </div>
-      {/* <!-- /.fancy-feature-thirtyTwo --> */}
-
-      {/* =============================================
-            Fancy Text block Seven
-        ==============================================  */}
+          For Nannies Section
+      ============================================== */}
       <div className="fancy-text-block-seven mt-130 md-mt-80">
-        <div className="bg-wrapper no-bg">
-          <Image Image width={9} height={9}
-            src="/images/shape/29.svg"
-            alt="shape"
-            className="shapes shape-one"
-          />
-          <Image width={11} height={11}
-            src="/images/shape/30.svg"
-            alt="shape"
-            className="shapes shape-two"
-          />
-          <Image  width={8} height={8}
-            src="/images/shape/31.svg"
-            alt="shape"
-            className="shapes shape-three"
-          />
-          <Image width={17} height={17}
-            src="/images/shape/32.svg"
-            alt="shape"
-            className="shapes shape-four"
-          />
-          <Image width={8} height={8}
-            src="/images/shape/33.svg"
-            alt="shape"
-            className="shapes shape-five"
-          />
-          <div className="container">
-            <div className="row">
-              <div
-                className="col-lg-5 col-md-6 col-sm-10 m-auto"
-                data-aos="fade-right"
-                data-aos-duration="1200"
-              >
-                <div className="img-holder">
-                  <Image width={441} height={550} style={{height:'fit-content'}}     src="/images/media/img_108.png" alt="media" />
-                </div>
-              </div>
-              <div
-                className="col-xl-6 col-lg-7 ms-auto"
-                data-aos="fade-left"
-                data-aos-duration="1200"
-              >
-                <div className="quote-wrapper pt-60">
-                  <Image width={53} height={55} src="/images/icon/185.png" alt="icon" className="icon" />
-                  <blockquote className="font-rubik">
-                    Deski combines excellent live chat, ticketing and automation
-                    that allow us to provide quality.
-                  </blockquote>
-                  <h6 className="mt-20">
-                    Mike Lucas. <span>CEO & Founder deksi</span>
-                  </h6>
-                </div>
-                {/* <!-- /.quote-wrapper --> */}
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-5" data-aos="fade-right" data-aos-duration="1200">
+              <div className="img-holder">
+                <img
+                  width={400}
+                  height={400}
+                  style={{height: 'fit-content'}}
+                  src="https://placehold.co/400"
+                  alt="Nanny Service"
+                />
               </div>
             </div>
+
+            <div className="col-lg-7 ms-auto" data-aos="fade-left" data-aos-duration="1200">
+              <h3>For Nannies</h3>
+              <ul className="service-list">
+                <li>Minimum 2 years of childcare experience</li>
+                <li>CPR and First Aid Certification</li>
+                <li>Non-Smoker</li>
+                <li>Fantastic work and personal references</li>
+                <li>U.S. Driver's License</li>
+              </ul>
+
+              <p>Come join our team, and we’ll walk you through the process of securing a fantastic family! Our support starts with training and regular check-ins to help you succeed.</p>
+            </div>
           </div>
-          {/* End .container */}
         </div>
-        {/* <!-- /.bg-wrapper --> */}
       </div>
-      {/* <!-- /.fancy-text-block-seven --> */}
 
       {/* =============================================
-        Counter Style Three
-        ==============================================  */}
-      <div className="counter-style-three lg-container mt-50">
-        <div className="container">
-          <CounterSix />
-        </div>
-      </div>
-      {/* <!-- /.counter-style-three --> */}
-
-      {/* =====================================================
-            Fancy Short Banner Ten
-        ===================================================== */}
-      <div className="fancy-short-banner-ten mt-130 md-mt-20">
+          Our Process Section
+      ============================================== */}
+      {/* Our Process Section */}
+      <div className="for-families blog-page-bg">
         <div className="container">
           <div className="row">
-            <div
-              className="col-xl-7 col-lg-8 m-auto"
-              data-aos="fade-up"
-              data-aos-duration="1200"
-            >
-              <div className="text-center pb-60">
-                <h2 className="font-gordita">
-                  Convinced to work on a new project?
-                </h2>
+            <div className="col-lg-12 text-center mb-5">
+              <h2 className="font-gilroy-bold">Our Process</h2>
+            </div>
+
+            {/* Nanny Application Section */}
+            <div className="row align-items-center mb-5">
+              <div className="col-lg-6">
+                <img src="https://placehold.co/400" alt="Family Application" width={400} height={400} />
+              </div>
+              <div className="col-lg-6">
+                <div className="feature-box">
+                  <h3>Nanny Application</h3>
+                  <p>
+                    Find your next great position! Share your childcare experience, philosophies you are most aligned with, and any certifications and/or training you have so we can match you with the right family. 
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Interview Process Section */}
+            <div className="row align-items-center mb-5 flex-row-reverse">
+              <div className="col-lg-6">
+                <img src="https://placehold.co/400" alt="Matchmaking Process" width={400} height={400} />
+              </div>
+              <div className="col-lg-6">
+                <div className="feature-box">
+                  <h3>Interview</h3>
+                  <p>
+                    We will arrange a personal meeting, either in person or virtually, at a time that fits your schedule. We are excited to meet you and learn about the qualities that make you unique!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Matchmaking Section */}
+            <div className="row align-items-center mb-5">
+              <div className="col-lg-6">
+                <img src="https://placehold.co/400" alt="Interview Process" width={400} height={400} />
+              </div>
+              <div className="col-lg-6">
+                <div className="feature-box">
+                  <h3>Matching Tailored to You</h3>
+                  <p>
+                    We take the time to understand your job preferences, including schedule, location, children's ages, values, and other important factors, to make sure each family you connect with is an ideal match.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* References/Background Check Section */}
+            <div className="row align-items-center mb-5 flex-row-reverse">
+              <div className="col-lg-6">
+                <img src="https://placehold.co/400" alt="Trial Period" width={400} height={400} />
+              </div>
+              <div className="col-lg-6">
+                <div className="feature-box">
+                  <h3>References and Background Check</h3>
+                  <p>
+                    Minimum of 3 references (work and personal)
+                    We carefully review all of your references, as they play a key role in showcasing your experience, reliability, and the positive impact you've had on families you've worked with
+                    All of our successful candidates are thoroughly background checked. (Available investigations include - Criminal Background Investigation, DMV Driving Record, Social Security Number Verification, Sex Offender Registry Check, Civil Restraining Orders Check, National Wants and Warrants)
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Professional Support Section */}
+            <div className="row align-items-center mb-5">
+              <div className="col-lg-6">
+                <img src="https://placehold.co/400" alt="Successful Match" width={400} height={400} />
+              </div>
+              <div className="col-lg-6">
+                <div className="feature-box">
+                  <h3>Professional Support</h3>
+                  <p>
+                    We're here for you! With our monthly activity guides, hands-on curricula, and more, you’ll always feel supported. Facing a new challenge? Reach out to us, and we'll provide helpful solutions!
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          {/* End .row */}
-
-          <div
-            className="text-center pb-40 md-pb-10"
-            data-aos="fade-up"
-            data-aos-duration="1200"
-            data-aos-delay="150"
-          >
-            <Link href="/contact-doc" className="theme-btn-eleven">
-              {" "}
-              Contact us
-            </Link>
-          </div>
         </div>
-        {/* /.container */}
-        <Image width="321" height="471" src="/images/shape/210.svg" alt="image" className="shapes shape-one" />
-        <Image  width="311" height="445" src="/images/shape/211.svg" alt="image" className="shapes shape-two" />
       </div>
-      {/* /.fancy-short-banner-ten */}
 
-      {/*  =====================================================
-            Footer Style Eight
-        ===================================================== */}
-      <footer className="theme-footer-eight mt-100">
-        <div className="top-footer">
-          <div className="container">
-            <FooterEight />
+      {/* =============================================
+          Screening and Matchmaking Section
+      ============================================== */}
+      <div className="fancy-feature-thirtyTwo pt-110 pb-160 md-pt-90 md-pb-100">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 m-auto">
+              <div className="title-style-eleven text-center pb-50">
+                <h2>Screening and Matchmaking</h2>
+              </div>
+            </div>
           </div>
-          {/* /.container */}
-        </div>
 
+          <div className="row">
+            <div className="col-lg-6" data-aos="fade-up" data-aos-duration="1200">
+              <h3>Screening</h3>
+              <ul className="service-list">
+                <li>Educational Background</li>
+                <li>Work History</li>
+                <li>Childcare Experience</li>
+                <li>Work and Personal References</li>
+                <li>Criminal Background Checks (7 Years)</li>
+                <li>Social Security Verification</li>
+                <li>National Sex Offender Registry Check</li>
+                <li>Nationwide Driving Record Check</li>
+              </ul>
+            </div>
+
+            <div className="col-lg-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+              <h3>Matchmaking</h3>
+              <p>
+                We connect with the family via Zoom or in-person to ensure every aspect of the potential relationship is explored for a perfect match.
+              </p>
+              <p>
+                Both family and nanny take a specialized personality assessment to enhance compatibility and long-term success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <footer className="theme-footer-eight mt-100">
+        <div className="container">
+          <FooterEight />
+        </div>
         <div className="container">
           <div className="bottom-footer mt-50 md-mt-30">
             <CopyRightFour />
           </div>
         </div>
       </footer>
-      {/* /.theme-footer-eight  */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ const CallToActionFive = () => {
     <>
       <div className="title-style-five text-center">
         <h2>
-          <span>Sign up & get started</span>
+          <span>Contact Us</span>
         </h2>
       </div>
       <div className="row">

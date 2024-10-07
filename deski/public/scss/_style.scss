@@ -614,6 +614,7 @@ h6 {
   z-index: 1;
 }
 
+// Text banner
 .title-style-five h2 span:before {
   content: "";
   width: 100%;
@@ -3606,16 +3607,16 @@ body .shop-btn-two:hover {
   margin-bottom: 100px;
 }
 
-/*-------------- Feature Blog One -------------*/
-.feature-blog-one .header .title-style-one {
+/*-------------- For Families -------------*/
+.for-families .header .title-style-one {
   max-width: 560px;
 }
 
-.feature-blog-one .row [class*="col-"] {
+.for-families .row [class*="col-"] {
   display: flex;
 }
 
-.feature-blog-one .post-meta {
+.for-families .post-meta {
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
@@ -3626,19 +3627,19 @@ body .shop-btn-two:hover {
   transition: 0.3s ease-in-out;
 }
 
-.feature-blog-one .post-meta .image-meta {
+.for-families .post-meta .image-meta {
   width: 100%;
   border-radius: 5px;
 }
 
-.feature-blog-one .post-meta .tag {
+.for-families .post-meta .tag {
   font-family: "Rubik", sans-serif;
   font-size: 16px;
   color: rgba(10, 10, 10, 0.54);
   padding: 25px 0 3px;
 }
 
-.feature-blog-one .post-meta .title {
+.for-families .post-meta .title {
   font-family: "gilroy-bold";
   font-size: 30px;
   line-height: 1.2em;
@@ -3646,7 +3647,7 @@ body .shop-btn-two:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.feature-blog-one .post-meta {
+.for-families .post-meta {
   &:hover {
     transform: translateY(-10px);
   }
@@ -3658,7 +3659,7 @@ body .shop-btn-two:hover {
   }
 }
 
-.feature-blog-one .post-meta .read-more {
+.for-families .post-meta .read-more {
   font-weight: 500;
   font-size: 15px;
   text-transform: uppercase;
@@ -3673,68 +3674,8 @@ body .shop-btn-two:hover {
   }
 }
 
-.feature-blog-one .post-meta .read-more i {
+.for-families .post-meta .read-more i {
   font-size: 22px;
-}
-
-/*---------------- Fancy Text block Four -------------*/
-.fancy-text-block-four {
-  background: #fcf7ef;
-  position: relative;
-  z-index: 5;
-}
-
-.fancy-text-block-four:before {
-  content: url(../images/shape/13.svg);
-  position: absolute;
-  top: -48px;
-  left: 0;
-  animation: jumpTwo 4s infinite linear;
-}
-
-.fancy-text-block-four:after {
-  content: url(../images/shape/14.svg);
-  position: absolute;
-  bottom: -140px;
-  right: 0;
-  animation: jumpThree 4s infinite linear;
-}
-
-.fancy-text-block-four .wrapper {
-  position: relative;
-  z-index: 1;
-}
-
-.fancy-text-block-four .wrapper:before {
-  content: url(../images/assets/ils_02.svg);
-  position: absolute;
-  top: -219px;
-  right: -253px;
-  z-index: -1;
-  animation: jumpTwo 10s infinite linear;
-}
-
-.block-style-three {
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.02);
-  padding: 25px 40px 70px 50px;
-  margin-top: 35px;
-}
-
-.block-style-three .icon {
-  height: 75px;
-}
-
-.block-style-three h4 {
-  font-family: "gilroy-bold";
-  font-size: 22px;
-  padding: 25px 0 20px;
-}
-
-.block-style-three p {
-  font-size: 17px;
-  line-height: 1.64em;
 }
 
 /*---------------- Fancy Text block Five -------------*/
@@ -8841,7 +8782,7 @@ body .shop-btn-two:hover {
 /*---------------------- Theme Hero Banner/Four ---------------*/
 .hero-banner-four {
   position: relative;
-  background: #fbf3ec;
+  background: #fbf3ec; // change color
   padding: 250px 0 110px;
   z-index: 1;
 }
@@ -8919,11 +8860,6 @@ body .shop-btn-two:hover {
   text-decoration: underline;
 }
 
-// .hero-banner-four .illustration {
-//   width: 100%;
-//   height: 100%;
-// }
-
 .hero-banner-four .illustration-holder .shape-one {
   width: 14%;
   top: 9%;
@@ -8946,6 +8882,15 @@ body .shop-btn-two:hover {
   right: 51%;
   z-index: 1;
   animation: jump10p 5s infinite linear;
+}
+
+/*------------ Our Story ---------------------*/
+
+.our-story-container p {
+  font-family: "Rubik";
+  color: #000000;
+  font-size: 24px;
+  line-height: 1.8em;
 }
 
 /*-------------Fancy Feature Eight -----------*/
