@@ -15,7 +15,7 @@ export const metadata = {
 
 const ServiceV3 = () => {
   return (
-    <div className="main-page-wrapper">
+    <div className="main-page-wrapper for-nannies">
       <HeaderTwo />
 
       {/* =============================================
@@ -25,10 +25,10 @@ const ServiceV3 = () => {
         <div className="container">
           <div className="row">
             <div className="col-xl-10 m-auto">
-              <h2 className="font-rubik">For Nannies</h2>
+              <h2>For Nannies</h2>
             </div>
             <div className="col-xl-9 m-auto">
-              <p className="font-rubik">
+              <p>
                 We help families find the perfect nanny and support nannies in securing their ideal job.
               </p>
             </div>
@@ -44,42 +44,42 @@ const ServiceV3 = () => {
       {/* =============================================
           For Nannies Section
       ============================================== */}
-      <div className="fancy-text-block-seven mt-130 md-mt-80">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-5" data-aos="fade-right" data-aos-duration="1200">
-              <div className="img-holder">
-                <img
-                  width={400}
-                  height={400}
-                  style={{height: 'fit-content'}}
-                  src="https://placehold.co/400"
-                  alt="Nanny Service"
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-7 ms-auto" data-aos="fade-left" data-aos-duration="1200">
-              <h3>For Nannies</h3>
-              <ul className="service-list">
-                <li>Minimum 2 years of childcare experience</li>
-                <li>CPR and First Aid Certification</li>
-                <li>Non-Smoker</li>
-                <li>Fantastic work and personal references</li>
-                <li>U.S. Driver's License</li>
-              </ul>
-
-              <p>Come join our team, and we’ll walk you through the process of securing a fantastic family! Our support starts with training and regular check-ins to help you succeed.</p>
-            </div>
-          </div>
+<div className="fancy-text-block-seven">
+  <div className="container">
+    <div className="row align-items-center">
+      <div className="col-lg-5">
+        <div className="img-holder mb-50" data-aos="fade-right" data-aos-duration="1200">
+          <img
+            width={400}
+            height={400}
+            style={{ height: 'fit-content' }}
+            src="https://placehold.co/400"
+            alt="Nanny Service"
+          />
         </div>
       </div>
+
+      <div className="col-lg-7" data-aos="fade-left" data-aos-duration="1200">
+        <h3>For Nannies</h3>
+        <ul className="service-list">
+          <li>Minimum 2 years of childcare experience</li>
+          <li>CPR and First Aid Certification</li>
+          <li>Non-Smoker</li>
+          <li>Fantastic work and personal references</li>
+          <li>U.S. Driver's License</li>
+        </ul>
+      </div>
+    </div>
+        <p>Come join our team, and we’ll walk you through the process of securing a fantastic family! Our support starts with training and regular check-ins to help you succeed.</p>
+  </div>
+</div>
+
 
       {/* =============================================
           Our Process Section
       ============================================== */}
       {/* Our Process Section */}
-      <div className="for-families blog-page-bg">
+      <div className="for-families blog-page-bg mt-120">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center mb-5">

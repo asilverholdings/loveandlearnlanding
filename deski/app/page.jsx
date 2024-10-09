@@ -108,7 +108,7 @@ export default function Home() {
     ==============================================
 				Client Feedback Slider
 		============================================== */}
-      <div className="client-feedback-slider-three mt-250 mb-250 ">
+      {/* <div className="client-feedback-slider-three mt-250 mb-250 ">
         <div className="container">
           <div className="title-style-five text-center mb-80 md-mb-50">
             <div className="row">
@@ -119,7 +119,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* End title */}
+
           <div className="row">
             <div className="col-xl-7 col-lg-9 m-auto">
               <div className="testimonial-slider-wrapper">
@@ -128,11 +128,9 @@ export default function Home() {
                   <TestimonialThree />
                 </div>
               </div>
-              {/* /.testimonial-slider-wrapper */}
             </div>
           </div>
         </div>
-        {/* /.container */}
         <Image
           width={82} height={82}
           src="/images/media/img_59.png"
@@ -174,7 +172,7 @@ export default function Home() {
           width={600}
           height={200}
         />
-      </div>
+      </div> */}
       {/* 
     ==============================================
 			Call To Action

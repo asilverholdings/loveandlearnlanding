@@ -54,7 +54,7 @@ const ForFamilies = () => {
                 <div className="feature-box">
                   <h3>Family Application</h3>
                   <p>
-                    Fill out our <a href="#" className="link-highlight">family application</a> to share your nanny preferences and childcare needs. You'll describe the job responsibilities, childcare philosophies, and professional qualities you look for in your nanny.
+                    Fill out our family application to share your nanny preferences and childcare needs. You'll describe the job responsibilities, childcare philosophies, and professional qualities you look for in your nanny.
                   </p>
                 </div>
               </div>

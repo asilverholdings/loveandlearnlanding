@@ -4,6 +4,10 @@ import Footer from "../../../components/footer/Footer";
 import CopyRight from "../../../components/footer/CopyRight";
 import { FaqContent } from "@/data/faqs";
 import Link from "next/link";
+import FaqClassicThree from "@/components/faq/FaqClassicThree.jsx";
+import FaqClassicTwo from "@/components/faq/FaqClassicTwo";
+import FaqFour from "@/components/faq/FaqFour";
+import FaqThree from "@/components/faq/FaqThree";
 
 const Faq = () => {
   return (
@@ -33,19 +37,11 @@ const Faq = () => {
                   Here are the answers to some common questions you may have.
                 </p>
               </div>
-
-              <div className="all-faqs">
-                {FaqContent.map((faq) => (
-                  <div key={faq.id} className="faq-item mb-4">
-                    <h4>{faq.question}</h4>
-                    <p>{faq.answer}</p>
-                  </div>
-                ))}
-              </div>
+              <FaqClassicTwo/>
 
               {/* Contact Us */}
               <div className="text-center more-faq-ask mt-5">
-                <h3>Don’t find your answer?</h3>
+                <h3>Don’t see your answer?</h3>
                 <Link href="/contact-eo" className="theme-btn-one mt-30">
                   Contact us
                 </Link>

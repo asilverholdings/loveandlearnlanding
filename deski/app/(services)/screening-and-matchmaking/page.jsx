@@ -57,11 +57,11 @@ const ServiceV2 = () => {
           </div>
 
           {/* Screening and Matchmaking Tabs */}
-          <div className="row">
-            <div className="col-md-6">
+          <div className="screening-and-matchmaking row justify-content-center">
+            <div className="col-md-5">
               <div className="feature-box">
                 <h3>Screening</h3>
-                <ul>
+                <ul className="screening-list">
                   <li>Educational Background</li>
                   <li>Work History</li>
                   <li>Childcare Experience</li>
@@ -74,7 +74,8 @@ const ServiceV2 = () => {
               </div>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6
+            ">
               <div className="feature-box">
                 <h3>Matchmaking</h3>
                 <p>
@@ -99,9 +100,9 @@ const ServiceV2 = () => {
             <div className="content-wrapper">
               <div className="bg-wrapper d-lg-flex align-items-center justify-content-between">
                 <h2 className="font-gilroy-bold">
-                  Don’t find the answer? Contact us for any query.
+                  Still have questions? Contact us.
                 </h2>
-                <Link href="/contact-pm"> Contact us</Link>
+                <Link href="/contact-us"> Contact us</Link>
                 <div className="bubble-one"></div>
                 <div className="bubble-two"></div>
                 <div className="bubble-three"></div>

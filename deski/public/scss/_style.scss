@@ -620,7 +620,7 @@ h6 {
   width: 100%;
   height: 15px;
   position: absolute;
-  background: rgba(241, 193, 83, 0.45);
+  background: #fbd6bc;
   left: 0;
   bottom: 12px;
   z-index: -1;
@@ -972,7 +972,7 @@ body .theme-btn-five {
   padding: 0 35px;
   text-align: center;
   color: #fff;
-  background: var(--purple-blue);
+  background: #7ec9af;
   position: relative;
   z-index: 1;
 }
@@ -2872,7 +2872,7 @@ body .shop-btn-two:hover {
 .footer-bg-wrapper .bubble-one {
   width: 25px;
   height: 25px;
-  background: #ff6cc4;
+  background: #e3c5d4;
   top: 4%;
   left: 26%;
   animation: scale-up-one 4s infinite linear;
@@ -2881,7 +2881,7 @@ body .shop-btn-two:hover {
 .footer-bg-wrapper .bubble-two {
   width: 14px;
   height: 14px;
-  background: #ffbe50;
+  background: #fbd6bc;
   top: 48%;
   left: 10%;
   animation: scale-up-one 4s infinite linear;
@@ -2890,7 +2890,7 @@ body .shop-btn-two:hover {
 .footer-bg-wrapper .bubble-three {
   width: 7px;
   height: 7px;
-  background: #04e8f4;
+  background: #b8e1d3;
   bottom: 18%;
   left: 20%;
   animation: scale-up-three 4s infinite linear;
@@ -3153,7 +3153,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-one:before {
   width: 6px;
   height: 6px;
-  background: #fac3ff;
+  background: #e3c5d4;
   top: 0;
   left: 50%;
 }
@@ -3169,7 +3169,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-two:before {
   width: 10px;
   height: 10px;
-  background: #8fe9e0;
+  background: #b8e1d3;
   top: 50%;
   right: 100%;
 }
@@ -3185,7 +3185,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-three:before {
   width: 6px;
   height: 6px;
-  background: #ffd5ad;
+  background: #fbd6bc;
   bottom: 0;
   left: 50%;
 }
@@ -3201,7 +3201,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-four:before {
   width: 6px;
   height: 6px;
-  background: #8fe9e1;
+  background: #b8e1d3;
   top: 0;
   left: 50%;
 }
@@ -3217,7 +3217,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-five:before {
   width: 10px;
   height: 10px;
-  background: #ffd5ad;
+  background: #fbd6bc;
   top: 50%;
   right: 100%;
 }
@@ -3233,7 +3233,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-six:before {
   width: 6px;
   height: 6px;
-  background: #fac3ff;
+  background: #e3c5d4;
   bottom: 0;
   left: 50%;
 }
@@ -3608,6 +3608,12 @@ body .shop-btn-two:hover {
 }
 
 /*-------------- For Families -------------*/
+.for-families p {
+  font-size: 24px;
+  line-height: 1.5em;
+  font-family: 'Rubik';
+}
+
 .for-families .header .title-style-one {
   max-width: 560px;
 }
@@ -3676,6 +3682,31 @@ body .shop-btn-two:hover {
 
 .for-families .post-meta .read-more i {
   font-size: 22px;
+}
+
+/*-------- For Nannies ----------*/
+.for-nannies {
+  font-family: "Rubik";
+
+}
+.feature-box p {
+  font-size: 24px;
+  line-height: 1.5em;
+  margin: 1em 0 1em 0;
+}
+
+.feature-box, .feature-box ul {
+  margin: 1em 0 1em 0;
+}
+
+/*------- Screening and Matchmaking ----*/
+.screening-list{
+  list-style-type: disc;
+  font-size: 24px;
+}
+
+.screening-and-matchmaking .feature-box {
+  margin-left: 5em;
 }
 
 /*---------------- Fancy Text block Five -------------*/
@@ -3831,7 +3862,7 @@ body .shop-btn-two:hover {
 .contact-us-light .bubble-two {
   width: 7px;
   height: 7px;
-  background: #51fcff;
+  background: #b8e1d3;
   top: 14%;
   right: 8%;
   animation: scale-up-three 4s infinite linear;
@@ -6536,7 +6567,7 @@ body .shop-btn-two:hover {
 
 /*---------------------- Faqs -------------------*/
 .faqs-inner-page {
-  background: linear-gradient(45deg, #fffbf2, #edfffd);
+  background: linear-gradient(45deg, #b8e1d3, #edf7f4);
   padding: 170px 0 185px;
   position: relative;
   z-index: 5;
@@ -6967,7 +6998,7 @@ body .shop-btn-two:hover {
 
 /*------------------- Blog Pages ----------------*/
 .blog-page-bg {
-  background: linear-gradient(45deg, #fffbf2, #edfffd);
+  background: linear-gradient(45deg, #b8e1d3, #edf7f4);
   padding: 180px 0 150px;
   position: relative;
   z-index: 5;
@@ -8782,7 +8813,7 @@ body .shop-btn-two:hover {
 /*---------------------- Theme Hero Banner/Four ---------------*/
 .hero-banner-four {
   position: relative;
-  background: #fbf3ec; // change color
+  background: #f8f0f4;
   padding: 250px 0 110px;
   z-index: 1;
 }
@@ -9009,16 +9040,23 @@ body .shop-btn-two:hover {
   top: 13px;
 }
 
-/*------------------ Fancy Feature Nine --------------*/
-
+/*----- Why Us -------*/
 #why-us {
   padding-top: 100px;
   margin-top: -100px;
 }
 
+.why-us-svg-color {
+  fill: #edf7f4;
+  transform: "matrix(-1 8.742278E-08 -8.742278E-08 -1 1846 1036)";
+}
+
+/*------------------ Fancy Feature Nine --------------*/
+
+
 .fancy-feature-nine {
   position: relative;
-  background: #dff1ee;
+  background: #edf7f4;
   padding: 140px 0 135px;
   z-index: 5;
 }
@@ -9635,7 +9673,7 @@ body .shop-btn-two:hover {
 
 /*-------------------- Footer Style Four --------------------*/
 .theme-footer-four {
-  background: #fbf3ec;
+  background: #f8f0f4;
   padding: 80px 0 70px;
   position: relative;
   z-index: 5;
@@ -10956,6 +10994,10 @@ body .shop-btn-two:hover {
 
 .dark-style .navbar-nav .nav-item.active .nav-link {
   color: rgba(255, 255, 255, 1);
+}
+
+.theme-menu-two .navbar-nav .nav-item.active .nav-link {
+  color: #fa7f53;
 }
 
 .dark-style .theme-menu-five .navbar-nav .nav-item .nav-link.active {
@@ -16405,7 +16447,7 @@ body .shop-btn-two:hover {
 
 /*-------------------- Fancy Feature Thirty One --------------------*/
 .fancy-feature-thirtyOne {
-  background: #fcf7ef;
+  background: #f8f0f4;
 }
 
 .fancy-feature-thirtyOne .block-style-thirtyTwo {
@@ -17680,7 +17722,7 @@ body .shop-btn-two:hover {
 }
 
 .theme-menu-eight .cart-group-wrapper .dropdown-toggle:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: #fa7f53;
 }
 
 .theme-menu-eight .cart-group-wrapper .item-count {

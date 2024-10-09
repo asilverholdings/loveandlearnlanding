@@ -8,17 +8,14 @@ export default function MenuLink({val,setCurrentTopRoute,topMenu}) {
     useEffect(() => {
       if (pathname.split('/')[1] == val.routerPath.split('/')[1]) {
         setCurrentTopRoute(topMenu)
-        
       }
-    
-     
     }, [])
     
   return (
     <li >
-                  <Link     href={val.routerPath} className={pathname.split('/')[1] == val.routerPath.split('/')[1] ? "dropdown-item active":'dropdown-item'}>
-                    {val.name}
-                  </Link>
-                </li>
+    <Link href={val.routerPath} className={pathname.split('/')[1] == val.routerPath.split('/')[1] ? "dropdown-item active":'dropdown-item'}>
+      {val.name}
+    </Link>
+    </li>
   )
 }

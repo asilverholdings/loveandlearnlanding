@@ -22,31 +22,14 @@ const ContactAddress = () => {
       <div className="col-lg-4 col-sm-6 d-lg-flex">
         <div className="address-info">
           <div className="icon d-flex align-items-end">
-            <Image width="60" height="76" src="/images/icon/44.svg" alt="icon" />
-          </div>
-          <div className="title">Location</div>
-          <p className="font-rubik">
-            Melbourne, R. Market <br /> 1201 VIC
-          </p>
-        </div>{" "}
-        {/* /.address-info  */}
-      </div>
-      {/* End .col */}
-
-      <div className="col-lg-4 col-sm-6 d-lg-flex">
-        <div className="address-info">
-          <div className="icon d-flex align-items-end">
             <Image  width="75" height="68" src="/images/icon/45.svg" alt="icon" />
           </div>
           <div className="title">Contact</div>
           <p className="font-rubik">
-            bawejkor@duwvude.gov <br />
-            (779) 564-1593
+            tessa@loveandlearn.com
           </p>
         </div>{" "}
-        {/* /.address-info  */}
       </div>
-      {/* End .col */}
 
       <div className="col-lg-4 col-sm-6 d-lg-flex">
         <div className="address-info">
@@ -65,9 +48,7 @@ const ContactAddress = () => {
             ))}
           </ul>
         </div>
-        {/* /.address-info  */}
       </div>
-      {/* End .col */}
     </div>
   );
 };
