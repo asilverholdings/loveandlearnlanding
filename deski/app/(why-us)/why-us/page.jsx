@@ -1,7 +1,5 @@
-import Header from "../../../components/header/Header";
-import Footer from "../../../components/footer/Footer";
-import CopyRight from "../../../components/footer/CopyRight";
-import Image from "next/image";
+import HeaderTwo from "../../../components/header/HeaderTwo";
+import FooterFour from "@/components/footer/FooterFour";
 
 export const metadata = {
   title: 'About Us || Deski-Saas & Software Nextjs Template',
@@ -12,7 +10,7 @@ const About = () => {
   return (
     <div className="main-page-wrapper">
       {/* SEO Content */}
-      <Header />
+      <HeaderTwo />
       {/* End Header */}
 
       {/* Hero Section */}
@@ -46,7 +44,10 @@ const About = () => {
             <div className="col-lg-6">
               <h3 className="font-gilroy-bold">Why Us?</h3>
               <p>
-                At our agency, we offer families peace of mind by connecting them with nannies who align with their unique needs. Our services are built on trust, reliability, and an unwavering commitment to quality.
+                Our nannies are dedicated to fostering engaging learning experiences
+                tailored to your child’s development. In addition to focusing on your child's needs, 
+                they also offer holistic household support, such as preparing meals for the children, 
+                handling laundry, organizing, and more.
               </p>
             </div>
           </div>
@@ -61,13 +62,14 @@ const About = () => {
             <div className="col-lg-6">
               <h3 className="font-gilroy-bold">Comprehensive Process</h3>
               <p>
-                We make finding the perfect nanny easy and stress-free! Every candidate you meet has been thoroughly vetted, screened, and matched to your specific needs. Our nannies are equipped with the skills, knowledge, and experience to create a stimulating environment designed to support your child's development.
+                We make finding the perfect nanny easy and stress-free! Every 
+                candidate you meet has been thoroughly vetted, screened, and matched 
+                to your specific needs. Your candidate is equipped with the skills, 
+                knowledge, or experience needed to create a stimulating environment 
+                designed to support your child's learning and developmental milestones. 
+                Allow us to match you with candidates who align with your needs through a 
+                trusted and personalized placement process.
               </p>
-              <p>
-                Let us guide you through a trusted and personalized placement process that aligns with your family’s needs.
-              </p>
-            </div>
-            <div className="col-lg-6">
             </div>
           </div>
         </div>
@@ -83,7 +85,14 @@ const About = () => {
             <div className="col-lg-6">
               <h3 className="font-gilroy-bold">Dependable Service</h3>
               <p>
-                We ensure high-quality care you can trust! If your nanny is unavailable due to illness or an emergency, we’ll provide a professional back-up nanny at no additional cost. We support you every step of the way, from interviews to final decisions.
+                We want to ensure that you always have high-quality care you can trust! 
+                If your nanny is ever unavailable due to illness or a family emergency, 
+                we’ll provide a professional back-up nanny to fill in.
+              </p>
+              <br />
+              <p>
+                We guide you through every step of the hiring process, 
+                from the interview to the final decision.
               </p>
             </div>
           </div>
@@ -91,20 +100,48 @@ const About = () => {
       </div>
       {/* End Dependable Service Section */}
 
-      {/* Curriculum Section */}
+      {/* Continued Support Section */}
       <div className="about-section bg-light pt-90 pb-90">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <h3 className="font-gilroy-bold">Curriculum</h3>
+              <h3 className="font-gilroy-bold">Continued Support</h3>
               <p>
-                Our thoughtfully designed curriculum provides nannies with hands-on activities and educational tools to support your child’s cognitive, physical, and emotional development. Each activity is tailored to age-appropriate milestones, ensuring an enriching and well-rounded experience for your child.
+                We stand behind our service with a satisfaction guarantee. If you feel 
+                the nanny you’ve hired isn’t the right fit, we offer a 90 day replacement guarantee.
               </p>
+              <br />
               <p>
-                Every week, our nannies receive customized activity kits centered around a new theme, fostering creativity and growth in a fun and engaging environment.
+                Biweekly check-ins for the first few months to address concerns.
               </p>
             </div>
             <div className="col-lg-6">
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End Continued Support Section */}
+
+      {/* Curriculum Section */}
+      <div className="about-section pt-90 pb-90">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+            </div>
+            <div className="col-lg-6">
+              <h3 className="font-gilroy-bold">Curriculum</h3>
+              <p>
+                At our nannying agency, we’re dedicated to providing families with exceptional 
+                care that supports the whole child. What sets us apart is our commitment to fostering 
+                an enriching environment custom to each stage of your child’s development. We’ve 
+                developed a specialized curriculum, filled with hands-on activities and educational 
+                tools, designed for our nannies to use in nurturing your child's physical, cognitive, 
+                and emotional development. Additionally, we design monthly activity kits tailored to 
+                each age group, with fascinating activities centered around a new theme every month. 
+                Our nannies are more than just caregivers – they create fun, stimulating learning 
+                experiences, making sure your child grows in a safe and engaging environment. Choose 
+                us for personalized, high-quality care that helps your child reach their fullest potential.
+              </p>
             </div>
           </div>
         </div>
@@ -113,19 +150,12 @@ const About = () => {
 
       {/* Footer Section */}
       <footer className="theme-footer-one pt-130 md-pt-70">
-        <div className="top-footer">
-          <div className="container">
-            <Footer />
+          <div className="top-footer">
+            <div className="container">
+              <FooterFour />
+            </div>
           </div>
-        </div>
-
-        <div className="container">
-          <div className="bottom-footer-content">
-            <CopyRight />
-          </div>
-        </div>
-      </footer>
-      {/* End Footer Section */}
+        </footer>
     </div>
   );
 };

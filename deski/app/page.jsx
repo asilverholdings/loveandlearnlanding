@@ -1,14 +1,6 @@
 import React from "react";
-import Link from "next/link";
 
-import Header from "../components/header/HeaderFour";
 import HeroBannerFour from "../components/hero-banner/HeroBannerFour";
-import About from "../components/quote/Quote";
-import FeatureNine from "../components/features/WhyUs";
-import Faq from "../components/faq/Faq";
-import PricingThree from "../components/pricing/PricingThree";
-import TestimonialThree from "../components/testimonial/TestimonialThree";
-import FaqFour from "../components/faq/FaqFour";
 import FooterFour from "../components/footer/FooterFour";
 import CallToActionFive from "../components/call-to-action/CallToActionFive";
 import Image from "next/image";
@@ -25,8 +17,6 @@ export const metadata = {
 export default function Home() {
   return (
     <div className="main-page-wrapper p0">
-
-
 
       <HeaderTwo />
       {/* End HeaderFour */}
@@ -194,23 +184,6 @@ export default function Home() {
             <FooterFour />
           </div>
           {/* /.container */}
-        </div>
-
-        <div className="container">
-          <div className="bottom-footer-content">
-            <p>
-              Copyright @{new Date().getFullYear()}{" "}
-              <a
-                href="https://themeforest.net/user/ib-themes/portfolio"
-                target="_blank"
-                rel="noreferrer"
-              >
-                ib-themes
-              </a>{" "}
-              inc.
-            </p>
-          </div>
-          {/* /.bottom-footer */}
         </div>
       </footer>
       {/* /.theme-footer-four */}

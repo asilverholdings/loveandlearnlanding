@@ -1,5 +1,4 @@
 'use client';
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -74,23 +73,23 @@ const MegaMenu = () => {
           Services
         </Link>
         <ul className="dropdown-menu">
-          <div className="dropdown-container">
+          <div className={pathname === Services[0].routerPath ? "active" : ""}>
             <li className="dropdown-item">
-              <Link href={Services[0].routerPath} className={pathname === Services[0].routerPath ? "active" : ""}>
+              <Link href={Services[0].routerPath}>
                 For Families
               </Link>
             </li>
           </div>
-          <div className="dropdown-container">
+          <div className={pathname === Services[1].routerPath ? "active" : ""}>
             <li className="dropdown-item">
-              <Link href={Services[1].routerPath} className={pathname === Services[1].routerPath ? "active" : ""}>
+              <Link href={Services[1].routerPath}>
                 For Nannies
               </Link>
             </li>
           </div>
-          <div className="dropdown-container">
+          <div className={pathname === Services[2].routerPath ? "active" : ""}>
             <li className="dropdown-item">
-              <Link href={Services[2].routerPath} className={pathname === Services[2].routerPath ? "active" : ""}>
+              <Link href={Services[2].routerPath}>
                 Screening & Matchmaking
               </Link>
             </li>

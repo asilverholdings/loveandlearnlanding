@@ -1,13 +1,9 @@
 import React from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
-import Footer from "../../../components/footer/Footer";
 import CopyRight from "../../../components/footer/CopyRight";
-import { FaqContent } from "@/data/faqs";
-import Link from "next/link";
-import FaqClassicThree from "@/components/faq/FaqClassicThree.jsx";
 import FaqClassicTwo from "@/components/faq/FaqClassicTwo";
-import FaqFour from "@/components/faq/FaqFour";
-import FaqThree from "@/components/faq/FaqThree";
+import FancyBannerTwo from "@/components/fancy-features/FancyBannerTwo";
+import FooterFour from "@/components/footer/FooterFour";
 
 const Faq = () => {
   return (
@@ -17,9 +13,9 @@ const Faq = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-9 m-auto">
-              <h2 className="font-rubik">Help & Support</h2>
+              <h2 className="font-rubik">FAQ's</h2>
               <p className="sub-heading">
-                Advice and answers from our expert and professional team.
+                Learn more through our answers.
               </p>
             </div>
           </div>
@@ -38,29 +34,18 @@ const Faq = () => {
                 </p>
               </div>
               <FaqClassicTwo/>
-
-              {/* Contact Us */}
-              <div className="text-center more-faq-ask mt-5">
-                <h3>Don’t see your answer?</h3>
-                <Link href="/contact-eo" className="theme-btn-one mt-30">
-                  Contact us
-                </Link>
-              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <footer className="theme-footer-one pt-130 md-pt-70">
-        <div className="top-footer">
-          <div className="container">
-            <Footer />
-          </div>
+        <div className="mt-50">
+          {/* Contact Us */}
+          <FancyBannerTwo />
         </div>
+
+      <footer className="theme-footer-eight mt-100 mb-80">
         <div className="container">
-          <div className="bottom-footer-content">
-            <CopyRight />
-          </div>
+          <FooterFour />
         </div>
       </footer>
     </div>

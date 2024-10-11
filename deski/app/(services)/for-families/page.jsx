@@ -1,8 +1,6 @@
-import Header from "../../../components/header/Header";
 import HeaderTwo from "../../../components/header/HeaderTwo";
-import Footer from "../../../components/footer/Footer";
 import CopyRight from "../../../components/footer/CopyRight";
-import Image from "next/image"; // Import the Image component for optimization
+import FooterFour from "@/components/footer/FooterFour";
 
 export const metadata = {
   title: 'For Families || Deski-Saas & Software Next.js Template',
@@ -69,7 +67,7 @@ const ForFamilies = () => {
                 <div className="feature-box">
                   <h3>Matchmaking Process</h3>
                   <p>
-                    We use a thorough questionnaire to dive deep into every aspect of the potential family-candidate relationship. This includes a personality assessment to ensure a high compatibility, and based on these insights, we provide resumes of carefully selected candidates who match your family's needs.
+                    We use a detailed and thorough questionnaire to dive deep into every aspect of the potential family-candidate relationship, ensuring we consider all possibilities for the perfect match. Based on these insights, we will provide you with resumes of qualified candidates who are carefully selected to match your family’s specific needs.
                   </p>
                 </div>
               </div>
@@ -84,7 +82,7 @@ const ForFamilies = () => {
                 <div className="feature-box">
                   <h3>Interview</h3>
                   <p>
-                    Once you've reviewed your matches, we set up an in-person or virtual interview to ensure a strong connection before committing.
+                    We want to make sure there’s a strong connection before committing! Once you've reviewed your matches, we will set up the first interview either in-person or virtually.
                   </p>
                 </div>
               </div>
@@ -99,8 +97,7 @@ const ForFamilies = () => {
                 <div className="feature-box">
                   <h3>Trial Period</h3>
                   <p>
-                    We offer a two-week trial period to ensure the nanny is the right fit for your family. This allows you to see how they integrate into your family routine, and gives both sides a chance to ensure mutual comfort before a long-term commitment.
-                  </p>
+                    We offer a two-week trial period to ensure the nanny is the right fit for your family. During this time, you'll be able to see how they integrate into your family's routine. This trial period also gives both you and the nanny a chance to ensure mutual comfort and alignment before making a long-term commitment.                  </p>
                 </div>
               </div>
             </div>
@@ -114,7 +111,7 @@ const ForFamilies = () => {
                 <div className="feature-box">
                   <h3>Match</h3>
                   <p>
-                    Both sides should feel aligned on responsibilities, communication, and boundaries. We provide a detailed family agreement form outlining key expectations to ensure clarity and a smooth relationship from the start.
+                    It's important that both sides feel aligned on responsibilities, communication, and boundaries. To ensure clarity and a smooth relationship, we provide a detailed family agreement form, outlining all key expectations and responsibilities, so that both parties have a clear understanding from the very beginning.
                   </p>
                 </div>
               </div>
@@ -124,16 +121,9 @@ const ForFamilies = () => {
       </div>
 
       {/* Footer Section */}
-      <footer className="theme-footer-one pt-130 md-pt-70">
-        <div className="top-footer">
-          <div className="container">
-            <Footer />
-          </div>
-        </div>
+      <footer className="theme-footer-eight mt-100 mb-80">
         <div className="container">
-          <div className="bottom-footer-content">
-            <CopyRight />
-          </div>
+          <FooterFour />
         </div>
       </footer>
     </div>

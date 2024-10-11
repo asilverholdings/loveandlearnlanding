@@ -11,12 +11,12 @@ const FeatureContent = [
   {
     icon: "ils_16",
     meta: "Dependable Service",
-    subTitle: `If your nanny is unavailable due to emergencies, we provide a backup nanny at no extra cost.`,
+    subTitle: `We want to ensure that you always have high-quality care you can trust`,
   },
   {
     icon: "ils_17",
     meta: "Continued Support",
-    subTitle: `If you feel the nanny you’ve hired isn’t the right fit, we offer a 90 day replacement guarantee.`,
+    subTitle: `We stand behind our service with a satisfaction guarantee`,
   },
   {
     icon: "ils_15",
@@ -57,7 +57,7 @@ const WhyUs = () => {
       {/* Center the button */}
       <div className="row justify-content-center mt-4">
         <Link
-          href="/about"
+          href="/why-us"
           className="theme-btn-five"
           data-aos="fade-up"
           data-aos-duration="1200"
