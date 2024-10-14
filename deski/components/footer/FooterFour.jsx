@@ -52,9 +52,9 @@ const FooterFour = () => {
     <div className="row justify-content-end mb-100">
       <div className="col-xl-4 col-lg-3 col-12 footer-about-widget">
         <div className="logo">
-          <Link     href="/">
-            <Image width={136} 
-              height={43} src="/images/logo/deski_05.svg" alt="brand" />
+          <Link href="/">
+            <Image width={250} 
+              height={47} src="/images/logo/love-and-learn-text.svg" alt="brand" style={{ marginLeft: '-10px', display: "block" }} />
           </Link>
         </div>
         <ul className="font-rubik mt-10">

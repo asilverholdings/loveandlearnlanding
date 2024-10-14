@@ -6,31 +6,28 @@ import MegaMenu from "./mega-menu/MegaMenu";
 import MegaMenuMobile from "./mega-menu/MegaMenuMobile";
 import Image from "next/image";
 
-const HeaderThree = () => {
+const HeaderTwo = () => {
   const [navbar, setNavbar] = useState(false);
+  const [logoSize, setLogoSize] = useState(200);
 
   const changeBackground = () => {
     if (typeof window !== "undefined") {
-       if (window.scrollY >= 68) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
+      if (window.scrollY >= 68) {
+        setNavbar(true);
+        setLogoSize(100);
+      } else {
+        setNavbar(false);
+        setLogoSize(200);
+      }
     }
-    }
-   
   };
 
   useEffect(() => {
-    
-  window.addEventListener("scroll", changeBackground);
+    window.addEventListener("scroll", changeBackground);
     return () => {
       window.removeEventListener("scroll", changeBackground);
-    }
-  }, [])
-  
-
-  
-  
+    };
+  }, []);
 
   return (
     <>
@@ -43,8 +40,14 @@ const HeaderThree = () => {
       >
         <div className="d-flex align-items-center justify-content-center">
           <div className="logo">
-            <Link     href="/">
-              <Image  width="87" height="40" src="/images/logo/deski_01.svg" alt="brand logo" />
+            <Link href="/">
+              <Image
+                width={logoSize}
+                height={logoSize}
+                src="/images/logo/love-and-learn-logo.svg"
+                alt="brand logo"
+                style={{ transition: "width 0.3s, height 0.3s" }}
+              />
             </Link>
           </div>
           {/* End Logo */}
@@ -58,7 +61,6 @@ const HeaderThree = () => {
                 <div className="d-lg-flex justify-content-between align-items-center">
                   <MegaMenu />
                   {/* End MegaMenu */}
-
                 </div>
               </div>
             </div>
@@ -74,4 +76,4 @@ const HeaderThree = () => {
   );
 };
 
-export default HeaderThree;
+export default HeaderTwo;

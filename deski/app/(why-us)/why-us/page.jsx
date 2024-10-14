@@ -149,7 +149,7 @@ const About = () => {
       {/* End Curriculum Section */}
 
       {/* Footer Section */}
-      <footer className="theme-footer-one pt-130 md-pt-70">
+      <footer className="theme-footer-eight pt-130 md-pt-70">
           <div className="top-footer">
             <div className="container">
               <FooterFour />
