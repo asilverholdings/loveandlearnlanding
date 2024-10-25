@@ -297,6 +297,8 @@ Primary use:  ib-themes
   --text-light: #888888;
   --heading: #101621;
   --blue-dark: #6f55ff;
+  --orange: #fa7f53;
+  --light-orange: #fbd6bc;
   --red-light: #fd6a5e;
   --yellow-deep: #ffb840;
   --blue-light: #3bb0d7;
@@ -620,7 +622,7 @@ h6 {
   width: 100%;
   height: 15px;
   position: absolute;
-  background: #fbd6bc;
+  background: var(--light-orange);
   left: 0;
   bottom: 12px;
   z-index: -1;
@@ -2914,7 +2916,7 @@ body .shop-btn-two:hover {
 .footer-bg-wrapper .bubble-two {
   width: 14px;
   height: 14px;
-  background: #fbd6bc;
+  background: var(--light-orange);
   top: 48%;
   left: 10%;
   animation: scale-up-one 4s infinite linear;
@@ -3218,7 +3220,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-three:before {
   width: 6px;
   height: 6px;
-  background: #fbd6bc;
+  background: var(--light-orange);
   bottom: 0;
   left: 50%;
 }
@@ -3250,7 +3252,7 @@ body .shop-btn-two:hover {
 .fancy-hero-one .bubble-five:before {
   width: 10px;
   height: 10px;
-  background: #fbd6bc;
+  background: var(--light-orange);
   top: 50%;
   right: 100%;
 }
@@ -6260,7 +6262,7 @@ body .shop-btn-two:hover {
 .fancy-hero-four .shape-one {
   width: 6px;
   height: 6px;
-  background: #fa7f53;
+  background: var(--orange);
   top: 29%;
   right: 27%;
   animation: jumpThree 5s infinite linear;
@@ -6269,7 +6271,7 @@ body .shop-btn-two:hover {
 .fancy-hero-four .shape-two {
   width: 12px;
   height: 12px;
-  background: #fbd6bc;
+  background: var(--light-orange);
   top: 59%;
   right: 12%;
   animation: jumpTwo 5s infinite linear;
@@ -6278,7 +6280,7 @@ body .shop-btn-two:hover {
 .fancy-hero-four .shape-three {
   width: 8px;
   height: 8px;
-  background: #fa7f53;
+  background: var(--orange);
   top: 84%;
   right: 25%;
   animation: jumpThree 5s infinite linear;
@@ -6287,7 +6289,7 @@ body .shop-btn-two:hover {
 .fancy-hero-four .shape-four {
   width: 10px;
   height: 10px;
-  background: #fbd6bc;
+  background: var(--light-orange);
   top: 79%;
   left: 21%;
   animation: jumpTwo 5s infinite linear;
@@ -6296,7 +6298,7 @@ body .shop-btn-two:hover {
 .fancy-hero-four .shape-five {
   width: 6px;
   height: 6px;
-  background: #fa7f53;
+  background: var(--orange);
   top: 50%;
   left: 12%;
   animation: jumpThree 5s infinite linear;
@@ -6305,7 +6307,7 @@ body .shop-btn-two:hover {
 .fancy-hero-four .shape-six {
   width: 11px;
   height: 11px;
-  background: #fa7f53;
+  background: var(--orange);
   top: 27%;
   left: 21%;
   animation: jumpTwo 5s infinite linear;
@@ -11087,7 +11089,7 @@ body .shop-btn-two:hover {
 }
 
 .theme-menu-two .navbar-nav .nav-item.active .nav-link {
-  color: #fa7f53;
+  color: var(--orange);
 }
 
 .dark-style .theme-menu-five .navbar-nav .nav-item .nav-link.active {
@@ -17812,7 +17814,7 @@ body .shop-btn-two:hover {
 }
 
 .theme-menu-eight .cart-group-wrapper .dropdown-toggle:hover {
-  background: #fa7f53;
+  background: var(--orange);
 }
 
 .theme-menu-eight .cart-group-wrapper .item-count {

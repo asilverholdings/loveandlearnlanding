@@ -8,7 +8,7 @@
 }
 body{
     .activeMenu{
-    color: var(--blue-dark) !important;
+    color:  var(--orange) !important;
 }
 }
 .slick-dots{
@@ -123,9 +123,6 @@ body{
    
 }
 
-.nav-item{
-    
-}
 .active-scroll-spy {
     &>*{
         border-bottom: 2px solid black;

@@ -3,7 +3,6 @@ import React from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import ContactAddress from "../../../components/contact/address/ContactAddress";
 import ContactForm from "../../../components/contact/form/ContactForm";
-import CopyRightTwo from "../../../components/footer/CopyRightTwo";
 import Image from "next/image";
 import FooterFour from "@/components/footer/FooterFour";
 export const metadata = {
@@ -76,9 +75,12 @@ const ContactCustomerSupport = () => {
 				Footer Style Two
 			===================================================== */}
       <footer className="theme-footer-eight mt-100 mb-80">
-        <div className="container">
-          <FooterFour />
-        </div>
+        <div className="top-footer">
+            <div className="container">
+              <FooterFour />
+            </div>
+            {/* /.container */}
+          </div>
       </footer>
     </div>
   );

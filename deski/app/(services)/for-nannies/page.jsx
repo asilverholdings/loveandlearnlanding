@@ -158,9 +158,12 @@ const ServiceV3 = () => {
       ============================================== */}
 
       <footer className="theme-footer-eight mt-100 mb-80">
-        <div className="container">
-          <FooterFour />
-        </div>
+        <div className="top-footer">
+            <div className="container">
+              <FooterFour />
+            </div>
+            {/* /.container */}
+          </div>
       </footer>
     </div>
   );

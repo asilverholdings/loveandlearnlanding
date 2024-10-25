@@ -8,16 +8,16 @@ import Image from "next/image";
 
 const HeaderTwo = () => {
   const [navbar, setNavbar] = useState(false);
-  const [logoSize, setLogoSize] = useState(200);
+  const [logoSize, setLogoSize] = useState(innerWidth <= 768 ? 100 : 200);
 
   const changeBackground = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY >= 68) {
         setNavbar(true);
-        setLogoSize(100);
+        setLogoSize(innerWidth <= 768 ? 50 : 100);
       } else {
         setNavbar(false);
-        setLogoSize(200);
+        setLogoSize(innerWidth <= 768 ? 100 : 200);
       }
     }
   };
