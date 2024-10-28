@@ -54,7 +54,7 @@ const FooterFour = () => {
         <div className="logo">
           <Link href="/">
             <Image width={250} 
-              height={47} src="/images/logo/love-and-learn-text.svg" alt="brand" style={{ marginLeft: '-10px', display: "block" }} />
+              height={47} src="/images/logo/love-and-learn-text.svg" alt="brand" style={{ marginLeft: '-10px', display: "block", boxShadow: "none" }} />
           </Link>
         </div>
         <ul className="font-rubik mt-10">
@@ -70,7 +70,7 @@ const FooterFour = () => {
         <ul>
           {linksFooterContent.map((list, i) => (
             <li key={i}>
-              <Link     href={list.routePath}>{list.itemName}</Link>
+              <Link href={list.routePath}>{list.itemName}</Link>
             </li>
           ))}
         </ul>
@@ -82,7 +82,7 @@ const FooterFour = () => {
         <ul>
           {servicesFooterContent.map((list, i) => (
             <li key={i}>
-              <Link     href={list.routePath}>{list.itemName}</Link>
+              <Link href={list.routePath}>{list.itemName}</Link>
             </li>
           ))}
         </ul>
@@ -94,7 +94,7 @@ const FooterFour = () => {
         <ul className="pe-5">
           {moreFooterContent.map((list, i) => (
             <li key={i}>
-              <Link     href={list.routePath}>{list.itemName}</Link>
+              <Link href={list.routePath}>{list.itemName}</Link>
             </li>
           ))}
         </ul>

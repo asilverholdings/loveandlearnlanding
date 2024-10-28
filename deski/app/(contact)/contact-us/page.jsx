@@ -6,8 +6,7 @@ import ContactForm from "../../../components/contact/form/ContactForm";
 import Image from "next/image";
 import FooterFour from "@/components/footer/FooterFour";
 export const metadata = {
-    title: 'Contact Customer Support || Deski-Saas & Software Nextjs Template',
-    description: `Unleash the full potential of your software projects with our SaaS-focused Next.js template. Create engaging blogs, showcase your talented team, set up an online shop, provide helpful FAQs, and offer exceptional services with our feature-rich solution. Elevate your SaaS and software development with ease and drive growth. Try it now and take your projects to new heights.`,
+    title: 'Contact',
   } 
 const ContactCustomerSupport = () => {
   return (

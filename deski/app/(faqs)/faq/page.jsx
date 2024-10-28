@@ -1,6 +1,5 @@
 import React from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
-import CopyRight from "../../../components/footer/CopyRight";
 import FaqClassicTwo from "@/components/faq/FaqClassicTwo";
 import FancyBannerTwo from "@/components/fancy-features/FancyBannerTwo";
 import FooterFour from "@/components/footer/FooterFour";

@@ -1,13 +1,9 @@
 import React from "react";
-import FooterEight from "../../../components/footer/FooterEight";
-import CopyRightFour from "../../../components/footer/CopyRightFour";
 import HeaderTwo from "../../../components/header/HeaderTwo";
-import Screening from "@/components/screening/Screening";
 import FooterFour from "@/components/footer/FooterFour";
 
 export const metadata = {
-    title: 'Nanny Service || Screening & Matchmaking',
-    description: `Explore our comprehensive screening and matchmaking services for families and nannies. We ensure a perfect match by conducting thorough background checks and personality assessments.`,
+    title: 'Nanny Service',
 }
 
 const ServiceV3 = () => {

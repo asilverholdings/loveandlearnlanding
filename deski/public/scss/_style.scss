@@ -303,7 +303,7 @@ Primary use:  ib-themes
   --yellow-deep: #ffb840;
   --blue-light: #3bb0d7;
   --purple-blue: #655c97;
-  --vin-red: #973c56;
+  --vin-red: #e3c5d4;
   scroll-behavior: smooth;
 }
 
@@ -3786,6 +3786,45 @@ body .shop-btn-two:hover {
 .screening-and-matchmaking .feature-box {
   margin-left: 5em;
   font-family: 'Rubik';
+}
+
+.card-style {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.card-style:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.screening-list {
+  list-style: none; 
+  padding-left: 0;
+}
+
+.screening-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.screening-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--light-orange);
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 /*---------------- Fancy Text block Five -------------*/
@@ -9141,6 +9180,40 @@ body .shop-btn-two:hover {
 .about-section p {
   font-size: 24px;
   line-height: 1.5;
+  color: black;
+}
+
+
+.container img {
+  border-radius: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease-out;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.shadow-card {
+  margin: 15px;
+}
+
+.mb-5 {
+  margin-bottom: 30px;
+}
+
+.container .card h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 /*------------------ Fancy Feature Nine --------------*/

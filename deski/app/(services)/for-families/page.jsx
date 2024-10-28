@@ -1,10 +1,8 @@
 import HeaderTwo from "../../../components/header/HeaderTwo";
-import CopyRight from "../../../components/footer/CopyRight";
 import FooterFour from "@/components/footer/FooterFour";
 
 export const metadata = {
-  title: 'For Families || Deski-Saas & Software Next.js Template',
-  description: `Discover our tailored services for families, designed to provide exceptional care and support. From screening to matchmaking, our solutions are crafted to meet your needs.`,
+  title: 'For Families',
 };
 
 const ForFamilies = () => {
