@@ -925,8 +925,8 @@ body .theme-btn-two {
   font-size: 18px;
   color: #fff;
   line-height: 48px;
-  border: 2px solid var(--red-light);
-  background: var(--red-light);
+  border: 2px solid var(--orange);
+  background: var(--orange);
   padding: 0 42px;
   border-radius: 30px;
   transition: all 0.3s ease-in-out;
@@ -934,7 +934,7 @@ body .theme-btn-two {
 
 body .theme-btn-two:hover {
   background: transparent;
-  color: var(--red-light);
+  color: var(--orange);
 }
 
 body .theme-btn-three {
@@ -2827,12 +2827,18 @@ body .shop-btn-two:hover {
   left: 0;
 }
 
-.faq-classic .card {
+.card {
   background: #fff;
   box-shadow: 0px 5px 20px 0px rgba(90, 111, 155, 0.05);
   margin-bottom: 20px;
   border-radius: 0;
   border: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .faq-classic .card .card-header {
@@ -3782,11 +3788,6 @@ body .shop-btn-two:hover {
   font-family: 'Rubik';
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
 .card-style {
   background-color: #ffffff;
   border-radius: 8px;
@@ -4138,7 +4139,7 @@ h3 {
   color: #fff;
   padding: 0 15px;
   border-radius: 3px;
-  background: #dc3545;
+  background: var(--orange);
   box-shadow: 0px 10px 25px 0px rgba(123, 147, 171, 0.15);
 }
 
@@ -4152,7 +4153,11 @@ h3 {
   position: absolute;
   top: -12px;
   left: 0;
-  color: #dc3545;
+  color: var(--orange);
+}
+
+.fa-copy:hover::before {
+  color: var(--orange);
 }
 
 /*=======================================================================
