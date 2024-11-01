@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import FooterFour from "@/components/footer/FooterFour";
+import Link from "next/link";
 
 export const metadata = {
     title: 'Nanny Service',
@@ -45,16 +46,32 @@ const ServiceV3 = () => {
   <div className="container">
     <div className="nanny-requirements">
       <h3>Our Requirements</h3>
-      <ul className="service-list">
-        <li>Minimum 2 years of childcare experience</li>
-        <li>CPR and First Aid Certification</li>
-        <li>Non-Smoker</li>
-        <li>Fantastic work and personal references</li>
-        <li>U.S. Driver's License</li>
-      </ul>
+      <div className="card-style mt-5">
+        <ul className="service-list">
+          <li>Minimum 2 years of childcare experience</li>
+          <li>CPR and First Aid Certification</li>
+          <li>Non-Smoker</li>
+          <li>Passion for childcare</li>
+          <li>Fantastic work and personal references</li>
+          <li>U.S. Driver's License</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
+<div className="text-center mt-3">
+  <Link
+    href="/nanny-application"
+    className="theme-btn-five"
+    data-aos="fade-up"
+    data-aos-duration="1200"
+    data-aos-delay="200"
+    style={{ width: '15%', display: 'inline-block' }}
+  >
+    Application
+  </Link>
+</div>
+
 
 
 

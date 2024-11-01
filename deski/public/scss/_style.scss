@@ -3115,7 +3115,7 @@ body .shop-btn-two:hover {
   position: relative;
   z-index: 5;
   text-align: center;
-  padding: 75px 0 105px;
+  padding: 150px 0 105px;
 }
 
 .fancy-hero-one h2 {
@@ -3727,6 +3727,103 @@ body .shop-btn-two:hover {
 
 .for-families img {
   margin: 1em;
+}
+
+/*-------------Family Application---------*/
+.main-page-wrapper {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.application-form {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section-title {
+  font-size: 24px;
+}
+
+.form-subtitle {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.form-input,
+.form-select,
+.form-textarea,
+.form-time-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-textarea {
+  height: 80px;
+  resize: none;
+}
+
+.application-form h5 {
+  margin-top: 30px;
+}
+
+.form-checkbox-label,
+.form-radio-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.bubble-selection {
+  display: flex;
+  gap: 10px;
+  padding: 20px 0px 20px 0px;
+}
+
+.bubble-label {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #f0f0f0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.bubble-label.selected {
+  background-color: #007bff; /* Highlight color */
+  color: white;
+}
+
+.bubble-input {
+  display: none; /* Hide the radio input */
+}
+
+.bubble-label:hover {
+  background-color: #d6d6d6; /* Slight hover effect */
+}
+
+.form-submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-submit-button:hover::before {
+  background-color: #0056b3;
+}
+
+.parent-information {
+  margin-top: 20px;
 }
 
 /*-------- For Nannies ----------*/
@@ -6264,7 +6361,7 @@ h3 {
 .fancy-hero-four {
   background: #edf7f4;
   position: relative;
-  padding: 185px 0 390px;
+  padding: 185px 0 100px;
   z-index: 5;
   text-align: center;
 }

@@ -1,6 +1,6 @@
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import FooterFour from "@/components/footer/FooterFour";
-
+import Link from "next/link";
 export const metadata = {
   title: 'For Families',
 };
@@ -23,6 +23,16 @@ const ForFamilies = () => {
             </div>
           </div>
         </div>
+      <Link
+          href="/family-application"
+          className="theme-btn-five"
+          data-aos="fade-up"
+          data-aos-duration="1200"
+          data-aos-delay="200"
+          style={{ width: '15%', marginTop: '10px' }}
+        >
+          Application
+      </Link>
 
         {/* Decorative Bubbles */}
         <div className="bubble-one"></div>
@@ -32,7 +42,6 @@ const ForFamilies = () => {
         <div className="bubble-five"></div>
         <div className="bubble-six"></div>
       </div>
-
       {/* Our Process Section */}
       <div className="for-families blog-page-bg">
         <div className="container">
