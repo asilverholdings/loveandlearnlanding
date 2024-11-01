@@ -47,7 +47,7 @@ const ForFamilies = () => {
                 <img src="https://placehold.co/400" alt="Family Application" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Family Application</h3>
                   <p>
                     Fill out our family application to share your nanny preferences and childcare needs. You'll describe the job responsibilities, childcare philosophies, and professional qualities you look for in your nanny.
@@ -62,7 +62,7 @@ const ForFamilies = () => {
                 <img src="https://placehold.co/400" alt="Matchmaking Process" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Matchmaking Process</h3>
                   <p>
                     We use a detailed and thorough questionnaire to dive deep into every aspect of the potential family-candidate relationship, ensuring we consider all possibilities for the perfect match. Based on these insights, we will provide you with resumes of qualified candidates who are carefully selected to match your family’s specific needs.
@@ -77,7 +77,7 @@ const ForFamilies = () => {
                 <img src="https://placehold.co/400" alt="Interview Process" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Interview</h3>
                   <p>
                     We want to make sure there’s a strong connection before committing! Once you've reviewed your matches, we will set up the first interview either in-person or virtually.
@@ -92,7 +92,7 @@ const ForFamilies = () => {
                 <img src="https://placehold.co/400" alt="Trial Period" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Trial Period</h3>
                   <p>
                     We offer a two-week trial period to ensure the nanny is the right fit for your family. During this time, you'll be able to see how they integrate into your family's routine. This trial period also gives both you and the nanny a chance to ensure mutual comfort and alignment before making a long-term commitment.                  </p>
@@ -106,7 +106,7 @@ const ForFamilies = () => {
                 <img src="https://placehold.co/400" alt="Successful Match" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Match</h3>
                   <p>
                     It's important that both sides feel aligned on responsibilities, communication, and boundaries. To ensure clarity and a smooth relationship, we provide a detailed family agreement form, outlining all key expectations and responsibilities, so that both parties have a clear understanding from the very beginning.

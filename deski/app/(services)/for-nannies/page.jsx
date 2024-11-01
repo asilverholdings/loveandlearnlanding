@@ -75,7 +75,7 @@ const ServiceV3 = () => {
                 <img src="https://placehold.co/400" alt="Family Application" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Nanny Application</h3>
                   <p>
                     Find your next great position! Share your childcare experience, philosophies you are most aligned with, and any certifications and/or training you have so we can match you with the right family. 
@@ -90,7 +90,7 @@ const ServiceV3 = () => {
                 <img src="https://placehold.co/400" alt="Matchmaking Process" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Interview</h3>
                   <p>
                     We will arrange a personal meeting, either in person or virtually, at a time that fits your schedule. We are excited to meet you and learn about the qualities that make you unique!
@@ -105,7 +105,7 @@ const ServiceV3 = () => {
                 <img src="https://placehold.co/400" alt="Interview Process" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Matching Tailored to You</h3>
                   <p>
                     We take the time to understand your job preferences, including schedule, location, children's ages, values, and other important factors to make sure each family you connect with is an ideal match.
@@ -117,7 +117,7 @@ const ServiceV3 = () => {
             {/* References/Background Check Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>References and Background Check</h3>
                   <p>
                     Minimum of 3 references. We carefully review all of your references, as they play a key role in showcasing your experience, reliability, and the positive impact you've had on families you've worked with.
@@ -137,7 +137,7 @@ const ServiceV3 = () => {
                 <img src="https://placehold.co/400" alt="Successful Match" width={400} height={400} />
               </div>
               <div className="col-lg-6">
-                <div className="feature-box">
+                <div className="feature-box card-style">
                   <h3>Professional Support</h3>
                   <p>
                     We're here for you! With our monthly activity guides, hands-on curricula, and various training opportunities, you’ll always feel supported. Facing a new challenge? Reach out to us, and we'll provide helpful solutions!

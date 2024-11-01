@@ -4,9 +4,9 @@ const Screening = () => {
   return (
     <div className="fancy-feature-thirtyOne pt-120 pb-160 md-pt-80 md-pb-100">
       <div className="container">
-        <div className="screening-and-matchmaking row justify-content-center">
+        <div className="screening-and-matchmaking">
           {/* Screening Section */}
-          <div className="col-md-5 ">
+          <div className="">
             <div className="feature-box card-style mb-5">
               <h3>Screening</h3>
               <ul className="screening-list">
@@ -23,8 +23,8 @@ const Screening = () => {
           </div>
 
           {/* Matchmaking Section */}
-          <div className="col-md-6 ">
-            <div className="feature-box card-style mb-5">
+          <div className="">
+            <div className="feature-box card-style">
               <h3>Matchmaking</h3>
               <p>
                 We start by connecting with the family through a virtual meeting. Using a detailed and thorough questionnaire, we explore every aspect of the potential family-candidate relationship to ensure a perfect match that covers all possibilities.
