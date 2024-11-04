@@ -39,7 +39,7 @@ const NannyApplication = () => {
     hobbies: '',
     timeSpentOutsideNannying: '',
     personalityDescription: '',
-    resume: null // Add a field for the resume
+    resume: null
   });
 
   const handleChange = (e) => {
@@ -104,7 +104,7 @@ const NannyApplication = () => {
           <input
             type="file"
             name="resume"
-            accept=".pdf,.doc,.docx" // Accept common resume file types
+            accept=".pdf,.doc,.docx"
             onChange={handleFileChange}
             className="form-input"
           />
@@ -160,6 +160,7 @@ const NannyApplication = () => {
             placeholder="First Name"
             value={formData.firstName}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
@@ -168,6 +169,7 @@ const NannyApplication = () => {
             placeholder="Last Name"
             value={formData.lastName}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
@@ -176,6 +178,7 @@ const NannyApplication = () => {
             placeholder="example@example.com"
             value={formData.email}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
@@ -184,6 +187,7 @@ const NannyApplication = () => {
             placeholder="Area Code Phone Number"
             value={formData.phoneNumber}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
@@ -192,6 +196,7 @@ const NannyApplication = () => {
             placeholder="Address Line 1"
             value={formData.addressLine1}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
@@ -208,6 +213,7 @@ const NannyApplication = () => {
             placeholder="City"
             value={formData.city}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
@@ -216,27 +222,37 @@ const NannyApplication = () => {
             placeholder="State"
             value={formData.state}
             onChange={handleChange}
+            
             className="form-input"
           />
           <input
-            type="text"
+            type="number"
             name="zip"
             placeholder="Zip"
             value={formData.zip}
             onChange={handleChange}
+            
             className="form-input"
           />
 
           {/* Basic Questions Section */}
-          <h4 className="form-subtitle">Basic Questions</h4>
-          <input
-            type="text"
-            name="positionType"
-            placeholder="What type of position are you seeking (Full-time, part-time, temporary)?"
-            value={formData.positionType}
-            onChange={handleChange}
-            className="form-input"
-          />
+          <h3 className="form-subtitle">Basic Questions</h3>
+          <h4 className="form-subtitle"> What type of position are you seeking?</h4>
+          <div className="bubble-selection">
+            {["Full Time (over 40 hrs/wk)", "Part Time (less than 30 hrs/wk)", "Temporary (less than 6 months)"].map((type) => (
+              <label key={type} className={`bubble-label ${formData.positionType === type ? 'selected' : ''}`}>
+                <input
+                    type="radio"
+                    name="positionType"
+                    value={type}
+                    checked={formData.positionType === type}
+                    onChange={(e) => setFormData({ ...formData, positionType: e.target.value })}
+                    className="bubble-input"
+                />
+                {type}
+              </label>
+            ))}
+          </div>
           <textarea
             name="enjoymentOfNannying"
             placeholder="What do you enjoy about being a nanny?"
@@ -259,51 +275,8 @@ const NannyApplication = () => {
             onChange={handleChange}
             className="form-input"
           />
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="lightHousekeeping"
-              checked={formData.lightHousekeeping}
-              onChange={handleChange}
-            /> Would you be agreeable to light housekeeping relating to the children?
-          </label>
-          <h4 className="form-subtitle">Are you comfortable with pets? Select all that apply:</h4>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="petsComfort"
-              value="Cats"
-              checked={formData.petsComfort.includes("Cats")}
-              onChange={handleCheckboxChange}
-            /> Cats
-          </label>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="petsComfort"
-              value="Small dogs"
-              checked={formData.petsComfort.includes("Small dogs")}
-              onChange={handleCheckboxChange}
-            /> Small dogs
-          </label>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="petsComfort"
-              value="Large dogs"
-              checked={formData.petsComfort.includes("Large dogs")}
-              onChange={handleCheckboxChange}
-            /> Large dogs
-          </label>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="petsComfort"
-              value="No pets"
-              checked={formData.petsComfort.includes("No pets")}
-              onChange={handleCheckboxChange}
-            /> No pets
-          </label>
+
+        <div className="form-checkbox-group">
           <label className="form-checkbox-label">
             <input
               type="checkbox"
@@ -312,6 +285,56 @@ const NannyApplication = () => {
               onChange={handleChange}
             /> Do you have experience with newborns?
           </label>
+          <label className="form-checkbox-label">
+            <input
+              type="checkbox"
+              name="lightHousekeeping"
+              checked={formData.lightHousekeeping}
+              onChange={handleChange}
+            /> Would you be agreeable to light housekeeping relating to the children?
+          </label>
+        </div>
+
+          <div className="form-checkbox-group">
+            <h4 className="form-subtitle">Are you comfortable with pets? Select all that apply:</h4>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="petsComfort"
+                value="Cats"
+                checked={formData.petsComfort.includes("Cats")}
+                onChange={handleCheckboxChange}
+                /> Cats
+            </label>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="petsComfort"
+                value="Small dogs"
+                checked={formData.petsComfort.includes("Small dogs")}
+                onChange={handleCheckboxChange}
+                /> Small dogs
+            </label>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="petsComfort"
+                value="Large dogs"
+                checked={formData.petsComfort.includes("Large dogs")}
+                onChange={handleCheckboxChange}
+                /> Large dogs
+            </label>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="petsComfort"
+                value="No pets"
+                checked={formData.petsComfort.includes("No pets")}
+                onChange={handleCheckboxChange}
+                /> No pets
+            </label>
+          </div>
+
           <input
             type="text"
             name="languages"
@@ -337,15 +360,33 @@ const NannyApplication = () => {
           ></textarea>
 
           {/* Additional Questions Section */}
-          <h4 className="form-subtitle">Additional Questions</h4>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="drivingExperience"
-              checked={formData.drivingExperience}
-              onChange={handleChange}
-            /> Do you have experience driving?
-          </label>
+          <div className="form-checkbox-group">
+            <h4 className="form-subtitle">Additional Questions</h4>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="drivingExperience"
+                checked={formData.drivingExperience}
+                onChange={handleChange}
+                /> Do you have experience driving?
+            </label>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="experienceWithMultipleChildren"
+                checked={formData.experienceWithMultipleChildren}
+                onChange={handleChange}
+                /> Do you have experience caring for multiple children?
+            </label>
+            <label className="form-checkbox-label">
+                <input
+                type="checkbox"
+                name="comfortableNannyingRemote"
+                checked={formData.comfortableNannyingRemote}
+                onChange={handleChange}
+                /> Are you comfortable nannying remote?
+            </label>
+          </div>
           <textarea
             name="parentCommunication"
             placeholder="Describe how you would communicate with parents."
@@ -361,14 +402,6 @@ const NannyApplication = () => {
             onChange={handleChange}
             className="form-input"
           />
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="experienceWithMultipleChildren"
-              checked={formData.experienceWithMultipleChildren}
-              onChange={handleChange}
-            /> Do you have experience caring for multiple children?
-          </label>
           <textarea
             name="conflictResolution"
             placeholder="Describe how you would handle conflict."
@@ -376,14 +409,6 @@ const NannyApplication = () => {
             onChange={handleChange}
             className="form-textarea"
           ></textarea>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="comfortableNannyingRemote"
-              checked={formData.comfortableNannyingRemote}
-              onChange={handleChange}
-            /> Are you comfortable nannying remote?
-          </label>
           <input
             type="text"
             name="hobbies"

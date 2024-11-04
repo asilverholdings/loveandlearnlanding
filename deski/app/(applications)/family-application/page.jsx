@@ -26,7 +26,13 @@ const FamilyApplication = () => {
     state: '',
     zip: '',
     candidateType: [],
-    workingHours: {},
+    workingHours: {
+        Monday: { start: '', end: '', totalHours: 0 },
+        Tuesday: { start: '', end: '', totalHours: 0 },
+        Wednesday: { start: '', end: '', totalHours: 0 },
+        Thursday: { start: '', end: '', totalHours: 0 },
+        Friday: { start: '', end: '', totalHours: 0 },
+    },
     startDate: '',
     immunizations: '',
     duties: [],
@@ -37,7 +43,7 @@ const FamilyApplication = () => {
     previousExperience: '',
     workFromHome: '',
     childrenInfo: {
-      number: 0,
+      number: '',
       ages: '',
       schedule: '',
     },
@@ -57,30 +63,26 @@ const FamilyApplication = () => {
     dailyLog: ''
   });
 
-  const handleChange = (e, parentKey) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-  
-    if (parentKey) {
-      // For nested fields under `parents`
+    
+    // Check if the name includes a dot, indicating it's a nested property
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
       setFormData((prevData) => ({
         ...prevData,
-        parents: {
-          ...prevData.parents,
-          [parentKey]: {
-            ...prevData.parents[parentKey],
-            [name]: value,
-          },
+        [parent]: {
+          ...prevData[parent],
+          [child]: value,
         },
       }));
     } else {
-      // For top-level fields like `addressLine1`, `city`, etc.
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
     }
   };
-  
 
   const handleParentSelect = (parent) => {
     setFormData((prevData) => ({
@@ -99,9 +101,39 @@ const FamilyApplication = () => {
     }));
   };
 
+  const handleTimeChange = (day, type, value) => {
+    setFormData((prevFormData) => {
+      // Clone the existing formData
+      const updatedFormData = { ...prevFormData };
+      
+      // Update the start or end time for the specific day
+      updatedFormData.workingHours[day][type] = value;
+  
+      const { start, end } = updatedFormData.workingHours[day];
+  
+      if (start && end) {
+        // Calculate the difference in hours
+        const startTime = new Date(`1970-01-01T${start}:00`);
+        const endTime = new Date(`1970-01-01T${end}:00`);
+        let totalHours = (endTime - startTime) / (1000 * 60 * 60); // in hours
+  
+        // Check if total hours are negative
+        if (totalHours <= 0) {
+          updatedFormData.workingHours[day][type] = ''; // Reset the invalid field
+          updatedFormData.workingHours[day].totalHours = 0; // Reset total hours
+        } else {
+          // Round total hours to the nearest hundredth
+          totalHours = Math.round(totalHours * 100) / 100;
+          updatedFormData.workingHours[day].totalHours = totalHours;
+        }
+      }
+  
+      return updatedFormData;
+    });
+  };  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit form data
     console.log(formData);
   };
 
@@ -128,37 +160,31 @@ const FamilyApplication = () => {
         <form onSubmit={handleSubmit} className="application-form">
           <h3 className="form-section-title">Primary Contact</h3>
           <div className="bubble-selection">
-            <button
-              type="button"
-              className={`bubble-label ${formData.primaryContact === 'parent1' ? 'selected' : ''}`}
-              onClick={() => handleParentSelect('parent1')}
-            >
-              Parent 1
-            </button>
-            <button
-              type="button"
-              className={`bubble-label ${formData.primaryContact === 'parent2' ? 'selected' : ''}`}
-              onClick={() => handleParentSelect('parent2')}
-            >
-              Parent 2
-            </button>
-            <button
-              type="button"
-              className={`bubble-label ${formData.primaryContact === 'both' ? 'selected' : ''}`}
-              onClick={() => handleParentSelect('both')}
-            >
-              Both
-            </button>
+            {["Parent 1", "Parent 2", "Both"].map((type) => (
+              <label key={type} className={`bubble-label ${formData.primaryContact === type ? 'selected' : ''}`}>
+                <input
+                    type="radio"
+                    name="parentType"
+                    value={type}
+                    checked={formData.primaryContact === type}
+                    onChange={() => handleParentSelect(type)}
+                    className="bubble-input"
+                />
+                {type}
+              </label>
+            ))}
           </div>
 
-          <h4>{formData.primaryContact ? 
+          <h4>
+            {formData.primaryContact ? 
             `${formData.primaryContact.charAt(0).toUpperCase() + 
-            formData.primaryContact.slice(1, 6) + " " + 
-            formData.primaryContact.slice(6, 7)} Information` : 'Select a Parent'}
+            formData.primaryContact.slice(1)} Information` 
+            : 'Select a Parent'}
           </h4>
 
+
         <div className="parent-information">
-          {(formData.primaryContact === 'parent1' || formData.primaryContact === 'both') && (
+          {(formData.primaryContact === 'Parent 1' || formData.primaryContact === 'Both') && (
             <div>
               <h5>Parent 1</h5>
               <input
@@ -196,7 +222,7 @@ const FamilyApplication = () => {
             </div>
           )}
 
-          {(formData.primaryContact === 'parent2' || formData.primaryContact === 'both') && (
+          {(formData.primaryContact === 'Parent 2' || formData.primaryContact === 'Both') && (
             <div>
               <h5>Parent 2</h5>
               <input
@@ -294,26 +320,28 @@ const FamilyApplication = () => {
             ))}
           </div>
           <h4 className="form-subtitle">What hours will the candidate work?</h4>
-          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => (
+          {Object.keys(formData.workingHours).map((day) => (
             <div key={day} className="working-hours">
               <label>{day}</label>
               <input
                 type="time"
-                name={`workingHours[${day}].start`}
-                onChange={handleChange}
+                value={formData.workingHours[day].start}
+                onChange={(e) => handleTimeChange(day, 'start', e.target.value)}                
+                onFocus={(e) => e.target.showPicker()}
                 className="form-time-input"
               />
               <input
                 type="time"
-                name={`workingHours[${day}].end`}
-                onChange={handleChange}
+                value={formData.workingHours[day].end}                
+                onChange={(e) => handleTimeChange(day, 'end', e.target.value)}                
+                onFocus={(e) => e.target.showPicker()}
                 className="form-time-input"
               />
               <input
-                type="number"
-                name={`workingHours[${day}].totalHours`}
+                type="string"
+                value={`${formData.workingHours[day].totalHours} hours`}                
                 placeholder="Total hours"
-                onChange={handleChange}
+                readOnly
                 className="form-input"
               />
             </div>
@@ -325,6 +353,7 @@ const FamilyApplication = () => {
             name="startDate"
             value={formData.startDate}
             onChange={handleChange}
+            onFocus={(e) => e.target.showPicker()}
             className="form-input"
           />
 
