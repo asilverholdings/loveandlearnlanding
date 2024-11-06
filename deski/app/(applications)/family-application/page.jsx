@@ -13,10 +13,13 @@ import ChildrenInfo from "@/components/family-application-steps/StepChildrenInfo
 import FamilyInfo from "@/components/family-application-steps/SetpFamilyInfo";
 import NannyCommunication from "@/components/family-application-steps/StepNannyCommunication";
 import DailyExpectations from "@/components/family-application-steps/StepDailyExpectations";
+import { validateParentContactInfo, validateAddressInfo } from "@/services/validation";
 
 const FamilyApplication = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const formRef = useRef(null);
+  const [errors, setErrors] = useState({});
+
   const [formData, setFormData] = useState({
     primaryContact: '',
     parents: {
@@ -142,10 +145,24 @@ const FamilyApplication = () => {
   };
 
   const handleNext = () => {
+    let validationErrors = {};
+
+    if (currentStep === 1) {
+      validationErrors = validateParentContactInfo(formData);
+    } else if (currentStep === 2) {
+      validationErrors = validateAddressInfo(formData);
+    }
+    // Add more validation checks for other steps here
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return; // Prevent moving to the next step if there are validation errors
+    }
+
     setCurrentStep((prev) => prev + 1);
     scrollToForm();
   };
-
+  
   const handleBack = () => {
     setCurrentStep((prev) => prev - 1);
     scrollToForm();
@@ -171,6 +188,8 @@ const FamilyApplication = () => {
         : [...prevData[name], value],
     }));
   };
+
+  
 
   const handleTimeChange = (day, type, value) => {
     setFormData((prevFormData) => {
@@ -229,6 +248,7 @@ const FamilyApplication = () => {
       {/* Application Form Section */}
       <div className="container mt-5">
         <form ref={formRef} onSubmit={handleSubmit} className="application-form">
+            <>
            {/* Progress Bar */}
             <MultiStepProgressBar
               currentStep={currentStep}
@@ -242,6 +262,7 @@ const FamilyApplication = () => {
               parents={formData.parents}
               handleParentSelect={handleParentSelect}
               handleChange={handleChange}
+              errors={errors}
             />
           }
 
@@ -311,9 +332,7 @@ const FamilyApplication = () => {
               handleChange={handleChange}
             />
           }
-          
-        </form>
-        <div className="form-navigation">
+          <div className="form-navigation">
             <div>
               {currentStep > 1 && <button type="button" className="theme-btn-five" onClick={handleBack}>Back</button>}
             </div>
@@ -322,7 +341,9 @@ const FamilyApplication = () => {
             </div>
             {currentStep === 8 && <button type="submit">Submit</button>}
           </div>
-        </div>
+        </>
+        </form>
+    </div>
 
       <footer className="theme-footer-eight mt-100 mb-80">
         <div className="top-footer">
