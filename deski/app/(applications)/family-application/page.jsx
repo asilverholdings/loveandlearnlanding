@@ -1,9 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
+import MultiStepProgressBar from "@/components/progress-bar/MultiStepProgressBar";
 import FooterFour from "@/components/footer/FooterFour";
+import ParentContactInfo from "@/components/family-application-steps/StepContactParent";
+import AddressInfo from "@/components/family-application-steps/StepAddressInfo";
+import CandidateTypeSelection from "@/components/family-application-steps/StepCandidateType";
+import WorkingHoursSelection from "@/components/family-application-steps/StepWorkingHoursSelection";
+import StartDateInput from "@/components/family-application-steps/StepStartDateInput";
+import NannyPreferences from "@/components/family-application-steps/StepNannyPreferences";
+import ChildrenInfo from "@/components/family-application-steps/StepChildrenInfo";
+import FamilyInfo from "@/components/family-application-steps/SetpFamilyInfo";
+import NannyCommunication from "@/components/family-application-steps/StepNannyCommunication";
+import DailyExpectations from "@/components/family-application-steps/StepDailyExpectations";
 
 const FamilyApplication = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     primaryContact: '',
     parents: {
@@ -64,24 +77,82 @@ const FamilyApplication = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    
-    // Check if the name includes a dot, indicating it's a nested property
-    if (name.includes('.')) {
-      const [parent, child] = name.split('.');
+    const { name, value, type, checked } = e.target;
+  
+    // Handle checkbox inputs
+    if (type === "checkbox") {
+      const updatedValue = checked;
       setFormData((prevData) => ({
         ...prevData,
-        [parent]: {
-          ...prevData[parent],
-          [child]: value,
-        },
+        [name]: updatedValue,
       }));
-    } else {
+      return;
+    }
+  
+    // For nested properties, split the name by dots to traverse the structure
+    const nameParts = name.split('.');
+    if (nameParts.length === 1) {
+      // Top-level property
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
+    } else if (nameParts.length === 2) {
+      // Two-level deep (e.g., parent1.firstName)
+      setFormData((prevData) => ({
+        ...prevData,
+        [nameParts[0]]: {
+          ...prevData[nameParts[0]],
+          [nameParts[1]]: value,
+        },
+      }));
+    } else if (nameParts.length === 3) {
+      // Three-level deep (e.g., workingHours.Monday.start)
+      setFormData((prevData) => ({
+        ...prevData,
+        [nameParts[0]]: {
+          ...prevData[nameParts[0]],
+          [nameParts[1]]: {
+            ...prevData[nameParts[0]][nameParts[1]],
+            [nameParts[2]]: value,
+          },
+        },
+      }));
     }
+  };
+  
+  
+  const scrollToForm = () => {
+    const element = formRef.current;
+
+    // Scroll to the element using scrollIntoView (without offset)
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // Apply the offset manually after scrolling
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - 100;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  };
+
+  const handleNext = () => {
+    setCurrentStep((prev) => prev + 1);
+    scrollToForm();
+  };
+
+  const handleBack = () => {
+    setCurrentStep((prev) => prev - 1);
+    scrollToForm();
+  };
+
+  const handlePageNumberClick = (pageNumber) => {
+    setCurrentStep(pageNumber);
   };
 
   const handleParentSelect = (parent) => {
@@ -157,457 +228,101 @@ const FamilyApplication = () => {
 
       {/* Application Form Section */}
       <div className="container mt-5">
-        <form onSubmit={handleSubmit} className="application-form">
-          <h3 className="form-section-title">Primary Contact</h3>
-          <div className="bubble-selection">
-            {["Parent 1", "Parent 2", "Both"].map((type) => (
-              <label key={type} className={`bubble-label ${formData.primaryContact === type ? 'selected' : ''}`}>
-                <input
-                    type="radio"
-                    name="parentType"
-                    value={type}
-                    checked={formData.primaryContact === type}
-                    onChange={() => handleParentSelect(type)}
-                    className="bubble-input"
-                />
-                {type}
-              </label>
-            ))}
-          </div>
+        <form ref={formRef} onSubmit={handleSubmit} className="application-form">
+           {/* Progress Bar */}
+            <MultiStepProgressBar
+              currentStep={currentStep}
+              totalSteps={8}
+              onPageNumberClick={handlePageNumberClick}
+            />
+          
+          {currentStep === 1 && 
+            <ParentContactInfo
+              primaryContact={formData.primaryContact}
+              parents={formData.parents}
+              handleParentSelect={handleParentSelect}
+              handleChange={handleChange}
+            />
+          }
 
-          <h4>
-            {formData.primaryContact ? 
-            `${formData.primaryContact.charAt(0).toUpperCase() + 
-            formData.primaryContact.slice(1)} Information` 
-            : 'Select a Parent'}
-          </h4>
+          {currentStep === 2 &&
+            <AddressInfo
+                addressData={{
+                addressLine1: formData.addressLine1,
+                addressLine2: formData.addressLine2,
+                city: formData.city,
+                state: formData.state,
+                zip: formData.zip,
+                }}
+                handleChange={handleChange}
+            />
+          }
 
+          {currentStep === 3 &&
+            <>
+            <CandidateTypeSelection 
+              candidateType={formData.candidateType} 
+              setCandidateType={(type) => setFormData({ ...formData, candidateType: type })}
+            />
+            <WorkingHoursSelection 
+              workingHours={formData.workingHours} 
+              handleTimeChange={handleTimeChange} 
+            />
+            <StartDateInput 
+              startDate={formData.startDate} 
+              handleChange={handleChange} 
+            />
+          </>
+          }
 
-        <div className="parent-information">
-          {(formData.primaryContact === 'Parent 1' || formData.primaryContact === 'Both') && (
-            <div>
-              <h5>Parent 1</h5>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.parents.parent1.firstName}
-                onChange={(e) => handleChange(e, 'parent1')}
-                className="form-input"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.parents.parent1.lastName}
-                onChange={(e) => handleChange(e, 'parent1')}
-                className="form-input"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="example@example.com"
-                value={formData.parents.parent1.email}
-                onChange={(e) => handleChange(e, 'parent1')}
-                className="form-input"
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Area Code Phone Number"
-                value={formData.parents.parent1.phone}
-                onChange={(e) => handleChange(e, 'parent1')}
-                className="form-input"
-              />
-            </div>
-          )}
+          {currentStep === 4 &&
+            <NannyPreferences 
+              formData={formData}
+              handleChange={handleChange}
+              handleCheckboxChange={handleCheckboxChange}
+            />
+          }
 
-          {(formData.primaryContact === 'Parent 2' || formData.primaryContact === 'Both') && (
-            <div>
-              <h5>Parent 2</h5>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.parents.parent2.firstName}
-                onChange={(e) => handleChange(e, 'parent2')}
-                className="form-input"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.parents.parent2.lastName}
-                onChange={(e) => handleChange(e, 'parent2')}
-                className="form-input"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="example@example.com"
-                value={formData.parents.parent2.email}
-                onChange={(e) => handleChange(e, 'parent2')}
-                className="form-input"
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Area Code Phone Number"
-                value={formData.parents.parent2.phone}
-                onChange={(e) => handleChange(e, 'parent2')}
-                className="form-input"
-              />
-            </div>
-          )}
+          {currentStep === 5 &&
+            <ChildrenInfo
+              formData={formData}
+              handleChange={handleChange}
+              handleCheckboxChange={handleCheckboxChange}
+            />
+          }
 
-        </div>
-          <h4 className="form-subtitle">Primary Residential Address</h4>
-          <input
-            type="text"
-            name="addressLine1"
-            placeholder="Address Line 1"
-            value={formData.addressLine1}
-            onChange={handleChange}
-            className="form-input"
-          />
-          <input
-            type="text"
-            name="addressLine2"
-            placeholder="Address Line 2"
-            value={formData.addressLine2}
-            onChange={handleChange}
-            className="form-input"
-          />
-          <input
-            type="text"
-            name="city"
-            placeholder="City"
-            value={formData.city}
-            onChange={handleChange}
-            className="form-input"
-          />
-          <input
-            type="text"
-            name="state"
-            placeholder="State"
-            value={formData.state}
-            onChange={handleChange}
-            className="form-input"
-          />
-          <input
-            type="text"
-            name="zip"
-            placeholder="Zip"
-            value={formData.zip}
-            onChange={handleChange}
-            className="form-input"
-          />
+          {currentStep === 6 &&
+            <FamilyInfo 
+              formData={formData} 
+              handleChange={handleChange} 
+            />
+          }
 
-          <h4 className="form-subtitle">What type of candidate are you looking to hire?</h4>
-          <div className="bubble-selection">
-            {["Full Time (over 40 hrs/wk)", "Part Time (less than 30 hrs/wk)", "Temporary (less than 6 months)"].map((type) => (
-              <label key={type} className={`bubble-label ${formData.candidateType === type ? 'selected' : ''}`}>
-                <input
-                    type="radio"
-                    name="candidateType"
-                    value={type}
-                    checked={formData.candidateType === type}
-                    onChange={(e) => setFormData({ ...formData, candidateType: e.target.value })}
-                    className="bubble-input"
-                />
-                {type}
-              </label>
-            ))}
-          </div>
-          <h4 className="form-subtitle">What hours will the candidate work?</h4>
-          {Object.keys(formData.workingHours).map((day) => (
-            <div key={day} className="working-hours">
-              <label>{day}</label>
-              <input
-                type="time"
-                value={formData.workingHours[day].start}
-                onChange={(e) => handleTimeChange(day, 'start', e.target.value)}                
-                onFocus={(e) => e.target.showPicker()}
-                className="form-time-input"
-              />
-              <input
-                type="time"
-                value={formData.workingHours[day].end}                
-                onChange={(e) => handleTimeChange(day, 'end', e.target.value)}                
-                onFocus={(e) => e.target.showPicker()}
-                className="form-time-input"
-              />
-              <input
-                type="string"
-                value={`${formData.workingHours[day].totalHours} hours`}                
-                placeholder="Total hours"
-                readOnly
-                className="form-input"
-              />
-            </div>
-          ))}
+          {currentStep === 7 &&
+            <NannyCommunication
+              formData={formData}
+              handleChange={handleChange}
+            />
+          }
 
-          <h4 className="form-subtitle">Desired Start Date:</h4>
-          <input
-            type="date"
-            name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
-            onFocus={(e) => e.target.showPicker()}
-            className="form-input"
-          />
-
-          <h4 className="form-subtitle">Do you require specific immunizations/vaccinations?</h4>
-          <textarea
-            name="immunizations"
-            placeholder="Please list here"
-            value={formData.immunizations}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Duties your candidate must be willing to perform:</h4>
-          {["Laundry", "Cleaning", "Drive Children", "Care for pets", "Cooking/Meal Preparation", "Swim with children", "Administer medications"].map((duty) => (
-            <label key={duty} className="form-checkbox-label">
-              <input
-                type="checkbox"
-                name="duties"
-                value={duty}
-                checked={formData.duties.includes(duty)}
-                onChange={handleCheckboxChange}
-              /> {duty}
-            </label>
-          ))}
-
-          <h4 className="form-subtitle">Do your children have any special needs?</h4>
-          {["ADD", "ADHD", "Autism", "Asthma", "Blind", "Cerebral Palsy", "Food Allergies", "Other"].map((need) => (
-            <label key={need} className="form-checkbox-label">
-              <input
-                type="checkbox"
-                name="specialNeeds"
-                value={need}
-                checked={formData.specialNeeds.includes(need)}
-                onChange={handleCheckboxChange}
-              /> {need}
-            </label>
-          ))}
-
-          <h4 className="form-subtitle">Family Information</h4>
-          <textarea
-            name="familyDescription"
-            placeholder="Tell us about your family"
-            value={formData.familyDescription}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Adjectives to describe your family:</h4>
-          <input
-            type="text"
-            name="adjectives"
-            placeholder="Enter adjectives (comma-separated)"
-            value={formData.adjectives}
-            onChange={handleChange}
-            className="form-input"
-          />
-
-          <h4 className="form-subtitle">What is your parenting philosophy?</h4>
-          <textarea
-            name="parentingPhilosophy"
-            placeholder="Your philosophy here"
-            value={formData.parentingPhilosophy}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Do you have previous childcare experience?</h4>
-          <textarea
-            name="previousExperience"
-            placeholder="Please describe"
-            value={formData.previousExperience}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Will you be working from home?</h4>
-          <label className="form-radio-label">
-            <input
-              type="radio"
-              name="workFromHome"
-              value="Yes"
-              checked={formData.workFromHome === "Yes"}
-              onChange={handleChange}
-            /> Yes
-          </label>
-          <label className="form-radio-label">
-            <input
-              type="radio"
-              name="workFromHome"
-              value="No"
-              checked={formData.workFromHome === "No"}
-              onChange={handleChange}
-            /> No
-          </label>
-
-          <h4 className="form-subtitle">Children Information</h4>
-          <input
-            type="number"
-            name="childrenInfo.number"
-            placeholder="Number of children"
-            value={formData.childrenInfo.number}
-            onChange={handleChange}
-            className="form-input"
-          />
-          <input
-            type="text"
-            name="childrenInfo.ages"
-            placeholder="Ages of children"
-            value={formData.childrenInfo.ages}
-            onChange={handleChange}
-            className="form-input"
-          />
-          <input
-            type="text"
-            name="childrenInfo.schedule"
-            placeholder="Schedule of children"
-            value={formData.childrenInfo.schedule}
-            onChange={handleChange}
-            className="form-input"
-          />
-
-          <h4 className="form-subtitle">Nanny Description</h4>
-          <textarea
-            name="nannyDescription"
-            placeholder="Describe your ideal nanny"
-            value={formData.nannyDescription}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Qualities you are looking for:</h4>
-          {["Compassionate", "Reliable", "Energetic", "Creative", "Responsible"].map((quality) => (
-            <label key={quality} className="form-checkbox-label">
-              <input
-                type="checkbox"
-                name="qualities"
-                value={quality}
-                checked={formData.qualities.includes(quality)}
-                onChange={handleCheckboxChange}
-              /> {quality}
-            </label>
-          ))}
-
-          <h4 className="form-subtitle">Preferred Initiative</h4>
-          <textarea
-            name="preferredInitiative"
-            placeholder="What level of initiative do you prefer?"
-            value={formData.preferredInitiative}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Daily Activities</h4>
-          <textarea
-            name="dailyActivities"
-            placeholder="What daily activities do you envision?"
-            value={formData.dailyActivities}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Educational Goals</h4>
-          <textarea
-            name="educationalGoals"
-            placeholder="What educational goals do you have?"
-            value={formData.educationalGoals}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Milestones</h4>
-          <textarea
-            name="milestones"
-            placeholder="What milestones are important for you?"
-            value={formData.milestones}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Family Values</h4>
-          <textarea
-            name="values"
-            placeholder="What values are important to your family?"
-            value={formData.values}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Family Traditions</h4>
-          <textarea
-            name="traditions"
-            placeholder="What family traditions do you have?"
-            value={formData.traditions}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Importance of Nanny</h4>
-          <textarea
-            name="importance"
-            placeholder="Why is a nanny important for your family?"
-            value={formData.importance}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Communication Plan</h4>
-          <textarea
-            name="communicationPlan"
-            placeholder="How do you plan to communicate?"
-            value={formData.communicationPlan}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Personality Fit</h4>
-          <textarea
-            name="personalityFit"
-            placeholder="What personality traits are important?"
-            value={formData.personalityFit}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Communication Level</h4>
-          <textarea
-            name="communicationLevel"
-            placeholder="What level of communication do you prefer?"
-            value={formData.communicationLevel}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Discipline Approach</h4>
-          <textarea
-            name="disciplineApproach"
-            placeholder="What is your discipline approach?"
-            value={formData.disciplineApproach}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <h4 className="form-subtitle">Daily Log</h4>
-          <textarea
-            name="dailyLog"
-            placeholder="What kind of daily log do you expect?"
-            value={formData.dailyLog}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-
-          <button type="submit" className="form-submit-button">Submit Application</button>
+          {currentStep === 8 &&
+            <DailyExpectations
+              formData={formData}
+              handleChange={handleChange}
+            />
+          }
+          
         </form>
-      </div>
+        <div className="form-navigation">
+            <div>
+              {currentStep > 1 && <button type="button" className="theme-btn-five" onClick={handleBack}>Back</button>}
+            </div>
+            <div>
+              {currentStep < 8 && <button type="button" className="theme-btn-five" onClick={handleNext}>Next</button>}
+            </div>
+            {currentStep === 8 && <button type="submit">Submit</button>}
+          </div>
+        </div>
 
       <footer className="theme-footer-eight mt-100 mb-80">
         <div className="top-footer">
