@@ -7,6 +7,7 @@ import MegaMenuMobile from "./mega-menu/MegaMenuMobile";
 import Image from "next/image";
 
 const HeaderTwo = () => {
+  const innerWidth = 0
   const [navbar, setNavbar] = useState(false);
   const [logoSize, setLogoSize] = useState(innerWidth <= 768 ? 100 : 200);
 
