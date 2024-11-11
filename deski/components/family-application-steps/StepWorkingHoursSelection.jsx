@@ -11,14 +11,14 @@ function WorkingHoursSelection({ workingHours, handleTimeChange }) {
             type="time"
             value={workingHours[day].start}
             onChange={(e) => handleTimeChange(day, 'start', e.target.value)}
-            onFocus={(e) => e.target.showPicker()}
+            onClick={(e) => e.target.showPicker()}
             className="form-time-input"
           />
           <input
             type="time"
             value={workingHours[day].end}
             onChange={(e) => handleTimeChange(day, 'end', e.target.value)}
-            onFocus={(e) => e.target.showPicker()}
+            onClick={(e) => e.target.showPicker()}
             className="form-time-input"
           />
           <input

@@ -2,7 +2,7 @@ import React from 'react';
 
 function CandidateTypeSelection({ candidateType, setCandidateType }) {
   const types = [
-    "Full Time (over 40 hrs/wk)",
+    "Full Time (40 hrs/wk)",
     "Part Time (less than 30 hrs/wk)",
     "Temporary (less than 6 months)"
   ];

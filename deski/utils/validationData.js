@@ -1,3 +1,5 @@
+  import { isValidEmail, isValidZipCode } from "./inputSanitizers";
+  
   export const validateParentContactInfo = (formData) => {
     const errors = {};
     if (!formData.primaryContact) {
@@ -18,7 +20,12 @@
         }
     }
     if ((formData.primaryContact === "Parent 1" || formData.primaryContact === "Both") && !formData.parents.parent1.phone) {
-      errors.parent1Phone = "Phone number is required for Parent 1.";
+        errors.parent1Phone = "Phone number is required for Parent 1.";
+      } else if (
+        (formData.primaryContact === "Parent 1" || formData.primaryContact === "Both") && 
+        formData.parents.parent1.phone.replace(/\D/g, "").length < 10
+      ) {
+        errors.parent1Phone = "Phone number must be at least 10 digits.";
     }
   
     if ((formData.primaryContact === "Parent 2" || formData.primaryContact === "Both") && !formData.parents.parent2.firstName) {
@@ -34,17 +41,18 @@
           errors.parent2Email = "Please enter a valid email address for Parent 2.";
         }
     }
-    if ((formData.primaryContact === "Parent 2" || formData.primaryContact === "Both") && !formData.parents.parent2.phone) {
-      errors.parent2Phone = "Phone number is required for Parent 2.";
+    if ((formData.primaryContact === "Parent 2" || formData.primaryContact === "Both") && !formData.parents.parent1.phone) {
+        errors.parent2Phone = "Phone number is required for Parent 2.";
+      } else if (
+        (formData.primaryContact === "Parent 2" || formData.primaryContact === "Both") && 
+        formData.parents.parent2.phone.replace(/\D/g, "").length < 10
+      ) {
+        errors.parent2Phone = "Phone number must be at least 10 digits.";
     }
-  
+      
     return errors;
   };
 
-  export const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
   
   export const validateAddressInfo = (formData) => {
     const errors = {};
@@ -59,10 +67,39 @@
     }
     if (!formData.zip) {
       errors.zip = "Zip code is required.";
+    } else if (!isValidZipCode(formData.zip)) {
+      errors.zip = "Enter valid zip code."
     }
   
     return errors;
   };
   
-  // Add additional validation functions for other steps as needed
-  
+  export const validateStartDate = (formData) => {
+    const errors = {};
+    if (!formData.startDate || formData.startDate === 'mm/dd/yyyy') {
+      errors.startDate = "Start date is required."
+    }
+    return errors;
+  };
+
+  export const validateNannyApplication = (formData) => {
+    const errors = {};
+    if (!formData.firstName) {
+      errors.firstName = "First name is required.";
+    }
+    if (!formData.lastName) {
+      errors.lastName = "Last name is required.";
+    }
+    if (!formData.email) {
+        errors.email = "Email is required.";
+    } else if (!isValidEmail(formData.email)) {
+          errors.email = "Please enter a valid email address.";
+      }
+    if (!formData.phoneNumber) {
+        errors.phoneNumber = "Phone number is required.";
+    } else if (formData.phoneNumber.replace(/\D/g, "").length < 10)
+      {
+        errors.phoneNumber= "Phone number must be at least 10 digits.";
+    }
+    return errors;
+  };

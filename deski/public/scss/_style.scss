@@ -3744,6 +3744,7 @@ body .shop-btn-two:hover {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: width 0.3s, height 0.3s, font-size 0.3s;
 }
 
 .indexedStep.accomplished {
@@ -3754,7 +3755,7 @@ body .shop-btn-two:hover {
 
 .RSPBprogressBar {
   height: 2px;
-  width: 30%;
+  width: 50%; 
   line-height: 1;
   border-radius: 10px;
   position: relative;
@@ -3764,6 +3765,7 @@ body .shop-btn-two:hover {
   align-items: center;
   z-index: 0;
   margin: 20px auto;
+  margin-bottom: 30px;
 }
 
 .RSPBprogressBar .RSPBstep {
@@ -3797,14 +3799,52 @@ body .shop-btn-two:hover {
   z-index: -1;
 }
 
+/* Media query for smaller screens */
 @media screen and (max-width: 480px) {
   .indexedStep {
-    width: 15px;
-    height: 15px;
-    font-size: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px; 
+  }
+  
+  .RSPBprogressBar {
+    height: 2px;
+    width: 70%;
+  }
+  
+  .RSPBprogressBar .RSPBstep {
+    width: 10%; 
+  }
+  
+  .RSPBprogressBar .RSPBprogression {
+    width: 50%;
   }
 }
 
+/*-------------Nanny Application---------*/
+.form-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust the gap as needed for spacing */
+}
+
+.form-radio-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-option input {
+  margin-right: 0.5rem;
+}
+
+.checkbox-section {
+  margin-bottom: 30px;
+}
 
 /*-------------Family Application---------*/
 .main-page-wrapper {
@@ -3907,13 +3947,53 @@ body .shop-btn-two:hover {
   background-color: #0056b3;
 }
 
+.adjective-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+}
+
+.form-checkbox-label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  // width: 200px; 
+}
+
+.form-checkbox {
+  margin-right: 10px; 
+}
+
 .parent-information {
   margin-top: 20px;
 }
 
-// .form-checkbox-group {
-//   margin: 20px 0 20px 0
-// }
+.children-info-fields {
+  margin-top: 20px;
+}
+
+.child-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.children-info-header {
+  display: flex;
+  flex-direction: row;
+  gap: 20%;
+  max-width: 300px;
+}
+
+.child-info .form-input {
+  width: 48%; /* Ensures both inputs are equally sized */
+  max-width: 150px;
+}
+
+.child-info select {
+  width: 48%; /* Ensures the sex input takes up equal width to the age input */
+  max-width: 150px;
+}
 
 /*-------- For Nannies ----------*/
 .for-nannies {

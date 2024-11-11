@@ -13,7 +13,7 @@ import ChildrenInfo from "@/components/family-application-steps/StepChildrenInfo
 import FamilyInfo from "@/components/family-application-steps/SetpFamilyInfo";
 import NannyCommunication from "@/components/family-application-steps/StepNannyCommunication";
 import DailyExpectations from "@/components/family-application-steps/StepDailyExpectations";
-import { validateParentContactInfo, validateAddressInfo } from "@/services/validation";
+import { validateParentContactInfo, validateAddressInfo, validateStartDate } from "@/utils/validationData";
 
 const FamilyApplication = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -54,19 +54,25 @@ const FamilyApplication = () => {
     duties: [],
     specialNeeds: [],
     familyDescription: '',
+    greatFamily: '',
     adjectives: [],
     parentingPhilosophy: '',
     previousExperience: '',
-    workFromHome: '',
+    workFromHomeFrequency: '',
+    workFromHomeExpectations: '',
+    petsInHome: '',
+    hasPool: '',
+    nannyCams: '',
     childrenInfo: {
       number: '',
-      ages: '',
+      ages: [],
       schedule: '',
+      sex: '',
     },
     nannyDescription: '',
-    qualities: [],
-    preferredInitiative: '',
-    dailyActivities: '',
+    candidateQualities: [],
+    initiativePreference: '',
+    activityPlanning: '',
     educationalGoals: '',
     milestones: '',
     values: '',
@@ -82,53 +88,54 @@ const FamilyApplication = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
   
-    // Handle checkbox inputs
-    if (type === "checkbox") {
-      const updatedValue = checked;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: updatedValue,
-      }));
-      return;
-    }
+    setFormData((prevData) => {
+      const updatedData = { ...prevData };
   
-    // For nested properties, split the name by dots to traverse the structure
-    const nameParts = name.split('.');
-    if (nameParts.length === 1) {
-      // Top-level property
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    } else if (nameParts.length === 2) {
-      // Two-level deep (e.g., parent1.firstName)
-      setFormData((prevData) => ({
-        ...prevData,
-        [nameParts[0]]: {
-          ...prevData[nameParts[0]],
-          [nameParts[1]]: value,
-        },
-      }));
-    } else if (nameParts.length === 3) {
-      // Three-level deep (e.g., workingHours.Monday.start)
-      setFormData((prevData) => ({
-        ...prevData,
-        [nameParts[0]]: {
-          ...prevData[nameParts[0]],
-          [nameParts[1]]: {
-            ...prevData[nameParts[0]][nameParts[1]],
-            [nameParts[2]]: value,
-          },
-        },
-      }));
-    }
+      if (type === "checkbox") {
+        if (Array.isArray(updatedData[name])) {
+          // Handle array fields like 'duties' or 'qualities'
+          const newArray = checked
+            ? [...updatedData[name], value]
+            : updatedData[name].filter((item) => item !== value);
+  
+          return { ...updatedData, [name]: newArray };
+        } else {
+          // Handle other single-value checkbox fields
+          return { ...updatedData, [name]: checked };
+        }
+      }
+  
+      // Handle nested fields
+      const nameParts = name.split('.');
+      let currentLevel = updatedData;
+  
+      for (let i = 0; i < nameParts.length; i++) {
+        const part = nameParts[i];
+  
+        if (i === nameParts.length - 1) {
+          if (part.includes('[')) {
+            const [arrayName, index] = part.match(/\w+/g);
+            currentLevel[arrayName] = [...currentLevel[arrayName]];
+            currentLevel[arrayName][parseInt(index, 10)] = value;
+          } else {
+            currentLevel[part] = value;
+          }
+        } else {
+          currentLevel[part] = { ...currentLevel[part] };
+          currentLevel = currentLevel[part];
+        }
+      }
+  
+      return updatedData;
+    });
   };
   
-  
+    
+  // Set top of form in view upon navigation
   const scrollToForm = () => {
     const element = formRef.current;
 
-    // Scroll to the element using scrollIntoView (without offset)
+    // Scroll to the element
     element.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -144,34 +151,48 @@ const FamilyApplication = () => {
     });
   };
 
+  // Next button navigation
   const handleNext = () => {
     let validationErrors = {};
 
-    if (currentStep === 1) {
-      validationErrors = validateParentContactInfo(formData);
-    } else if (currentStep === 2) {
-      validationErrors = validateAddressInfo(formData);
+    // Validate fields before navigating next
+    switch (currentStep) {
+        case 1:
+          validationErrors = validateParentContactInfo(formData);
+          break;
+        case 2:
+          validationErrors = validateAddressInfo(formData);
+          break;
+        case 3:
+            validationErrors = validateStartDate(formData);
+            break;
+        default: 
+            validationErrors = {};
+            break;
     }
-    // Add more validation checks for other steps here
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return; // Prevent moving to the next step if there are validation errors
+    if (validationErrors && typeof validationErrors === 'object' && Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        return; // Prevent moving to the next step if there are validation errors
     }
 
     setCurrentStep((prev) => prev + 1);
     scrollToForm();
   };
   
+  // Back button navigation
   const handleBack = () => {
     setCurrentStep((prev) => prev - 1);
     scrollToForm();
   };
 
+  // Progress bar navigation
   const handlePageNumberClick = (pageNumber) => {
-    setCurrentStep(pageNumber);
+    if (pageNumber > currentStep) handleNext();
+    else if (pageNumber < currentStep) handleBack();
   };
 
+  // Select primary contact
   const handleParentSelect = (parent) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -179,18 +200,7 @@ const FamilyApplication = () => {
     }));
   };
 
-  const handleCheckboxChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: prevData[name].includes(value)
-        ? prevData[name].filter((item) => item !== value)
-        : [...prevData[name], value],
-    }));
-  };
-
-  
-
+  // Calculate total hours 
   const handleTimeChange = (day, type, value) => {
     setFormData((prevFormData) => {
       // Clone the existing formData
@@ -222,6 +232,7 @@ const FamilyApplication = () => {
     });
   };  
 
+  // Submit form
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -276,6 +287,7 @@ const FamilyApplication = () => {
                 zip: formData.zip,
                 }}
                 handleChange={handleChange}
+                errors={errors}
             />
           }
 
@@ -285,22 +297,24 @@ const FamilyApplication = () => {
               candidateType={formData.candidateType} 
               setCandidateType={(type) => setFormData({ ...formData, candidateType: type })}
             />
-            <WorkingHoursSelection 
-              workingHours={formData.workingHours} 
-              handleTimeChange={handleTimeChange} 
-            />
+            {(formData.candidateType != '') &&
+              <WorkingHoursSelection 
+                workingHours={formData.workingHours} 
+                handleTimeChange={handleTimeChange} 
+              />
+            }
             <StartDateInput 
               startDate={formData.startDate} 
               handleChange={handleChange} 
+              errors={errors}
             />
           </>
           }
 
           {currentStep === 4 &&
-            <NannyPreferences 
-              formData={formData}
-              handleChange={handleChange}
-              handleCheckboxChange={handleCheckboxChange}
+            <FamilyInfo 
+              formData={formData} 
+              handleChange={handleChange} 
             />
           }
 
@@ -308,14 +322,13 @@ const FamilyApplication = () => {
             <ChildrenInfo
               formData={formData}
               handleChange={handleChange}
-              handleCheckboxChange={handleCheckboxChange}
             />
           }
 
           {currentStep === 6 &&
-            <FamilyInfo 
-              formData={formData} 
-              handleChange={handleChange} 
+            <NannyPreferences 
+              formData={formData}
+              handleChange={handleChange}
             />
           }
 

@@ -2,6 +2,11 @@
 import React, { useState } from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import FooterFour from "@/components/footer/FooterFour";
+import { allowOnlyLetters, allowOnlyNumbers } from "@/utils/inputSanitizers";
+import CustomInput from "@/components/custom-input-fields/CustomInput";
+import { validateNannyApplication, validateAddressInfo } from "@/utils/validationData";
+import { formatZipCode, formatPhoneNumber } from "@/utils/inputSanitizers";
+import CustomTextArea from "@/components/custom-input-fields/CustomTextArea";
 
 const NannyApplication = () => {
   // State to manage form data
@@ -42,6 +47,8 @@ const NannyApplication = () => {
     resume: null
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -49,6 +56,14 @@ const NannyApplication = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+
+  const handleValidation = (formData) => {
+    const errors = {
+        ...validateNannyApplication(formData),
+        ...validateAddressInfo(formData),
+    };
+    return errors;
+};
 
   const handleCheckboxChange = (e) => {
     const { name, value } = e.target;
@@ -70,8 +85,14 @@ const NannyApplication = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit form data
-    console.log(formData);
+    const errors = handleValidation(formData);
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+    } else {
+      // Clear errors and submit form data
+      setErrors({});
+      console.log(formData);
+    }
   };
 
   return (
@@ -154,84 +175,84 @@ const NannyApplication = () => {
 
           {/* Personal Information Section */}
           <h4 className="form-subtitle">Personal Information</h4>
-          <input
+          {errors.firstName && <span className="error">{errors.firstName}</span>}
+          <CustomInput
             type="text"
             name="firstName"
             placeholder="First Name"
             value={formData.firstName}
-            onChange={handleChange}
-            
+            onChange={(e) => allowOnlyLetters(e, handleChange)}
             className="form-input"
           />
-          <input
+          {errors.lastName && <span className="error">{errors.lastName}</span>}
+          <CustomInput
             type="text"
             name="lastName"
             placeholder="Last Name"
             value={formData.lastName}
-            onChange={handleChange}
-            
+            onChange={(e) => allowOnlyLetters(e, handleChange)}
             className="form-input"
           />
-          <input
+          {errors.email && <span className="error">{errors.email}</span>}
+          <CustomInput
             type="email"
             name="email"
             placeholder="example@example.com"
             value={formData.email}
             onChange={handleChange}
-            
             className="form-input"
           />
-          <input
+          {errors.phoneNumber && <span className="error">{errors.phoneNumber}</span>}
+          <CustomInput
             type="tel"
             name="phoneNumber"
-            placeholder="Area Code Phone Number"
+            placeholder="(000)000-0000"
             value={formData.phoneNumber}
-            onChange={handleChange}
-            
+            onChange={(e) => formatPhoneNumber(e, handleChange)}
             className="form-input"
           />
-          <input
+          {errors.addressLine1 && <span className="error">{errors.addressLine1}</span>}
+          <CustomInput
             type="text"
             name="addressLine1"
             placeholder="Address Line 1"
             value={formData.addressLine1}
             onChange={handleChange}
-            
             className="form-input"
           />
-          <input
+          <CustomInput
             type="text"
             name="addressLine2"
-            placeholder="Address Line 2"
+            placeholder="(Apt., Suite, Building, etc.)"
             value={formData.addressLine2}
             onChange={handleChange}
             className="form-input"
           />
-          <input
+          {errors.city && <span className="error">{errors.city}</span>}
+          <CustomInput
             type="text"
             name="city"
             placeholder="City"
             value={formData.city}
             onChange={handleChange}
-            
             className="form-input"
           />
-          <input
+          {errors.state && <span className="error">{errors.state}</span>}
+          <CustomInput
             type="text"
             name="state"
             placeholder="State"
             value={formData.state}
             onChange={handleChange}
-            
             className="form-input"
           />
-          <input
-            type="number"
+          {errors.zip && <span className="error">{errors.zip}</span>}
+          <CustomInput
+            type="text"
             name="zip"
             placeholder="Zip"
             value={formData.zip}
-            onChange={handleChange}
-            
+            onChange={(e) => formatZipCode(e, handleChange)}
             className="form-input"
           />
 
@@ -239,7 +260,7 @@ const NannyApplication = () => {
           <h3 className="form-subtitle">Basic Questions</h3>
           <h4 className="form-subtitle"> What type of position are you seeking?</h4>
           <div className="bubble-selection">
-            {["Full Time (over 40 hrs/wk)", "Part Time (less than 30 hrs/wk)", "Temporary (less than 6 months)"].map((type) => (
+            {["Full Time (40 hrs/wk)", "Part Time (less than 30 hrs/wk)", "Temporary (less than 6 months)"].map((type) => (
               <label key={type} className={`bubble-label ${formData.positionType === type ? 'selected' : ''}`}>
                 <input
                     type="radio"
@@ -253,30 +274,35 @@ const NannyApplication = () => {
               </label>
             ))}
           </div>
-          <textarea
+
+          What do you enjoy about being a nanny?
+          <CustomTextArea
             name="enjoymentOfNannying"
-            placeholder="What do you enjoy about being a nanny?"
+            placeholder="Response"
             value={formData.enjoymentOfNannying}
             onChange={handleChange}
             className="form-textarea"
-          ></textarea>
-          <textarea
+          />
+
+          What do you think are the biggest challenges in being a nanny?
+          <CustomTextArea
             name="challenges"
-            placeholder="What do you think are the biggest challenges in being a nanny?"
+            placeholder="Response"
             value={formData.challenges}
             onChange={handleChange}
             className="form-textarea"
-          ></textarea>
-          <input
+          />
+
+          How long of a commitment can you make to the family you work for?
+          <CustomInput
             type="text"
             name="commitmentLength"
-            placeholder="How long of a commitment can you make to the family you work for?"
+            placeholder="Response"
             value={formData.commitmentLength}
             onChange={handleChange}
             className="form-input"
           />
 
-        <div className="form-checkbox-group">
           <label className="form-checkbox-label">
             <input
               type="checkbox"
@@ -285,15 +311,35 @@ const NannyApplication = () => {
               onChange={handleChange}
             /> Do you have experience with newborns?
           </label>
-          <label className="form-checkbox-label">
-            <input
-              type="checkbox"
-              name="lightHousekeeping"
-              checked={formData.lightHousekeeping}
-              onChange={handleChange}
-            /> Would you be agreeable to light housekeeping relating to the children?
+
+          <label className="form-radio-label">
+            <span>We expect our nannies to be happy to help with some light housekeeping relating to the children (children's laundry, meal prep/light cooking for child). Would you be agreeable to this?</span>
+            
+            <div className="form-radio-options">
+              <label className={`radio-option ${formData.lightHousekeeping === 'Yes' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="lightHousekeeping"
+                  value="Yes"
+                  checked={formData.lightHousekeeping === 'Yes'}
+                  onChange={handleChange}
+                />
+                Yes
+              </label>
+              
+              <label className={`radio-option ${formData.lightHousekeeping === 'No' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="lightHousekeeping"
+                  value="No"
+                  checked={formData.lightHousekeeping === 'No'}
+                  onChange={handleChange}
+                />
+                No
+              </label>
+            </div>
           </label>
-        </div>
+
 
           <div className="form-checkbox-group">
             <h4 className="form-subtitle">Are you comfortable with pets? Select all that apply:</h4>
@@ -334,41 +380,51 @@ const NannyApplication = () => {
                 /> No pets
             </label>
           </div>
-
-          <input
+          
+          Do you speak any languages other than English? If so, please list.
+          <CustomInput
             type="text"
             name="languages"
-            placeholder="What languages do you speak?"
+            placeholder="Response"
             value={formData.languages}
             onChange={handleChange}
             className="form-input"
           />
-          <input
-            type="text"
+          <select
+            as="select"
             name="highestEducation"
-            placeholder="What is your highest level of education?"
             value={formData.highestEducation}
             onChange={handleChange}
             className="form-input"
-          />
-          <textarea
+          >
+            <option value="">Select your highest level of education</option>
+            <option value="High School Diploma">High School Diploma</option>
+            <option value="Some College">Some College</option>
+            <option value="Associates Degree">Associates Degree</option>
+            <option value="Bachelors Degree">Bachelors Degree</option>
+            <option value="Masters Degree">Masters Degree</option>
+            <option value="Doctoral Degree">Doctoral Degree</option>
+          </select>
+
+          Please provide any additional information about yourself that you think is relevant to employment.
+          <CustomTextArea
             name="additionalInfo"
-            placeholder="Please provide any additional information that may help us to better understand you."
+            placeholder="Response"
             value={formData.additionalInfo}
             onChange={handleChange}
             className="form-textarea"
-          ></textarea>
+          />
 
           {/* Additional Questions Section */}
           <div className="form-checkbox-group">
-            <h4 className="form-subtitle">Additional Questions</h4>
+            <h4 className="form-subtitle">Comfort Levels and Flexibility</h4>
             <label className="form-checkbox-label">
                 <input
                 type="checkbox"
                 name="drivingExperience"
                 checked={formData.drivingExperience}
                 onChange={handleChange}
-                /> Do you have experience driving?
+                />Are you comfortable driving with children and do you have previous experience driving as part of a position?
             </label>
             <label className="form-checkbox-label">
                 <input
@@ -376,7 +432,7 @@ const NannyApplication = () => {
                 name="experienceWithMultipleChildren"
                 checked={formData.experienceWithMultipleChildren}
                 onChange={handleChange}
-                /> Do you have experience caring for multiple children?
+                /> Do you have experience with siblings or working with multiple children at once?
             </label>
             <label className="form-checkbox-label">
                 <input
@@ -384,54 +440,119 @@ const NannyApplication = () => {
                 name="comfortableNannyingRemote"
                 checked={formData.comfortableNannyingRemote}
                 onChange={handleChange}
-                /> Are you comfortable nannying remote?
+                /> Are you comfortable nannying while parents work from home?
             </label>
           </div>
-          <textarea
-            name="parentCommunication"
-            placeholder="Describe how you would communicate with parents."
-            value={formData.parentCommunication}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
-          <input
+          <label className="form-radio-label">
+            
+          <span>How have you communicated with parents in previous positions (text, phone, etc.)?</span>
+          
+          <div className="form-radio-options">
+            <label className={`radio-option ${formData.parentCommunication === 'Text' ? 'selected' : ''}`}>
+              <input
+                type="radio"
+                name="parentCommunication"
+                value="Text"
+                checked={formData.parentCommunication === 'Text'}
+                onChange={handleChange}
+              />
+              Text
+            </label>
+            
+            <label className={`radio-option ${formData.parentCommunication === 'Phone' ? 'selected' : ''}`}>
+              <input
+                type="radio"
+                name="parentCommunication"
+                value="Phone"
+                checked={formData.parentCommunication === 'Phone'}
+                onChange={handleChange}
+              />
+              Phone
+            </label>
+            
+            <label className={`radio-option ${formData.parentCommunication === 'Email' ? 'selected' : ''}`}>
+              <input
+                type="radio"
+                name="parentCommunication"
+                value="Email"
+                checked={formData.parentCommunication === 'Email'}
+                onChange={handleChange}
+              />
+              Email
+            </label>
+            
+            <label className={`radio-option ${formData.parentCommunication === 'In-person' ? 'selected' : ''}`}>
+              <input
+                type="radio"
+                name="parentCommunication"
+                value="In-person"
+                checked={formData.parentCommunication === 'In-person'}
+                onChange={handleChange}
+              />
+              In-person
+            </label>
+            
+            <label className={`radio-option ${formData.parentCommunication === 'Other' ? 'selected' : ''}`}>
+              <input
+                type="radio"
+                name="parentCommunication"
+                value="Other"
+                checked={formData.parentCommunication === 'Other'}
+                onChange={handleChange}
+              />
+              Other
+            </label>
+          </div>
+        </label>
+
+          How often are you willing to communicate with parents throughout the day?
+          <CustomInput
             type="text"
             name="communicationFrequency"
-            placeholder="How often would you communicate with parents?"
+            placeholder="Response"
             value={formData.communicationFrequency}
             onChange={handleChange}
             className="form-input"
           />
-          <textarea
+
+          How do you handle conflicts, disagreements, sibling arguments, or behavioral issues?
+          <CustomTextArea
             name="conflictResolution"
-            placeholder="Describe how you would handle conflict."
+            placeholder="Response"
             value={formData.conflictResolution}
             onChange={handleChange}
             className="form-textarea"
-          ></textarea>
-          <input
+          />
+
+        <h4 className="form-subtitle">Personality and Interests</h4>
+          What are your hobbies?
+          <CustomInput
             type="text"
             name="hobbies"
-            placeholder="What are your hobbies?"
+            placeholder="Response"
             value={formData.hobbies}
             onChange={handleChange}
             className="form-input"
           />
-          <input
+
+          How do you spend your time outside of nannying?
+          <CustomInput
             type="text"
             name="timeSpentOutsideNannying"
-            placeholder="How do you spend your time outside of nannying?"
+            placeholder="Response"
             value={formData.timeSpentOutsideNannying}
             onChange={handleChange}
             className="form-input"
           />
-          <textarea
+
+          How would you describe your personality in 3 words?
+          <CustomTextArea
             name="personalityDescription"
-            placeholder="How would you describe your personality?"
+            placeholder="Response"
             value={formData.personalityDescription}
             onChange={handleChange}
             className="form-textarea"
-          ></textarea>
+          />
 
           <button type="submit" className="btn btn-primary">Submit Application</button>
         </form>
