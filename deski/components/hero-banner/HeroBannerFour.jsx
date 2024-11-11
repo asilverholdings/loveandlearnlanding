@@ -1,109 +1,54 @@
 import React from "react";
-import Link from "next/link";
-import FeaturesEight from "../features/FeaturesEight";
 import Image from "next/image";
 
 const HeroBannerFour = () => {
   return (
     <div className="hero-banner-four">
-      <Image width="213" height="86"
-        src="/images/shape/100.svg"
-        alt="shape"
-        className="shapes shape-four"
-      />
-      <Image width="10" height="19"
-        src="/images/shape/101.svg"
-        alt="shape"
-        className="shapes shape-five"
-      />
-      <Image width="242" height="433"
-        src="/images/shape/102.svg"
-        alt="shape"
-        className="shapes shape-six"
-      />
-      <Image width="246" height="400"
-        src="/images/shape/103.svg"
-        alt="shape"
-        className="shapes shape-seven"
-      />
+      {/* Adding shapes and banner images */}
+      <Image width="213" height="86" src="/images/shape/100.svg" alt="shape" className="shapes shape-four" />
+      <Image width="10" height="19" src="/images/shape/101.svg" alt="shape" className="shapes shape-five" />
+      <Image width="242" height="433" src="/images/shape/102.svg" alt="shape" className="shapes shape-six" />
+      <Image width="246" height="400" src="/images/shape/103.svg" alt="shape" className="shapes shape-seven" />
 
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6 order-lg-last">
-            <div className="illustration-holder">
-              <Image
-                src="/images/assets/ils_14.svg"
-                alt="shape"
-                className="illustration"
-                width={660}
-                height={471}
-              />
-              <Image
-                src="/images/assets/ils_14.1.svg"
-                width={83}
-                height = {102}
-                alt="shape"
-                className="shapes shape-one"
-              />
-              <Image width="83" height="98"
-                src="/images/assets/ils_14.2.svg"
-                alt="shape"
-                className="shapes shape-two"
-              />
-              <Image  width="88" height="107"
-                src="/images/assets/ils_14.3.svg"
-                alt="shape"
-                className="shapes shape-three"
-              />
-            </div>
-            <p className="review-text">
-              Over <span>150,000+ client</span> all over the world.
+      {/* Main image */}
+      <div>
+        <Image
+          src="https://placehold.co/900x200/png"
+          alt="banner"
+          layout="responsive"
+          width={900}
+          height={200}
+        />
+      </div>
+
+      {/* Our Story Section */}
+      <div className="container mt-120 mb-120">
+        <div className="title-style-five text-center mb-60 md-mb-30">
+          <section id="our-story">
+            <h2>
+              <span>
+                Our Story
+              </span>
+            </h2>
+          </section>
+        </div>
+        <div className="our-story-container">
+            <p>
+              In July 2023, we welcomed our twins into the world, and by December,
+              we knew it was time to start looking for the perfect nanny. That’s when we found Tessa,
+              a hidden gem, who quickly became more than our nanny – she became part of our family.
+              From the very beginning, she poured her heart into nurturing our little ones, always 
+              focusing on their communication and development with love and intention. We knew we had 
+              struck gold. Day by day, we watched our twins thrive under her guidance, and we realized 
+              just how much of a difference this level of care made in their lives. That’s what inspired 
+              us to create Love and Learn. We wanted to bring the same level of love, care, and dedication 
+              we experienced with Tessa to other families, ensuring that every child thrives in a nurturing, 
+              supportive environment.
             </p>
-          </div>
-          {/* End .col */}
-
-          <div className="col-lg-6 order-lg-first">
-            <div className="text-wrapper">
-              <h1 data-aos="fade-up" data-aos-duration="1200">
-                <span>Event ticket</span> organiser & seller.
-              </h1>
-              <p
-                className="sub-text"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
-                For hassale free event, we are here to help you by creating
-                online ticket.
-              </p>
-              <Link
-                    href="/login"
-                className="theme-btn-five"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="200"
-              >
-                {" "}
-                Let’s get started
-              </Link>
-            </div>
-            {/* /.text-wrapper */}
-          </div>
-          {/* End .col */}
         </div>
       </div>
-
-      <div className="fancy-feature-eight mt-160 md-mt-100">
-        <div className="container">
-          <div className="bg-wrapper">
-            <FeaturesEight />
-          </div>
-        </div>
-      </div>
-      {/* /.fancy-feature-eight */}
     </div>
   );
-  //  {/* /.hero-banner-four */}
 };
 
 export default HeroBannerFour;

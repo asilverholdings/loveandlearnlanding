@@ -33,23 +33,19 @@ const NotFound = () => {
         <div className="text-wrapper order-lg-first">
           <div className="logo">
             <Link href="/">
-              <Image width={136} 
-              height={43} src="/images/logo/deski_05.svg" alt="logo" />
+              <Image width={600} 
+              height={113} src="/images/logo/love-and-learn-text.svg" alt="logo" />
             </Link>
           </div>
           <h1 className="font-slab">
             Sorry, <br />
-            The Page Can’t <br />
+            This Page Can’t <br />
             be Found.
           </h1>
-          <p className="font-rubik">
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat
-          </p>
 
           <Link
             href="/"
-            className="back-home font-rubik d-flex align-items-center justify-content-center"
+            className="back-home font-rubik d-flex align-items-center justify-content-center mt-10"
           >
             <span>Back to Home</span>
             <Image width={21} height={10} src="/images/icon/53.svg" alt="icon" />

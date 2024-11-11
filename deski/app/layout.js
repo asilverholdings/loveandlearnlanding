@@ -22,8 +22,9 @@ export default function RootLayout({ children }) {
     <html  lang="en">
       <head>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;400;500;700&family=Rubik:wght@300;400;500&display=swap"/>
+      <link rel="icon" href="favicon.ico" sizes="any" />
       </head>
-      <body  ><div ><Context> {children}</Context></div>
+      <body><div ><Context> {children}</Context></div>
       {<ScrollToTop/>}</body>
     </html>
   )

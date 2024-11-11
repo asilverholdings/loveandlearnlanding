@@ -6,31 +6,28 @@ import MegaMenu from "./mega-menu/MegaMenu";
 import MegaMenuMobile from "./mega-menu/MegaMenuMobile";
 import Image from "next/image";
 
-const HeaderThree = () => {
+const HeaderTwo = () => {
   const [navbar, setNavbar] = useState(false);
+  const [logoSize, setLogoSize] = useState(innerWidth <= 768 ? 100 : 200);
 
   const changeBackground = () => {
     if (typeof window !== "undefined") {
-       if (window.scrollY >= 68) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
+      if (window.scrollY >= 68) {
+        setNavbar(true);
+        setLogoSize(innerWidth <= 768 ? 50 : 100);
+      } else {
+        setNavbar(false);
+        setLogoSize(innerWidth <= 768 ? 100 : 200);
+      }
     }
-    }
-   
   };
 
   useEffect(() => {
-    
-  window.addEventListener("scroll", changeBackground);
+    window.addEventListener("scroll", changeBackground);
     return () => {
       window.removeEventListener("scroll", changeBackground);
-    }
-  }, [])
-  
-
-  
-  
+    };
+  }, []);
 
   return (
     <>
@@ -43,8 +40,14 @@ const HeaderThree = () => {
       >
         <div className="d-flex align-items-center justify-content-center">
           <div className="logo">
-            <Link     href="/">
-              <Image  width="87" height="40" src="/images/logo/deski_01.svg" alt="brand logo" />
+            <Link href="/">
+              <Image
+                width={logoSize}
+                height={logoSize}
+                src="/images/logo/love-and-learn-logo.svg"
+                alt="brand logo"
+                style={{ transition: "width 0.3s, height 0.3s" }}
+              />
             </Link>
           </div>
           {/* End Logo */}
@@ -58,39 +61,6 @@ const HeaderThree = () => {
                 <div className="d-lg-flex justify-content-between align-items-center">
                   <MegaMenu />
                   {/* End MegaMenu */}
-
-                  <ul className="right-widget">
-                    <li className="d-sm-flex">
-                      <ul className="language-button-group d-flex align-items-center justify-content-center">
-                        <li>
-                          <a href="#" className="eng-lang active">
-                            En.{" "}
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#" className="ru-lang">
-                            Ru.
-                          </a>
-                        </li>
-                      </ul>
-                      {/* End ul */}
-
-                      <ul className="user-login-button d-flex align-items-center justify-content-center">
-                        <li>
-                          <Link     href="/login" className="signIn-action">
-                            Login
-                          </Link>
-                        </li>
-                        <li>
-                          <Link     href="/signup" className="signUp-action">
-                            Sign Up
-                          </Link>
-                        </li>
-                      </ul>
-                      {/* End ul */}
-                    </li>
-                  </ul>
-                  {/* End right-button-group  */}
                 </div>
               </div>
             </div>
@@ -106,4 +76,4 @@ const HeaderThree = () => {
   );
 };
 
-export default HeaderThree;
+export default HeaderTwo;

@@ -8,97 +8,58 @@ const linksFooterContent = [
     routePath: "/",
   },
   {
-    itemName: "Product",
-    routePath: "/product-customer-support",
+    itemName: "Our Story",
+    routePath: "/#our-story",
   },
   {
-    itemName: "Pricing",
-    routePath: "/pricing-pm",
-  },
-  {
-    itemName: "About us",
-    routePath: "/about-pm",
-  },
-  {
-    itemName: "Features",
-    routePath: "/solution-management",
-  },
-  {
-    itemName: "Blog",
-    routePath: "/blog-v4",
-  },
-  {
-    itemName: "Help & Support",
-    routePath: "/login",
-  },
-  {
-    itemName: "API documentation",
-    routePath: "/doc-full-width",
+    itemName: "Why Us",
+    routePath: "/why-us",
   },
 ];
 
-const legalFooterContent = [
+const servicesFooterContent = [
   {
-    itemName: "Terms of use",
-    routePath: "/terms-conditions",
+    itemName: "For Families",
+    routePath: "/for-families",
   },
   {
-    itemName: "Terms & conditions",
-    routePath: "/terms-conditions",
+    itemName: "For Nannies",
+    routePath: "/for-nannies",
   },
   {
-    itemName: "Privacy policy",
-    routePath: "/terms-conditions",
-  },
-  {
-    itemName: "Cookie policy",
-    routePath: "",
+    itemName: "Screening & Matchmaking",
+    routePath: "/screening-and-matchmaking",
   },
 ];
 
-const productsFooterContent = [
+const moreFooterContent = [
   {
-    itemName: "Take the tour",
-    routePath: "/product-customer-support",
+    itemName: "Rates",
+    routePath: "/rates",
   },
   {
-    itemName: "Team",
-    routePath: "/team-5",
+    itemName: "FAQ",
+    routePath: "/faq",
   },
   {
-    itemName: "Self Service",
-    routePath: "/features-customer-support",
-  },
-  {
-    itemName: "News",
-    routePath: "/blog-v3",
-  },
-  {
-    itemName: "About us",
-    routePath: "/about-doc",
-  },
-  {
-    itemName: "Contact",
-    routePath: "/contact-cs",
+    itemName: "Contact Us",
+    routePath: "/contact-us",
   },
 ];
 
 const FooterFour = () => {
   return (
-    <div className="row justify-content-end">
+    <div className="row justify-content-end mb-100">
       <div className="col-xl-4 col-lg-3 col-12 footer-about-widget">
         <div className="logo">
-          <Link     href="/">
-            <Image width={136} 
-              height={43} src="/images/logo/deski_05.svg" alt="brand" />
+          <Link href="/">
+            <Image width={250} 
+              height={47} src="/images/logo/love-and-learn-text.svg" alt="brand" style={{ marginLeft: '-10px', display: "block", boxShadow: "none" }} />
           </Link>
         </div>
         <ul className="font-rubik mt-10">
           <li>
-            <a href="mailto:deskiinc@gmail.com">deskiinc@gmail.com</a>
-          </li>
-          <li>
-            <a href="tel:+761 412 3224">+761 412 3224</a>
+            <a href="mailto:tessa@loveandlearn.com">tessa@loveandlearn.com</a>
           </li>
         </ul>
       </div>
@@ -109,7 +70,7 @@ const FooterFour = () => {
         <ul>
           {linksFooterContent.map((list, i) => (
             <li key={i}>
-              <Link     href={list.routePath}>{list.itemName}</Link>
+              <Link href={list.routePath}>{list.itemName}</Link>
             </li>
           ))}
         </ul>
@@ -117,11 +78,11 @@ const FooterFour = () => {
 
       {/* /.footer-list */}
       <div className="col-lg-3 col-md-4 footer-list">
-        <h5 className="footer-title font-slab">Legal</h5>
+        <h5 className="footer-title font-slab">Services</h5>
         <ul>
-          {legalFooterContent.map((list, i) => (
+          {servicesFooterContent.map((list, i) => (
             <li key={i}>
-              <Link     href={list.routePath}>{list.itemName}</Link>
+              <Link href={list.routePath}>{list.itemName}</Link>
             </li>
           ))}
         </ul>
@@ -129,11 +90,11 @@ const FooterFour = () => {
       {/* /.footer-list */}
 
       <div className="col-xl-2 col-lg-3 col-md-4 footer-list">
-        <h5 className="footer-title font-slab">Products</h5>
+        <h5 className="footer-title font-slab">More</h5>
         <ul className="pe-5">
-          {productsFooterContent.map((list, i) => (
+          {moreFooterContent.map((list, i) => (
             <li key={i}>
-              <Link     href={list.routePath}>{list.itemName}</Link>
+              <Link href={list.routePath}>{list.itemName}</Link>
             </li>
           ))}
         </ul>

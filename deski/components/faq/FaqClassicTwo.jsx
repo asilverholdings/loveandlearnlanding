@@ -8,34 +8,7 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from "react-accessible-accordion";
-
-const FaqContent = [
-  {
-    title: "How the affiliate programe works?",
-    desc: `mea case duis tollit et. Etiam nusquam set minium eu sea, ei tale paulo elab. Noluisse mnesarch Et is vero incorrupte eos deserunt quaeren.`,
-    expand: "a",
-  },
-  {
-    title: "How delete my account?",
-    desc: `mea case duis tollit et. Etiam nusquam set minium eu sea, ei tale paulo elab. Noluisse mnesarch Et is vero incorrupte eos deserunt quaeren.`,
-    expand: "b",
-  },
-  {
-    title: "How to invite people with refferel link?",
-    desc: `mea case duis tollit et. Etiam nusquam set minium eu sea, ei tale paulo elab. Noluisse mnesarch Et is vero incorrupte eos deserunt quaeren.`,
-    expand: "c",
-  },
-  {
-    title: "Is ios app available for the iphone?",
-    desc: `mea case duis tollit et. Etiam nusquam set minium eu sea, ei tale paulo elab. Noluisse mnesarch Et is vero incorrupte eos deserunt quaeren.`,
-    expand: "d",
-  },
-  {
-    title: "  How to create customer panel?",
-    desc: `mea case duis tollit et. Etiam nusquam set minium eu sea, ei tale paulo elab. Noluisse mnesarch Et is vero incorrupte eos deserunt quaeren.`,
-    expand: "e",
-  },
-];
+import { FaqContent } from "@/data/faqs";
 
 const FaqClassic = () => {
   return (
@@ -47,13 +20,13 @@ const FaqClassic = () => {
               <AccordionItemHeading className="card-header">
                 <AccordionItemButton>
                   <h5 className="mb-0">
-                    <button className="btn btn-link">{item.title}</button>{" "}
+                    <button className="btn btn-link">{item.question}</button>{" "}
                   </h5>
                 </AccordionItemButton>
               </AccordionItemHeading>
               {/* Accordion Heading */}
               <AccordionItemPanel className="card-body fadeInUp">
-                <p>{item.desc}</p>
+                <p>{item.answer}</p>
               </AccordionItemPanel>
               {/* Accordion Body Content */}
             </AccordionItem>

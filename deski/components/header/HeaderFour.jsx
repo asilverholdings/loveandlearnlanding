@@ -61,21 +61,6 @@ const HeaderFour = () => {
               >
                 <div className="d-lg-flex align-items-center">
                   <MegaMenu />
-                  {/* End MegaMenu */}
-
-                  <ul className="right-button-group d-flex align-items-center justify-content-center">
-                    <li>
-                      <Link     href="/login" className="signIn-action">
-                        Login
-                      </Link>
-                    </li>
-                    <li>
-                      <Link     href="/signup" className="theme-btn-five">
-                        Create your event
-                      </Link>
-                    </li>
-                  </ul>
-                  {/* End right-button-group  */}
                 </div>
               </div>
             </div>

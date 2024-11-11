@@ -7,29 +7,28 @@ const CallToActionFive = () => {
     <>
       <div className="title-style-five text-center">
         <h2>
-          <span>Sign up & get started</span>
+          <span>Contact Us</span>
         </h2>
       </div>
       <div className="row">
         <div className="col-xl-7 col-lg-8 col-md-9 m-auto">
           <p className="font-rubik sub-heading">
-            Our ticketing platform is made for you - & loved by everyone lorem
-            ipsum.
+            Have any questions? Reach out to us!
           </p>
         </div>
-        {/* End .col */}
       </div>
-      {/* End .row */}
-      <div className="row">
-        <div className="col-xl-7 col-lg-8 col-md-10 m-auto">
-          <FormEvent />
-          <p className="info-text">
-            Already a member? <Link     href="login">Sign in.</Link>
-          </p>
-        </div>
-        {/* End .col */}
+      <div className="row justify-content-center">
+        <Link
+            href="/contact-us"
+            className="theme-btn-five"
+            data-aos="fade-up"
+            data-aos-duration="1200"
+            data-aos-delay="200"
+            style={{ width: '15%' }}
+          >
+            Contact Us
+        </Link>
       </div>
-      {/* End .row */}
     </>
   );
 };
