@@ -234,7 +234,7 @@ const NannyApplication = () => {
             name="city"
             placeholder="City"
             value={formData.city}
-            onChange={handleChange}
+            onChange={(e) => allowOnlyLetters(e, handleChange)}
             className="form-input"
           />
           {errors.state && <span className="error">{errors.state}</span>}
@@ -243,7 +243,7 @@ const NannyApplication = () => {
             name="state"
             placeholder="State"
             value={formData.state}
-            onChange={handleChange}
+            onChange={(e) => allowOnlyLetters(e, handleChange)}
             className="form-input"
           />
           {errors.zip && <span className="error">{errors.zip}</span>}

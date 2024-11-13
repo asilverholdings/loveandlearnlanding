@@ -2,7 +2,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToTop from "../components/ScrollToTop";
-import Context from '@/context/Context';
 import { useEffect } from 'react'
 import '../public/main.scss'
 
@@ -24,7 +23,7 @@ export default function RootLayout({ children }) {
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300;400;500;700&family=Rubik:wght@300;400;500&display=swap"/>
       <link rel="icon" href="favicon.ico" sizes="any" />
       </head>
-      <body><div ><Context> {children}</Context></div>
+      <body><div > {children}</div>
       {<ScrollToTop/>}</body>
     </html>
   )

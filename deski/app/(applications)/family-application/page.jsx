@@ -14,6 +14,7 @@ import FamilyInfo from "@/components/family-application-steps/SetpFamilyInfo";
 import NannyCommunication from "@/components/family-application-steps/StepNannyCommunication";
 import DailyExpectations from "@/components/family-application-steps/StepDailyExpectations";
 import { validateParentContactInfo, validateAddressInfo, validateStartDate } from "@/utils/validationData";
+const { storeNewApplicant } = require('../../../integrations/monday/index');
 
 const FamilyApplication = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -232,9 +233,19 @@ const FamilyApplication = () => {
     });
   };  
 
+  const columnUpdates = {
+    'first_name__1': formData.parents.parent1.firstName,
+    'last_name__1': formData.parents.parent1.lastName,
+    'email4__1': formData.parents.parent1.email
+  };
+
+  const rowName = formData.parents.parent1.lastName;
+  const boardName = "Family Applications";
+
   // Submit form
   const handleSubmit = (e) => {
     e.preventDefault();
+    storeNewApplicant(boardName, rowName, columnUpdates);
     console.log(formData);
   };
 

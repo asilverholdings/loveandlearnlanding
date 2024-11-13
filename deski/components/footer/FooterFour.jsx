@@ -34,10 +34,6 @@ const servicesFooterContent = [
 
 const moreFooterContent = [
   {
-    itemName: "Rates",
-    routePath: "/rates",
-  },
-  {
     itemName: "FAQ",
     routePath: "/faq",
   },
