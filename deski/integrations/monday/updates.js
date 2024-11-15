@@ -2,7 +2,14 @@ require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
 
+// CREATE
 const createItemUpdate = (itemId, updateBody) => {
+
+    if (!itemId) {
+        console.error("Invalid itemId:", itemId);
+        return null;
+    }
+
     const mutation = `
       mutation createUpdate($itemId: ID!, $body: String!) {
         create_update (item_id: $itemId, body: $body) {
@@ -10,6 +17,8 @@ const createItemUpdate = (itemId, updateBody) => {
         }
       }
     `;
+
+    const body = typeof updateBody === 'string' ? updateBody : JSON.stringify(updateBody || "");
   
     return fetch("http://localhost:3000/api/proxy", {
       method: 'post',
@@ -22,7 +31,7 @@ const createItemUpdate = (itemId, updateBody) => {
         query: mutation,
         variables: {
           itemId: itemId,
-          body: updateBody
+          body: body
         }
       })
     })

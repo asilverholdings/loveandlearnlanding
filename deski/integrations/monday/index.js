@@ -1,63 +1,77 @@
 const { getBoardIds, getBoardIdByName, createBoard } = require('./board');
 const { getColumnIds, createColumn, updateSingleColumnValue, updateColumnValues } = require('./columns');
 const { createItemUpdate } = require('./updates');
-const { getRowIds, getRowIdByName, createRow } = require('./rows');
+const { getRowIds, getRowIdByName, createRow, updateRowById } = require('./rows');
 
-// Store New Form Data
-const storeNewApplicant = (boardName, rowName, columnUpdates) => {
-    let boardId;
-    getBoardIdByName(boardName)
-        .then(id => {
-            if (id) {
-                console.log(`Board ID: ${id}`);
-                boardId = id;
-                return getRowIdByName(id, rowName);
-            }
+
+const storeNewApplicant = async (boardName, rowName, columnUpdates) => {
+    try {
+        // Fetch board ID asynchronously
+        const boardId = await getBoardIdByName(boardName);
+
+        if (!boardId) {
             throw new Error("Board ID not found");
-        })
-        .then(rowId => {
-            if (rowId) {
-                console.log(`Row found with ID: ${rowId}`);
-                // If row is found, update the column values
-                return updateColumnValues(boardId, rowId, columnUpdates);
-            } else {
-                console.log("Row not found. Creating new row...");
-                // If row is not found, create a new row
-                return createRow(boardId, rowName, columnUpdates);
-            }
-        })
-        .then(response => {
-            if (response) {
-                console.log('Row processed successfully:', response);
-            } else {
-                console.log('Failed to process row');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
+        }
+
+        const rowId = await getRowIdByName(rowName);
+
+        console.log(`Board ID: ${boardId}`);
+
+        if (rowId) {
+            const response = await updateRowById(boardId, rowId, columnUpdates);
+            console.log('Row updated successfully:', response);
+        } else {
+            // If row is not found, create a new row
+            console.log("Creating new row...");
+            const responseId = await createRow(boardId, rowName, columnUpdates);
+            console.log('New row created successfully:', responseId);
+            return responseId;
+        }
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        return null;
+    }
 };
 
-// const boardName = 'Family Applications';
-// const rowName = 'hello world';
-// const columnUpdates = {
-//     'first_name__1': 'Antonio',
-//     'last_name__1': 'Fodor',
-//     'email4__1': 'antonio@abaschedules.com'
-// };
 
-// storeNewApplicant(boardName, rowName, columnUpdates);
 
-// createColumn(boardId, columnTitle, columnType)
-//   .then(columnId => {
-//     if (columnId) {
-//       console.log(`New column created successfully with ID: ${columnId}`);
-//       // You can perform additional actions here with the new column ID
-//     } else {
-//       console.log('Failed to create new column');
-//     }
-//   })
-//   .catch(error => {
-//     console.error('Error:', error);
-//   });
-module.exports = { storeNewApplicant };
+
+const storeApplicantResponses = async (rowName, updateBody, boardName) => {
+    try {
+      // Fetch boardId asynchronously
+      const boardId = await getBoardIdByName(boardName);
+      
+      if (!boardId) {
+        console.error("Invalid boardId:", boardId);
+        return null;
+      }
+  
+      // Fetch rowId asynchronously
+      const row = await getRowIdByName(boardId, rowName);
+  
+      if (!row) {
+        console.error("Invalid rowId for rowName:", rowName);
+        return null;
+      }
+  
+      // Create item updates for the given row
+      const updatePromises = updateBody.map((body) => createItemUpdate(row, body)); 
+  
+      const results = await Promise.all(updatePromises); // Wait for all promises to resolve
+  
+      // Handle the results of the updates
+      results.forEach((updateId, index) => {
+        if (updateId) {
+          console.log(`Update ${index + 1} created successfully with ID: ${updateId}`);
+        } else {
+          console.error(`Failed to create update for response: ${updateBody[index]}`);
+        }
+      });
+    } catch (error) {
+      console.error('Error creating updates:', error);
+    }
+  };
+  
+
+module.exports = { storeNewApplicant, storeApplicantResponses };

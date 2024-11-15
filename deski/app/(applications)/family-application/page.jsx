@@ -13,13 +13,16 @@ import ChildrenInfo from "@/components/family-application-steps/StepChildrenInfo
 import FamilyInfo from "@/components/family-application-steps/SetpFamilyInfo";
 import NannyCommunication from "@/components/family-application-steps/StepNannyCommunication";
 import DailyExpectations from "@/components/family-application-steps/StepDailyExpectations";
+import ThankYouModal from "@/components/form-submit/SubmissionConfirmation";
 import { validateParentContactInfo, validateAddressInfo, validateStartDate } from "@/utils/validationData";
-const { storeNewApplicant } = require('../../../integrations/monday/index');
+const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
 
 const FamilyApplication = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const formRef = useRef(null);
   const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     primaryContact: '',
@@ -160,6 +163,9 @@ const FamilyApplication = () => {
     switch (currentStep) {
         case 1:
           validationErrors = validateParentContactInfo(formData);
+          if (Object.keys(validationErrors).length === 0 && validationErrors.constructor === Object) {
+            handleSubmitApplicant();
+          }
           break;
         case 2:
           validationErrors = validateAddressInfo(formData);
@@ -233,21 +239,37 @@ const FamilyApplication = () => {
     });
   };  
 
-  const columnUpdates = {
-    'first_name__1': formData.parents.parent1.firstName,
-    'last_name__1': formData.parents.parent1.lastName,
-    'email4__1': formData.parents.parent1.email
-  };
-
-  const rowName = formData.parents.parent1.lastName;
+  const rowName = formData.parents.parent1.firstName + ' ' + formData.parents.parent1.lastName;
   const boardName = "Family Applications";
 
   // Submit form
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmitApplicant = (e) => {
+    const columnUpdates = {
+      'first_name__1': formData.parents.parent1.firstName,
+      'last_name__1': formData.parents.parent1.lastName,
+      'email4__1': formData.parents.parent1.email
+    };
+
     storeNewApplicant(boardName, rowName, columnUpdates);
-    console.log(formData);
   };
+
+  const handleSubmit = (e) => {
+    if (isSubmitted) {
+      return;
+    }
+    setModalVisible(true);
+
+    const updateBody = Object.entries(formData).map(([key, value]) => ({
+      column: key,
+      value: typeof value === "object" ? JSON.stringify(value) : value, // Serialize objects
+    }));
+
+    e.preventDefault();
+    storeApplicantResponses(rowName, updateBody, boardName);
+    console.log("Form submitted:", formData);
+
+   // setIsSubmitted(true);
+  }
 
   return (
     <div className="main-page-wrapper">
@@ -363,11 +385,14 @@ const FamilyApplication = () => {
             <div>
               {currentStep < 8 && <button type="button" className="theme-btn-five" onClick={handleNext}>Next</button>}
             </div>
-            {currentStep === 8 && <button type="submit">Submit</button>}
+            {currentStep === 8 && <button type="submit" className="theme-btn-two">Submit</button>}
           </div>
         </>
         </form>
     </div>
+
+    {/* Modal */}
+    {/* {modalVisible && <ThankYouModal message={"Thank you for your application! We will be reaching out to your family soon."}/>} */}
 
       <footer className="theme-footer-eight mt-100 mb-80">
         <div className="top-footer">

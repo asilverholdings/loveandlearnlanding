@@ -81,7 +81,7 @@ const getRowIdByName = (boardId, searchName) => {
     .then(res => {
       if (res.data && res.data.boards && res.data.boards[0] && res.data.boards[0].items_page) {
         const items = res.data.boards[0].items_page.items;
-        console.log('All items:', items.map(item => `${item.name} (${item.id})`));
+        // console.log('All items:', items.map(item => `${item.name} (${item.id})`));
         
         const exactMatch = items.find(item => 
           item.name.toLowerCase() === searchName.toLowerCase()
@@ -146,7 +146,7 @@ const createRow = (boardId, itemName, columnValues = {}) => {
         console.log('Item created with ID:', res.data.create_item.id);
         return res.data.create_item.id;
       } else {
-        console.error('Error creating item:', res.errors);
+        console.error(`Failed to create update for response: ${res.data.create_item.id}`);
         return null;
       }
     })
@@ -156,4 +156,46 @@ const createRow = (boardId, itemName, columnValues = {}) => {
     });
 }
 
-module.exports = { getRowIds, getRowIdByName, createRow }; 
+// UPDATE
+const updateRowById = (boardId, itemId, columnValues = {}) => {
+    const mutation = `
+      mutation updateItem($boardId: ID!, $itemId: ID!, $columnValues: JSON) {
+        change_multiple_column_values(board_id: $boardId, item_id: $itemId, column_values: $columnValues) {
+          id
+        }
+      }
+    `;
+  
+    return fetch("http://localhost:3000/api/proxy", {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': MONDAY_AUTH_TOKEN,
+        'API-Version': MONDAY_API_VERSION
+      },
+      body: JSON.stringify({
+        query: mutation,
+        variables: {
+          boardId: boardId,
+          itemId: itemId,
+          columnValues: JSON.stringify(columnValues)
+        }
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.data && res.data.change_multiple_column_values) {
+        console.log('Item updated successfully with ID:', res.data.change_multiple_column_values.id);
+        return res.data.change_multiple_column_values.id;
+      } else {
+        console.error('Error updating item:', res.errors);
+        return null;
+      }
+    })
+    .catch(err => {
+      console.error('Error making the update request:', err);
+      return null;
+    });
+}
+
+module.exports = { getRowIds, getRowIdByName, createRow, updateRowById };
