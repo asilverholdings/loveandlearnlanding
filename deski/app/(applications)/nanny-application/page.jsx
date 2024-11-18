@@ -7,6 +7,8 @@ import CustomInput from "@/components/custom-input-fields/CustomInput";
 import { validateNannyApplication, validateAddressInfo } from "@/utils/validationData";
 import { formatZipCode, formatPhoneNumber } from "@/utils/inputSanitizers";
 import CustomTextArea from "@/components/custom-input-fields/CustomTextArea";
+const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
+import { v4 as uuidv4 } from 'uuid';
 
 const NannyApplication = () => {
   // State to manage form data
@@ -45,6 +47,14 @@ const NannyApplication = () => {
     timeSpentOutsideNannying: '',
     personalityDescription: '',
     resume: null
+  });
+
+  const [applicantId] = useState(() => {
+    const savedId = sessionStorage.getItem("applicantId");
+    if (savedId) return savedId;
+    const newId = uuidv4();
+    sessionStorage.setItem("applicantId", newId);
+    return newId;
   });
 
   const [errors, setErrors] = useState({});
@@ -91,7 +101,20 @@ const NannyApplication = () => {
     } else {
       // Clear errors and submit form data
       setErrors({});
-      console.log(formData);
+      const itemName = `${formData.firstName} ${formData.lastName}`;
+      const columnUpdates = {
+        'first_name__1': formData.firstName,
+        'last_name__1': formData.lastName,
+        'email__1': formData.email,
+        'applicant_id__1': applicantId
+      };
+      
+      storeNewApplicant("Nanny Applications", itemName, columnUpdates, applicantId);
+      const updateBody = Object.entries(formData).map(([key, value]) => {
+        const serializedValue = typeof value === "object" ? JSON.stringify(value, null, 2) : value; // Pretty-print objects
+        return `${key}: ${serializedValue}`;
+      });
+      storeApplicantResponses(applicantId, updateBody, "Nanny Applications");
     }
   };
 

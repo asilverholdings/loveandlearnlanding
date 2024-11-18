@@ -50,74 +50,62 @@ const getRowIds = (boardId) => {
     });
 }
 
-// GET by ID
-const getRowIdByName = (boardId, searchName) => {
+const getRowIdByApplicantId = async (boardId, applicantId) => {
     const query = `
-      query getItems($boardId: ID!) {
-        boards(ids: [$boardId]) {
-          items_page {
-            items {
-              id
-              name
-            }
+      query getItemsByColumnValues($boardId: ID!, $columnId: String!, $value: String!) {
+        items_page_by_column_values(board_id: $boardId, columns: [{column_id: $columnId, column_values: [$value]}]) {
+          items {
+            id
           }
         }
       }
     `;
-  
-    return fetch("http://localhost:3000/api/proxy", {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': MONDAY_AUTH_TOKEN,
-        'API-Version': MONDAY_API_VERSION
-      },
-      body: JSON.stringify({
-        query: query,
-        variables: { boardId: boardId }
-      })
-    })
-    .then(res => res.json())
-    .then(res => {
-      if (res.data && res.data.boards && res.data.boards[0] && res.data.boards[0].items_page) {
-        const items = res.data.boards[0].items_page.items;
-        // console.log('All items:', items.map(item => `${item.name} (${item.id})`));
-        
-        const exactMatch = items.find(item => 
-          item.name.toLowerCase() === searchName.toLowerCase()
-        );
-        
-        if (exactMatch) {
-          console.log(`Name: ${exactMatch.name}, ID: ${exactMatch.id}`);
-          return exactMatch.id;
+
+    try {
+        const response = await fetch("http://localhost:3000/api/proxy", {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': MONDAY_AUTH_TOKEN,
+                'API-Version': MONDAY_API_VERSION
+            },
+            body: JSON.stringify({
+                query: query,
+                variables: { 
+                    boardId: boardId,
+                    columnId: 'applicant_id__1',
+                    value: applicantId
+                }
+            })
+        });
+
+        const res = await response.json();
+        console.log("Response Data", res);
+
+        if (res.data && res.data.items_page_by_column_values && res.data.items_page_by_column_values.items.length > 0) {
+            const matchingItem = res.data.items_page_by_column_values.items[0];
+            console.log(`Found matching item: ${matchingItem.id}`);
+            return matchingItem.id;
         } else {
-          const partialMatches = items.filter(item => 
-            item.name.toLowerCase().includes(searchName.toLowerCase())
-          );
-          
-          if (partialMatches.length > 0) {
-            console.log(partialMatches.map(item => `${item.name} (${item.id})`));
-            return partialMatches[0].id;
-          } else {
-            console.log(`No matches for row ${searchName} found`);
+            console.log(`No matches for applicantId "${applicantId}" found`);
             return null;
-          }
         }
-      } else {
-        console.error('Error fetching items:', res.errors);
+    } catch (err) {
+        console.error('Error fetching items:', err);
         return null;
-      }
-    })
-    .catch(err => {
-      console.error('Error fetching items:', err);
-      return null;
-    });
-}
+    }
+};
 
 // CREATE
-const createRow = (boardId, itemName, columnValues = {}) => {
+const createRow = (boardId, itemName, applicantId, columnValues = {}) => {
+    // Assume 'applicant_id' is the ID of your new Applicant ID column
+    const updatedColumnValues = {
+        ...columnValues,
+        applicant_id__1: applicantId
+    };
+
     const mutation = `
-      mutation createItem($boardId: ID!, $itemName: String!, $columnValues: JSON) {
+      mutation createItem($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
         create_item(board_id: $boardId, item_name: $itemName, column_values: $columnValues) {
           id
         }
@@ -136,7 +124,7 @@ const createRow = (boardId, itemName, columnValues = {}) => {
         variables: {
           boardId: boardId,
           itemName: itemName,
-          columnValues: JSON.stringify(columnValues)
+          columnValues: JSON.stringify(updatedColumnValues)
         }
       })
     })
@@ -146,7 +134,7 @@ const createRow = (boardId, itemName, columnValues = {}) => {
         console.log('Item created with ID:', res.data.create_item.id);
         return res.data.create_item.id;
       } else {
-        console.error(`Failed to create update for response: ${res.data.create_item.id}`);
+        console.error('Failed to create item:', res.errors);
         return null;
       }
     })
@@ -157,10 +145,13 @@ const createRow = (boardId, itemName, columnValues = {}) => {
 }
 
 // UPDATE
-const updateRowById = (boardId, itemId, columnValues = {}) => {
+const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
     const mutation = `
-      mutation updateItem($boardId: ID!, $itemId: ID!, $columnValues: JSON) {
+      mutation updateItem($boardId: ID!, $itemId: ID!, $columnValues: JSON!, $name: JSON!) {
         change_multiple_column_values(board_id: $boardId, item_id: $itemId, column_values: $columnValues) {
+          id
+        }
+        change_column_value(board_id: $boardId, item_id: $itemId, column_id: "name", value: $name) {
           id
         }
       }
@@ -178,13 +169,14 @@ const updateRowById = (boardId, itemId, columnValues = {}) => {
         variables: {
           boardId: boardId,
           itemId: itemId,
-          columnValues: JSON.stringify(columnValues)
+          columnValues: JSON.stringify(columnValues),
+          name: JSON.stringify(rowName)
         }
       })
     })
     .then(res => res.json())
     .then(res => {
-      if (res.data && res.data.change_multiple_column_values) {
+      if (res.data && res.data.change_multiple_column_values && res.data.change_column_value) {
         console.log('Item updated successfully with ID:', res.data.change_multiple_column_values.id);
         return res.data.change_multiple_column_values.id;
       } else {
@@ -198,4 +190,5 @@ const updateRowById = (boardId, itemId, columnValues = {}) => {
     });
 }
 
-module.exports = { getRowIds, getRowIdByName, createRow, updateRowById };
+// getRowIdByApplicantId("7845315412","6e3b38d8-55b9-418e-9c76-9d8b4e0e5812")
+module.exports = { getRowIds, createRow, updateRowById, getRowIdByApplicantId };

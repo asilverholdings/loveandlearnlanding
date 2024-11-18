@@ -182,5 +182,11 @@ const updateColumnValues = (boardId, itemId, columnValues) => {
     return null;
   });
 }
+ // getColumnIds("7845315412");
+ createColumn("7877205956", "First Name", "text");
+ createColumn("7877205956", "Last Name", "text");
+ createColumn("7877205956", "Email", "text");
+ createColumn("7877205956", "Applicant ID", "text");
+
 
 module.exports = { getColumnIds, createColumn, updateSingleColumnValue, updateColumnValues };

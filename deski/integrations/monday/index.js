@@ -1,10 +1,9 @@
-const { getBoardIds, getBoardIdByName, createBoard } = require('./board');
-const { getColumnIds, createColumn, updateSingleColumnValue, updateColumnValues } = require('./columns');
+const { getBoardIdByName, createBoard } = require('./board');
 const { createItemUpdate } = require('./updates');
-const { getRowIds, getRowIdByName, createRow, updateRowById } = require('./rows');
+const { createRow, updateRowById, getRowIdByApplicantId } = require('./rows');
 
 
-const storeNewApplicant = async (boardName, rowName, columnUpdates) => {
+const storeNewApplicant = async (boardName, itemName, columnUpdates, applicantId) => {
     try {
         // Fetch board ID asynchronously
         const boardId = await getBoardIdByName(boardName);
@@ -13,65 +12,79 @@ const storeNewApplicant = async (boardName, rowName, columnUpdates) => {
             throw new Error("Board ID not found");
         }
 
-        const rowId = await getRowIdByName(rowName);
+        let rowId;
+
+        if (applicantId) {
+            rowId = await getRowIdByApplicantId(boardId, applicantId);
+        } else {
+           console.log("Applicant ID not provided.");
+        }
 
         console.log(`Board ID: ${boardId}`);
 
         if (rowId) {
-            const response = await updateRowById(boardId, rowId, columnUpdates);
+            const response = await updateRowById(boardId, rowId, itemName, columnUpdates);
             console.log('Row updated successfully:', response);
         } else {
             // If row is not found, create a new row
             console.log("Creating new row...");
-            const responseId = await createRow(boardId, rowName, columnUpdates);
+            const responseId = await createRow(boardId, itemName, applicantId, columnUpdates);
+
+            // Store the applicantId for future reference
             console.log('New row created successfully:', responseId);
+
             return responseId;
         }
-
     } catch (error) {
         console.error('Error:', error.message);
         return null;
     }
 };
 
-
-
-
-const storeApplicantResponses = async (rowName, updateBody, boardName) => {
+const storeApplicantResponses = async (applicantId, updateBody, boardName) => {
     try {
-      // Fetch boardId asynchronously
-      const boardId = await getBoardIdByName(boardName);
-      
-      if (!boardId) {
-        console.error("Invalid boardId:", boardId);
-        return null;
-      }
-  
-      // Fetch rowId asynchronously
-      const row = await getRowIdByName(boardId, rowName);
-  
-      if (!row) {
-        console.error("Invalid rowId for rowName:", rowName);
-        return null;
-      }
-  
-      // Create item updates for the given row
-      const updatePromises = updateBody.map((body) => createItemUpdate(row, body)); 
-  
-      const results = await Promise.all(updatePromises); // Wait for all promises to resolve
-  
-      // Handle the results of the updates
-      results.forEach((updateId, index) => {
-        if (updateId) {
-          console.log(`Update ${index + 1} created successfully with ID: ${updateId}`);
-        } else {
-          console.error(`Failed to create update for response: ${updateBody[index]}`);
+        // Fetch boardId asynchronously
+        const boardId = await getBoardIdByName(boardName);
+        
+        if (!boardId) {
+            console.error("Invalid boardId:", boardId);
+            return null;
         }
-      });
+
+        // Fetch rowId asynchronously
+        const row = await getRowIdByApplicantId(boardId, applicantId);
+        console.log('Row Id:', row);
+
+        if (!row) {
+            console.error(`Row with id: ${row} not found with applicant id: ${applicantId}.`);
+            return null;
+        }
+
+        // Combine all update bodies into a single string
+        let combinedUpdateBody;
+        if (Array.isArray(updateBody)) {
+            combinedUpdateBody = updateBody.join('\n\n');
+        } else if (typeof updateBody === 'object') {
+            combinedUpdateBody = Object.entries(updateBody)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('\n');
+        } else {
+            combinedUpdateBody = String(updateBody);
+        }
+
+        // Create a single item update for the given row
+        const updateId = await createItemUpdate(row, combinedUpdateBody);
+
+        if (updateId) {
+            return updateId;
+        } else {
+            console.error('Failed to create update for responses');
+            return null;
+        }
     } catch (error) {
-      console.error('Error creating updates:', error);
+        console.error('Error creating update:', error);
+        return null;
     }
-  };
-  
+};
 
 module.exports = { storeNewApplicant, storeApplicantResponses };

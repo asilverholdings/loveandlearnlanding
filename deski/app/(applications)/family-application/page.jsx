@@ -16,6 +16,7 @@ import DailyExpectations from "@/components/family-application-steps/StepDailyEx
 import ThankYouModal from "@/components/form-submit/SubmissionConfirmation";
 import { validateParentContactInfo, validateAddressInfo, validateStartDate } from "@/utils/validationData";
 const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
+import { v4 as uuidv4 } from 'uuid';
 
 const FamilyApplication = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -23,6 +24,15 @@ const FamilyApplication = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  
+  // Persist applicant id 
+  const [applicantId] = useState(() => {
+    const savedId = sessionStorage.getItem("applicantId");
+    if (savedId) return savedId;
+    const newId = uuidv4();
+    sessionStorage.setItem("applicantId", newId);
+    return newId;
+  });
 
   const [formData, setFormData] = useState({
     primaryContact: '',
@@ -239,18 +249,18 @@ const FamilyApplication = () => {
     });
   };  
 
-  const rowName = formData.parents.parent1.firstName + ' ' + formData.parents.parent1.lastName;
-  const boardName = "Family Applications";
-
   // Submit form
   const handleSubmitApplicant = (e) => {
+    
+    const itemName = `${formData.parents.parent1.firstName} ${formData.parents.parent1.lastName}`;
     const columnUpdates = {
       'first_name__1': formData.parents.parent1.firstName,
       'last_name__1': formData.parents.parent1.lastName,
-      'email4__1': formData.parents.parent1.email
+      'email4__1': formData.parents.parent1.email,
+      'applicant_id__1': applicantId
     };
 
-    storeNewApplicant(boardName, rowName, columnUpdates);
+    storeNewApplicant("Family Applications", itemName, columnUpdates, applicantId);
   };
 
   const handleSubmit = (e) => {
@@ -259,16 +269,16 @@ const FamilyApplication = () => {
     }
     setModalVisible(true);
 
-    const updateBody = Object.entries(formData).map(([key, value]) => ({
-      column: key,
-      value: typeof value === "object" ? JSON.stringify(value) : value, // Serialize objects
-    }));
+    const updateBody = Object.entries(formData).map(([key, value]) => {
+      const serializedValue = typeof value === "object" ? JSON.stringify(value, null, 2) : value; // Pretty-print objects
+      return `${key}: ${serializedValue}`;
+    });
 
     e.preventDefault();
-    storeApplicantResponses(rowName, updateBody, boardName);
+    storeApplicantResponses(applicantId, updateBody, "Family Applications");
     console.log("Form submitted:", formData);
 
-   // setIsSubmitted(true);
+    setIsSubmitted(true);
   }
 
   return (
@@ -392,7 +402,7 @@ const FamilyApplication = () => {
     </div>
 
     {/* Modal */}
-    {/* {modalVisible && <ThankYouModal message={"Thank you for your application! We will be reaching out to your family soon."}/>} */}
+    {modalVisible && <ThankYouModal message={"Thank you for your application! We will be reaching out to your family soon."}/>}
 
       <footer className="theme-footer-eight mt-100 mb-80">
         <div className="top-footer">
