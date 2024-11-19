@@ -2,117 +2,51 @@ import React from "react";
 import { allowOnlyLetters, allowOnlyNumbers, formatPhoneNumber } from "@/utils/inputSanitizers";
 import CustomInput from "../custom-input-fields/CustomInput";
 
-const ParentContactInfo = ({ primaryContact, parents, handleParentSelect, handleChange, errors }) => {
+const ParentContactInfo = ({ parent, handleChange, errors }) => {
   return (
     <div>
       <h3 className="form-section-title">Primary Contact</h3>
-      <div className="bubble-selection">
-        {["Parent 1", "Parent 2", "Both"].map((type) => (
-          <label key={type} className={`bubble-label ${primaryContact === type ? "selected" : ""}`}>
-            <CustomInput
-              type="radio"
-              name="parentType"
-              value={type}
-              checked={primaryContact === type}
-              onChange={() => handleParentSelect(type)}
-              className="bubble-input"
-            />
-            {type}
-          </label>
-        ))}
-      </div>
-
-      <h4>
-        {primaryContact
-          ? `${primaryContact.charAt(0).toUpperCase() + primaryContact.slice(1)} Information`
-          : ""}
-      </h4>
 
       <div className="parent-information">
-        {(primaryContact === "Parent 1" || primaryContact === "Both") && (
-          <div>
-            <h5>Parent 1</h5>
-            {errors.parent1FirstName && <span className="error">{errors.parent1FirstName}</span>}
+         <div>
+            {errors.parentFirstName && <span className="error">{errors.parentFirstName}</span>}
             <CustomInput
               type="text"
-              name="parents.parent1.firstName"
+              name="parent.firstName"
               placeholder="First Name"
-              value={parents.parent1.firstName}
+              value={parent.firstName}
               onChange={(e) => allowOnlyLetters(e, handleChange)}
               className="form-input"
             />
-            {errors.parent1LastName && <span className="error">{errors.parent1LastName}</span>}
+            {errors.parentLastName && <span className="error">{errors.parentLastName}</span>}
             <CustomInput
               type="text"
-              name="parents.parent1.lastName"
+              name="parent.lastName"
               placeholder="Last Name"
-              value={parents.parent1.lastName}
+              value={parent.lastName}
               onChange={(e) => allowOnlyLetters(e, handleChange)}
               className="form-input"
             />
-            {errors.parent1Email && <span className="error">{errors.parent1Email}</span>}
+            {errors.parentEmail && <span className="error">{errors.parentEmail}</span>}
             <CustomInput
               type="email"
-              name="parents.parent1.email"
+              name="parent.email"
               placeholder="example@example.com"
-              value={parents.parent1.email}
+              value={parent.email}
               onChange={handleChange}
               className="form-input"
             />
-            {errors.parent1Phone && <span className="error">{errors.parent1Phone}</span>}
+            {errors.parentPhone && <span className="error">{errors.parentPhone}</span>}
             <CustomInput
               type="tel"
-              name="parents.parent1.phone"
+              name="parent.phone"
               placeholder="(000)000-0000"
-              value={parents.parent1.phone}
+              value={parent.phone}
               onChange={(e) => formatPhoneNumber(e, handleChange)}
               className="form-input"
             />
           </div>
-        )}
 
-        {(primaryContact === "Parent 2" || primaryContact === "Both") && (
-          <div>
-            <h5>Parent 2</h5>
-            {errors.parent2FirstName && <span className="error">{errors.parent2FirstName}</span>}
-            <CustomInput
-              type="text"
-              name="parents.parent2.firstName"
-              placeholder="First Name"
-              value={parents.parent2.firstName}
-              onChange={(e) => allowOnlyLetters(e, handleChange)}
-              className="form-input"
-            />
-            {errors.parent2LastName && <span className="error">{errors.parent2LastName}</span>}
-            <CustomInput
-              type="text"
-              name="parents.parent2.lastName"
-              placeholder="Last Name"
-              value={parents.parent2.lastName}
-              onChange={(e) => allowOnlyLetters(e, handleChange)}
-              className="form-input"
-            />
-            {errors.parent2Email && <span className="error">{errors.parent2Email}</span>}
-            <CustomInput
-              type="email"
-              name="parents.parent2.email"
-              placeholder="example@example.com"
-              value={parents.parent2.email}
-              onChange={handleChange}
-              className="form-input"
-            />
-            {errors.parent2Phone && <span className="error">{errors.parent2Phone}</span>}
-            <CustomInput
-              type="tel"
-              name="parents.parent2.phone"
-              placeholder="(000)000-0000"
-              value={parents.parent2.phone}
-              onChange={(e) => formatPhoneNumber(e, handleChange)}
-              className="form-input"
-              maxLength="14"
-            />
-          </div>
-        )}
       </div>
     </div>
   );

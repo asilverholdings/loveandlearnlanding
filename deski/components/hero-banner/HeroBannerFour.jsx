@@ -10,17 +10,6 @@ const HeroBannerFour = () => {
       <Image width="242" height="433" src="/images/shape/102.svg" alt="shape" className="shapes shape-six" />
       <Image width="246" height="400" src="/images/shape/103.svg" alt="shape" className="shapes shape-seven" />
 
-      {/* Main image */}
-      <div>
-        <Image
-          src="https://placehold.co/900x200/png"
-          alt="banner"
-          layout="responsive"
-          width={900}
-          height={200}
-        />
-      </div>
-
       {/* Our Story Section */}
       <div className="container mt-120 mb-120">
         <div className="title-style-five text-center mb-60 md-mb-30">
@@ -33,6 +22,15 @@ const HeroBannerFour = () => {
           </section>
         </div>
         <div className="our-story-container">
+          <div>
+            <Image
+              src="/images/photos/group.jpg"
+              alt="founders"
+              className="circle-image"
+              width={600}
+              height={600}
+            />
+          </div>
             <p>
               In July 2023, we welcomed our twins into the world, and by December,
               we knew it was time to start looking for the perfect nanny. That’s when we found Tessa,
@@ -44,6 +42,20 @@ const HeroBannerFour = () => {
               us to create Love and Learn. We wanted to bring the same level of love, care, and dedication 
               we experienced with Tessa to other families, ensuring that every child thrives in a nurturing, 
               supportive environment.
+            </p>
+            <p>
+              While completing my degree at the University of Florida, I took specialty courses in early childhood
+              development, focusing on how intentional care and age-appropriate practices can shape a child’s future. 
+              I implemented this knowledge in my work as a nanny and saw firsthand how incorporating developmental 
+              strategies positively impacted the children I cared for. It’s this blend of personal experience and 
+              professional expertise that I bring to Love and Learn. 
+            </p>
+            <p>
+              Together with Alicia and Adam, we started Love and Learn with a shared belief in what in-home childcare 
+              should be. We created our agency to reflect these core values, where we offer families not only 
+              reliable support but also a partner in their child’s growth and well-being. We also understand the 
+              profound impact nannies have on a child’s development, and at our agency, we are committed to empowering 
+              them with the tools, guidance, and encouragement they need to excel in their roles.
             </p>
         </div>
       </div>

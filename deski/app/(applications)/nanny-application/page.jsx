@@ -102,7 +102,6 @@ const NannyApplication = () => {
     if (isSubmitted) {
       return;
     }
-    setModalVisible(true);
 
     const errors = handleValidation(formData);
     if (Object.keys(errors).length > 0) {
@@ -110,6 +109,7 @@ const NannyApplication = () => {
     } else {
       // Clear errors and submit form data
       setErrors({});
+      setModalVisible(true);
       const itemName = `${formData.firstName} ${formData.lastName}`;
       const columnUpdates = {
         'first_name__1': formData.firstName,
@@ -589,7 +589,7 @@ const NannyApplication = () => {
             className="form-textarea"
           />
 
-          <button type="submit" className="btn btn-primary">Submit Application</button>
+          <button type="submit" className="theme-btn-two">Submit Application</button>
         </form>
       </div>
 

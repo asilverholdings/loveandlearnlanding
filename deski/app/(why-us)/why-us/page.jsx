@@ -1,5 +1,6 @@
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import FooterFour from "@/components/footer/FooterFour";
+import Image from "next/image";
 
 export const metadata = {
   title: 'Why Us',
@@ -19,7 +20,13 @@ const About = () => {
               </p>
             </div>
             <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Curriculum" width={400} height={400} />
+              <Image
+                src="/images/photos/founders.jpg" 
+                alt="founders" 
+                width={600} 
+                height={600} 
+                className="circle-image"
+              />
             </div>
           </div>
         </div>
@@ -29,7 +36,7 @@ const About = () => {
 
       <div className="why-us container">
         <div className="row">
-          <div className="">
+          <div className="col-lg-6">
             <div className="feature-box card-style">
               <h3>Why Us?</h3>
               <p>Our nannies are dedicated to fostering engaging learning experiences tailored to your child’s development. In addition to focusing on your child's needs, they also offer holistic household support, such as preparing meals for the children, handling laundry, organizing, and more.
@@ -48,7 +55,7 @@ const About = () => {
           <div className="col-lg-6">
             <div className="feature-box card-style">
               <h3>Continued Support</h3>
-              <p>We stand behind our service with a satisfaction guarantee. If you feel the nanny you’ve hired isn’t the right fit, we offer a 90 day replacement guarantee.
+              <p>We stand behind our service with a satisfaction guarantee. If you feel the nanny you’ve hired isn’t the right fit, we offer a 90-day replacement guarantee.
               </p>
               <p>
                 Biweekly check-ins for the first few months to address concerns.
@@ -67,8 +74,8 @@ const About = () => {
             </div>
           </div>
 
-
-          <div className="col-lg-6">
+          {/* Last Feature Box takes full width */}
+          <div className="col-lg-12">
             <div className="feature-box card-style">
               <h3>Curriculum</h3>
               <p>At our nannying agency, we’re dedicated to providing families with exceptional care that supports the whole child. What sets us apart is our commitment to fostering an enriching environment custom to each stage of your child’s development. We’ve developed a specialized curriculum, filled with hands-on activities and educational tools, designed for our nannies to use in nurturing your child's physical, cognitive, and emotional development. Additionally, we design monthly activity kits tailored to each age group, with fascinating activities centered around a new theme every month. Our nannies are more than just caregivers – they create fun, stimulating learning experiences, making sure your child grows in a safe and engaging environment. Choose us for personalized, high-quality care that helps your child reach their fullest potential.

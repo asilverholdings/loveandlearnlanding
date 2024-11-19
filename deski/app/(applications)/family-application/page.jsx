@@ -35,20 +35,11 @@ const FamilyApplication = () => {
   });
 
   const [formData, setFormData] = useState({
-    primaryContact: '',
-    parents: {
-      parent1: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      },
-      parent2: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      },
+    parent: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
     },
     addressLine1: '',
     addressLine2: '',
@@ -57,11 +48,11 @@ const FamilyApplication = () => {
     zip: '',
     candidateType: [],
     workingHours: {
-        Monday: { start: '', end: '', totalHours: 0 },
-        Tuesday: { start: '', end: '', totalHours: 0 },
-        Wednesday: { start: '', end: '', totalHours: 0 },
-        Thursday: { start: '', end: '', totalHours: 0 },
-        Friday: { start: '', end: '', totalHours: 0 },
+      Monday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Tuesday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Wednesday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Thursday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Friday: { start: '09:00', end: '17:00', totalHours: 8 },
     },
     startDate: '',
     immunizations: '',
@@ -209,14 +200,6 @@ const FamilyApplication = () => {
     else if (pageNumber < currentStep) handleBack();
   };
 
-  // Select primary contact
-  const handleParentSelect = (parent) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      primaryContact: parent,
-    }));
-  };
-
   // Calculate total hours 
   const handleTimeChange = (day, type, value) => {
     setFormData((prevFormData) => {
@@ -252,11 +235,11 @@ const FamilyApplication = () => {
   // Submit form
   const handleSubmitApplicant = (e) => {
     
-    const itemName = `${formData.parents.parent1.firstName} ${formData.parents.parent1.lastName}`;
+    const itemName = `${formData.parent.firstName} ${formData.parent.lastName}`;
     const columnUpdates = {
-      'first_name__1': formData.parents.parent1.firstName,
-      'last_name__1': formData.parents.parent1.lastName,
-      'email4__1': formData.parents.parent1.email,
+      'first_name__1': formData.parent.firstName,
+      'last_name__1': formData.parent.lastName,
+      'email4__1': formData.parent.email,
       'applicant_id__1': applicantId
     };
 
@@ -312,9 +295,7 @@ const FamilyApplication = () => {
           
           {currentStep === 1 && 
             <ParentContactInfo
-              primaryContact={formData.primaryContact}
-              parents={formData.parents}
-              handleParentSelect={handleParentSelect}
+              parent={formData.parent}
               handleChange={handleChange}
               errors={errors}
             />

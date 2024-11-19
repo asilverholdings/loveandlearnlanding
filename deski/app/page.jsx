@@ -26,10 +26,15 @@ export default function Home() {
      =============================================
 				Fancy Text Block
 		============================================== */}
-      <div className="fancy-text-block-nineteen mt-250 mb-200 md-mt-150 md-mb-150">
-        <div className="container">
-          <Quote />
-        </div>
+      <Image
+        width={1200}
+        height={800}
+        layout="responsive"
+        src="/images/photos/twins.jpg"
+        alt="twins playing"
+      />
+      <div className="fancy-text-block-nineteen">
+        
       </div>
       {/* End  .fancy-text-block-nineteen*/}
 
