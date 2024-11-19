@@ -1,19 +1,20 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require("nodemailer");
+
+ // Set up Nodemailer transporter
+ const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com", // Change this to your email provider's SMTP server
+    port: 587, 
+    secure: false, // true for port 465, false for other ports
+    auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS, 
+    },
+});
+
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { firstName, lastName, email, message } = req.body;
-
-        // Set up Nodemailer transporter
-        const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com", // Change this to your email provider's SMTP server
-            port: 465, // Use 465 for secure connections
-            secure: true, // Set to true for port 465
-            auth: {
-                user: process.env.SMTP_USER, // Your email
-                pass: process.env.SMTP_PASS, // Your email password or app-specific password
-            },
-        });
 
         try {
             // Send the email
