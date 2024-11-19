@@ -12,12 +12,7 @@ export const FaqContent = [
   {
         id: 3,
         question: "What qualifications do your nannies have?",
-        answer: "Our nannies undergo thorough background checks, have prior childcare experience, and are CPR/First Aid certified. Many have specialized training in early childhood education or specific care areas."
-  },
-  {
-      id: 4,
-      question: "How do you match families with nannies?",
-      answer: "We use a personality and needs-based matching process, taking into account your family's preferences, children's needs, and nanny qualifications."
+        answer: "Our nannies undergo thorough background checks, have prior childcare experience, and are CPR/First Aid certified."
   },
   {
       id: 5,
@@ -32,7 +27,7 @@ export const FaqContent = [
   {
       id: 7,
       question: "What is your agency's vetting process for nannies?",
-      answer: "All nannies go through a rigorous interview process, background checks, reference checks, and personality assessments to ensure they meet our standards."
+      answer: "All nannies go through a rigorous interview process, background checks, and reference checks to ensure they meet our standards."
   },
   {
       id: 8,

@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SocialMediaIcons from "../SocialMediaIcons";
+import Social from "../form-survey-landing/Social";
 
 const linksFooterContent = [
   {
@@ -34,10 +36,6 @@ const servicesFooterContent = [
 
 const moreFooterContent = [
   {
-    itemName: "Rates",
-    routePath: "/rates",
-  },
-  {
     itemName: "FAQ",
     routePath: "/faq",
   },
@@ -59,9 +57,13 @@ const FooterFour = () => {
         </div>
         <ul className="font-rubik mt-10">
           <li>
-            <a href="mailto:tessa@loveandlearn.com">tessa@loveandlearn.com</a>
+            <a href="mailto:tessa@loveandlearnnanny.com">tessa@loveandlearnnanny.com</a>
+          </li>
+          <li style={{ display: 'flex', justifyContent: 'flex-start', }}>
+            <SocialMediaIcons />
           </li>
         </ul>
+
       </div>
       {/* /.footer-list */}
 

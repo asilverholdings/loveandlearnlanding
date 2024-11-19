@@ -39,8 +39,6 @@ const MegaMenu = () => {
       setCurrentTopRoute('Home');
     } else if (pathname === '/for-families' || pathname === '/for-nannies' || pathname === '/screening-and-matchmaking') {
       setCurrentTopRoute('Services');
-    } else if (pathname === '/rates') {
-      setCurrentTopRoute('Rates');
     } else if (pathname === '/faq') {
       setCurrentTopRoute('FAQ');
     } else if (pathname === '/contact-us') {
@@ -95,16 +93,6 @@ const MegaMenu = () => {
             </li>
           </div>
         </ul>
-      </li>
-
-      <li className={currentTopRoute === 'Rates' ? "nav-item active" : "nav-item"}>
-        <Link
-          href="/rates"
-          className={currentTopRoute === 'Rates' ? "nav-link active" : "nav-link"}
-          onClick={() => setCurrentTopRoute('Rates')}
-        >
-          Rates
-        </Link>
       </li>
 
       <li className={currentTopRoute === 'FAQ' ? "nav-item active" : "nav-item"}>

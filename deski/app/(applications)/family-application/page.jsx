@@ -13,28 +13,33 @@ import ChildrenInfo from "@/components/family-application-steps/StepChildrenInfo
 import FamilyInfo from "@/components/family-application-steps/SetpFamilyInfo";
 import NannyCommunication from "@/components/family-application-steps/StepNannyCommunication";
 import DailyExpectations from "@/components/family-application-steps/StepDailyExpectations";
+import ThankYouModal from "@/components/form-submit/SubmissionConfirmation";
 import { validateParentContactInfo, validateAddressInfo, validateStartDate } from "@/utils/validationData";
+const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
+import { v4 as uuidv4 } from 'uuid';
 
 const FamilyApplication = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const formRef = useRef(null);
   const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  
+  // Persist applicant id 
+  const [applicantId] = useState(() => {
+    const savedId = sessionStorage.getItem("applicantId");
+    if (savedId) return savedId;
+    const newId = uuidv4();
+    sessionStorage.setItem("applicantId", newId);
+    return newId;
+  });
 
   const [formData, setFormData] = useState({
-    primaryContact: '',
-    parents: {
-      parent1: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      },
-      parent2: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      },
+    parent: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
     },
     addressLine1: '',
     addressLine2: '',
@@ -43,11 +48,11 @@ const FamilyApplication = () => {
     zip: '',
     candidateType: [],
     workingHours: {
-        Monday: { start: '', end: '', totalHours: 0 },
-        Tuesday: { start: '', end: '', totalHours: 0 },
-        Wednesday: { start: '', end: '', totalHours: 0 },
-        Thursday: { start: '', end: '', totalHours: 0 },
-        Friday: { start: '', end: '', totalHours: 0 },
+      Monday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Tuesday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Wednesday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Thursday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Friday: { start: '09:00', end: '17:00', totalHours: 8 },
     },
     startDate: '',
     immunizations: '',
@@ -159,6 +164,9 @@ const FamilyApplication = () => {
     switch (currentStep) {
         case 1:
           validationErrors = validateParentContactInfo(formData);
+          if (Object.keys(validationErrors).length === 0 && validationErrors.constructor === Object) {
+            handleSubmitApplicant();
+          }
           break;
         case 2:
           validationErrors = validateAddressInfo(formData);
@@ -190,14 +198,6 @@ const FamilyApplication = () => {
   const handlePageNumberClick = (pageNumber) => {
     if (pageNumber > currentStep) handleNext();
     else if (pageNumber < currentStep) handleBack();
-  };
-
-  // Select primary contact
-  const handleParentSelect = (parent) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      primaryContact: parent,
-    }));
   };
 
   // Calculate total hours 
@@ -233,10 +233,36 @@ const FamilyApplication = () => {
   };  
 
   // Submit form
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  const handleSubmitApplicant = (e) => {
+    
+    const itemName = `${formData.parent.firstName} ${formData.parent.lastName}`;
+    const columnUpdates = {
+      'first_name__1': formData.parent.firstName,
+      'last_name__1': formData.parent.lastName,
+      'email4__1': formData.parent.email,
+      'applicant_id__1': applicantId
+    };
+
+    storeNewApplicant("Family Applications", itemName, columnUpdates, applicantId);
   };
+
+  const handleSubmit = (e) => {
+    if (isSubmitted) {
+      return;
+    }
+    setModalVisible(true);
+
+    const updateBody = Object.entries(formData).map(([key, value]) => {
+      const serializedValue = typeof value === "object" ? JSON.stringify(value, null, 2) : value; // Pretty-print objects
+      return `${key}: ${serializedValue}`;
+    });
+
+    e.preventDefault();
+    storeApplicantResponses(applicantId, updateBody, "Family Applications");
+    console.log("Form submitted:", formData);
+
+    setIsSubmitted(true);
+  }
 
   return (
     <div className="main-page-wrapper">
@@ -269,9 +295,7 @@ const FamilyApplication = () => {
           
           {currentStep === 1 && 
             <ParentContactInfo
-              primaryContact={formData.primaryContact}
-              parents={formData.parents}
-              handleParentSelect={handleParentSelect}
+              parent={formData.parent}
               handleChange={handleChange}
               errors={errors}
             />
@@ -352,11 +376,14 @@ const FamilyApplication = () => {
             <div>
               {currentStep < 8 && <button type="button" className="theme-btn-five" onClick={handleNext}>Next</button>}
             </div>
-            {currentStep === 8 && <button type="submit">Submit</button>}
+            {currentStep === 8 && <button type="submit" className="theme-btn-two">Submit</button>}
           </div>
         </>
         </form>
     </div>
+
+    {/* Modal */}
+    {modalVisible && <ThankYouModal message={"Thank you for your application! We will be reaching out to your family soon."}/>}
 
       <footer className="theme-footer-eight mt-100 mb-80">
         <div className="top-footer">

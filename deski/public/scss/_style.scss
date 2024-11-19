@@ -3846,6 +3846,42 @@ body .shop-btn-two:hover {
   margin-bottom: 30px;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content p {
+  padding: 10px;
+}
+
+.modal-close:hover {
+  background-color: #45a049;
+}
+
+/*---------------Errors--------------------*/
+.error {
+  color: red;
+
+}
+
 /*-------------Family Application---------*/
 .main-page-wrapper {
   font-family: 'Arial', sans-serif;
@@ -3888,6 +3924,45 @@ body .shop-btn-two:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.working-hours {
+  margin-bottom: 1rem;
+}
+
+.day-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between inputs */
+}
+
+.form-time-input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.time-separator {
+  margin: 0 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.total-hours {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
 
 .form-textarea {
   height: 80px;
@@ -3957,7 +4032,6 @@ body .shop-btn-two:hover {
   display: flex;
   align-items: center;
   font-weight: normal;
-  // width: 200px; 
 }
 
 .form-checkbox {
@@ -4048,6 +4122,7 @@ body .shop-btn-two:hover {
 .screening-list{
   list-style-type: disc;
   font-size: 24px;
+  list-style: none;
 }
 
 .screening-and-matchmaking .feature-box {
@@ -4073,11 +4148,6 @@ h3 {
   color: #333;
 }
 
-.screening-list {
-  list-style: none; 
-  padding-left: 0;
-}
-
 .screening-list li {
   position: relative;
   padding-left: 20px;
@@ -4089,7 +4159,7 @@ h3 {
   position: absolute;
   left: 0;
   color: var(--light-orange);
-  font-size: 1.2rem;
+  font-size: 32px;
   line-height: 1;
 }
 
@@ -5511,6 +5581,16 @@ h3 {
   color: #000;
 }
 
+.social-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  gap: 15px;
+}
+
 .theme-footer-two .bottom-footer-content ul li {
   display: inline-block;
 }
@@ -6891,7 +6971,7 @@ h3 {
 }
 
 .contact-style-two .contact-info-wrapper .address-info p {
-  font-size: 28px;
+  font-size: 20px;
   line-height: 1.35em;
   color: #000;
 }
@@ -9303,7 +9383,31 @@ h3 {
   animation: jump10p 5s infinite linear;
 }
 
+.circle-image {
+  border-radius: 50%;    /* Makes the image circular */
+  object-fit: cover;     /* Ensures the image fills the circle without distortion */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+  .circle-image {
+    width: 300px; /* Adjust this size to the desired circle size for mobile */
+    height: 300px; /* Keep height equal to width to maintain the circle shape */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+}
+
+/*--------------Error Page-------------------------*/
+
+
 /*------------ Our Story ---------------------*/
+
+.our-story-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+}
 
 .our-story-container p {
   font-family: "Rubik";
@@ -9436,6 +9540,20 @@ h3 {
 
 .why-us .feature-box {
   margin-bottom: 10px;
+  height: 450px;
+}
+
+@media (max-width: 1200px) {
+  .why-us .feature-box {
+    padding: 20px;
+    height: auto;
+  }
+  .why-us .feature-box h3 {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+  .why-us .feature-box p {
+    font-size: 1rem; /* Adjust paragraph text size for mobile */
+  }
 }
 
 .about-section h3 {
@@ -14765,20 +14883,26 @@ h3 {
 }
 
 /*----------------- 404 ---------------*/
+/*----------------- 404 ---------------*/
 .error-page {
+  display: flex;
   min-height: 100vh;
+  flex-direction: row; /* Default layout for larger screens */
+  justify-content: center;
+  align-items: center;
 }
 
 .error-page .img-holder {
   width: 50%;
-  height: 100vh;
+  height: auto; /* Allow height to adjust automatically */
   overflow: hidden;
   position: relative;
   z-index: 1;
 }
 
 .error-page .img-holder .illustration {
-  min-height: 100vh;
+  width: 100%; /* Ensure the image takes full width of the container */
+  height: auto; /* Maintain aspect ratio */
   object-fit: cover;
   object-position: top center;
 }
@@ -14794,11 +14918,21 @@ h3 {
 .error-page .text-wrapper {
   width: 50%;
   padding: 50px 20px 50px 5%;
+  text-align: center; /* Center align text */
+  align-items: center;
 }
 
 .error-page .text-wrapper h1 {
   font-size: 82px;
   line-height: 1.21em;
+}
+
+.error-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
 }
 
 .error-page .text-wrapper p {
@@ -14835,9 +14969,79 @@ h3 {
   left: 5%;
 }
 
+/* Make it responsive */
+@media (max-width: 1024px) {
+  .error-page {
+    flex-direction: column; /* Stack the content on smaller screens */
+    justify-content: center;
+  }
+
+  .error-page .img-holder {
+    width: 100%;
+    max-width: 400px; /* Optional: constrain image size */
+    margin-bottom: 20px; /* Add space between image and text */
+  }
+
+  .error-page .text-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .error-page .text-wrapper h1 {
+    font-size: 2.5rem; /* Adjust font size for smaller screens */
+  }
+
+  .error-page .text-wrapper p {
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+    padding: 20px 0;
+  }
+
+  .error-page .text-wrapper .back-home {
+    font-size: 1rem;
+    width: auto;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+
+  .error-page .text-wrapper .logo {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 20px; /* Ensure spacing between logo and content */
+  }
+}
+
+@media (max-width: 768px) {
+  .error-page .img-holder {
+    width: 100%;
+    max-width: 100%; /* Ensure the image takes full width on smaller screens */
+  }
+
+  .error-page .text-wrapper {
+    padding: 20px;
+  }
+
+  .error-page .text-wrapper h1 {
+    font-size: 1.75rem; /* Smaller heading font for mobile */
+  }
+
+  .error-page .text-wrapper p {
+    font-size: 1rem; /* Adjust font size for mobile */
+    padding: 10px 5%;
+  }
+
+  .error-page .text-wrapper .back-home {
+    font-size: 1rem;
+    width: 100%; /* Full width on mobile for easy tapping */
+    padding: 10px;
+    text-align: center;
+  }
+}
+
 .bg-2 {
   background: #f2fbfd;
 }
+
 
 /*=======================================================================
                               Product landing / Mobile App           

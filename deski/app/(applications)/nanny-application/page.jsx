@@ -7,6 +7,9 @@ import CustomInput from "@/components/custom-input-fields/CustomInput";
 import { validateNannyApplication, validateAddressInfo } from "@/utils/validationData";
 import { formatZipCode, formatPhoneNumber } from "@/utils/inputSanitizers";
 import CustomTextArea from "@/components/custom-input-fields/CustomTextArea";
+const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
+import { v4 as uuidv4 } from 'uuid';
+import ThankYouModal from "@/components/form-submit/SubmissionConfirmation";
 
 const NannyApplication = () => {
   // State to manage form data
@@ -47,6 +50,16 @@ const NannyApplication = () => {
     resume: null
   });
 
+  const [applicantId] = useState(() => {
+    const savedId = sessionStorage.getItem("applicantId");
+    if (savedId) return savedId;
+    const newId = uuidv4();
+    sessionStorage.setItem("applicantId", newId);
+    return newId;
+  });
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -85,13 +98,35 @@ const NannyApplication = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isSubmitted) {
+      return;
+    }
+
     const errors = handleValidation(formData);
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
     } else {
       // Clear errors and submit form data
       setErrors({});
-      console.log(formData);
+      setModalVisible(true);
+      const itemName = `${formData.firstName} ${formData.lastName}`;
+      const columnUpdates = {
+        'first_name__1': formData.firstName,
+        'last_name__1': formData.lastName,
+        'email__1': formData.email,
+        'applicant_id__1': applicantId
+      };
+
+      storeNewApplicant("Nanny Applications", itemName, columnUpdates, applicantId);
+      const updateBody = Object.entries(formData).map(([key, value]) => {
+        const serializedValue = typeof value === "object" ? JSON.stringify(value, null, 2) : value; // Pretty-print objects
+        return `${key}: ${serializedValue}`;
+      });
+      
+      storeApplicantResponses(applicantId, updateBody, "Nanny Applications");
+
+      setIsSubmitted(true);
     }
   };
 
@@ -234,7 +269,7 @@ const NannyApplication = () => {
             name="city"
             placeholder="City"
             value={formData.city}
-            onChange={handleChange}
+            onChange={(e) => allowOnlyLetters(e, handleChange)}
             className="form-input"
           />
           {errors.state && <span className="error">{errors.state}</span>}
@@ -243,7 +278,7 @@ const NannyApplication = () => {
             name="state"
             placeholder="State"
             value={formData.state}
-            onChange={handleChange}
+            onChange={(e) => allowOnlyLetters(e, handleChange)}
             className="form-input"
           />
           {errors.zip && <span className="error">{errors.zip}</span>}
@@ -554,9 +589,13 @@ const NannyApplication = () => {
             className="form-textarea"
           />
 
-          <button type="submit" className="btn btn-primary">Submit Application</button>
+          <button type="submit" className="theme-btn-two">Submit Application</button>
         </form>
       </div>
+
+      {/* Modal */}
+      {modalVisible && <ThankYouModal message={"Thank you for your application! We will be reaching out to you soon."}/>}
+
       <footer className="theme-footer-eight mt-100 mb-80">
         <div className="top-footer">
             <div className="container">

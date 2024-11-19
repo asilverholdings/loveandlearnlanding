@@ -6,7 +6,7 @@ function StartDateInput({ startDate, handleChange, errors }) {
 
   return (
     <div>
-      <h4 className="form-subtitle">Desired Start Date:</h4>
+      <h4 className="form-subtitle">Desired Start Date:<span className="error"> *</span></h4>
       {errors.startDate && <span className="error">{errors.startDate}</span>}
       <input
         type="date"

@@ -37,10 +37,6 @@ export const menuList = [
         ],
     },
     {
-        title: "Rates",
-        href: "/rates",
-    },
-    {
         title: "FAQ",
         href: "/faq",
     },

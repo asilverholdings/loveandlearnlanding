@@ -9,13 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@babel/core": "7.0.0",
+    "@babel/core": "^7.26.0",
     "@hookform/resolvers": "^3.1.1",
     "@popperjs/core": "2.11.8",
     "aos": "^2.3.4",
     "bootstrap": "^5.2.3",
+    "dotenv": "^16.4.5",
     "eslint-config-next": "^14.1.0",
+    "express": "^4.21.1",
     "next": "^14.1.0",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.16",
     "photoswipe": "^5.3.8",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -31,15 +35,23 @@
     "react-slick": "^0.29.0",
     "react-step-progress-bar": "^1.0.3",
     "react-tabs": "^6.0.2",
+    "react-time-picker": "^7.0.0",
     "react-transition-group": "^4.4.5",
     "react-ui-scrollspy": "^2.3.0",
     "react-visibility-sensor": "^5.1.1",
     "sass": "^1.64.1",
     "slick-carousel": "^1.8.1",
+    "uuid": "^11.0.3",
     "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/node": "22.8.6",
     "@types/react": "18.3.12"
-  }
+  },
+  "proxy": "https://api.monday.com",
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

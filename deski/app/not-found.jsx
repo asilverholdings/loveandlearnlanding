@@ -15,10 +15,9 @@ const NotFound = () => {
         <div className="img-holder order-lg-last">
           <Image
             src="/images/media/404.svg"
-           
-            fill
-           
-            
+            width={600} 
+            height={400}
+            layout="responsive"
             alt="media"
             className="w-100 illustration"
           />
@@ -37,19 +36,21 @@ const NotFound = () => {
               height={113} src="/images/logo/love-and-learn-text.svg" alt="logo" />
             </Link>
           </div>
-          <h1 className="font-slab">
-            Sorry, <br />
-            This Page Can’t <br />
-            be Found.
-          </h1>
+          <div className="error-page-container">
+            <h1 className="font-slab">
+              Sorry, <br />
+              This Page Can’t <br />
+              be Found.
+            </h1>
 
-          <Link
-            href="/"
-            className="back-home font-rubik d-flex align-items-center justify-content-center mt-10"
-          >
-            <span>Back to Home</span>
-            <Image width={21} height={10} src="/images/icon/53.svg" alt="icon" />
-          </Link>
+            <Link
+              href="/"
+              className="theme-btn-five font-rubik d-flex align-items-center justify-content-center mt-10"
+            >
+              <span>Back to Home</span>
+              <Image width={21} height={10} src="/images/icon/53.svg" alt="icon" />
+            </Link>
+          </div>
         </div>
         {/* /.text-wrapper */}
       </div>
