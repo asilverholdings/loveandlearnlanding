@@ -16,23 +16,18 @@ import DailyExpectations from "@/components/family-application-steps/StepDailyEx
 import ThankYouModal from "@/components/form-submit/SubmissionConfirmation";
 import { validateParentContactInfo, validateAddressInfo, validateStartDate } from "@/utils/validationData";
 const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
-import { v4 as uuidv4 } from 'uuid';
+import useApplicantId from "@/utils/applicantIdGenerator";
 
 const FamilyApplication = () => {
+
+  // Persist applicant id 
+  const applicantId = useApplicantId();
+
   const [currentStep, setCurrentStep] = useState(1);
   const formRef = useRef(null);
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  
-  // Persist applicant id 
-  const [applicantId] = useState(() => {
-    const savedId = sessionStorage.getItem("applicantId");
-    if (savedId) return savedId;
-    const newId = uuidv4();
-    sessionStorage.setItem("applicantId", newId);
-    return newId;
-  });
 
   const [formData, setFormData] = useState({
     parent: {

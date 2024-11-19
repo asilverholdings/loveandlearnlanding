@@ -10,8 +10,13 @@ import CustomTextArea from "@/components/custom-input-fields/CustomTextArea";
 const { storeNewApplicant, storeApplicantResponses } = require('../../../integrations/monday/index');
 import { v4 as uuidv4 } from 'uuid';
 import ThankYouModal from "@/components/form-submit/SubmissionConfirmation";
+import useApplicantId from "@/utils/applicantIdGenerator";
 
 const NannyApplication = () => {
+
+  // Persist applicant id
+  const applicantId = useApplicantId();
+
   // State to manage form data
   const [formData, setFormData] = useState({
     fluentInEnglish: false,
@@ -48,14 +53,6 @@ const NannyApplication = () => {
     timeSpentOutsideNannying: '',
     personalityDescription: '',
     resume: null
-  });
-
-  const [applicantId] = useState(() => {
-    const savedId = sessionStorage.getItem("applicantId");
-    if (savedId) return savedId;
-    const newId = uuidv4();
-    sessionStorage.setItem("applicantId", newId);
-    return newId;
   });
 
   const [modalVisible, setModalVisible] = useState(false);
