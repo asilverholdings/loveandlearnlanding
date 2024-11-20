@@ -3,6 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import ResolveHost from "@/utils/hostResolver";
+const API_HOST = process.env.API_HOST;
 
 const ContactForm = () => {
   // for validation
@@ -22,7 +24,7 @@ const ContactForm = () => {
 
   async function onSubmit(data, e) {
     try {
-      const response = await fetch("http://localhost:3000/api/sendEmail", {
+      const response = await fetch(`http://lovelearnnanny.com/api/sendEmail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

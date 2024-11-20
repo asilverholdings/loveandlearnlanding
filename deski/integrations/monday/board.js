@@ -1,6 +1,7 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
+const API_HOST = process.env.API_HOST;
 
 // GET
 const getBoardIds = () => {
@@ -13,7 +14,7 @@ const getBoardIds = () => {
       }
     `;
   
-    return fetch("http://localhost:3000/api/proxy", {
+    return fetch(`http://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -52,8 +53,8 @@ const getBoardIdByName = (searchName) => {
         }
       }
     `;
-  
-    return fetch("http://localhost:3000/api/proxy", {
+    console.log(process.env.MONDAY_API_VERSION);
+    return fetch(`http://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -107,7 +108,7 @@ const createBoard = (name) => {
         }
     }`;
 
-    return fetch("http://localhost:3000/api/proxy", {
+    return fetch(`http://lovelearnnanny.com/api/proxy`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -135,4 +136,4 @@ const createBoard = (name) => {
     });
 }
 
-module.exports = { getBoardIds, getBoardIdByName, createBoard };
+module.exports.default = { getBoardIds, getBoardIdByName, createBoard };

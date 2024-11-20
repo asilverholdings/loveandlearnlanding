@@ -1,5 +1,5 @@
-const { getBoardIdByName, createBoard } = require('./board');
-const { createItemUpdate } = require('./updates');
+const { getBoardIdByName } = require('./board').default;
+const { createItemUpdate } = require('./updates').default;
 const { createRow, updateRowById, getRowIdByApplicantId } = require('./rows');
 
 
