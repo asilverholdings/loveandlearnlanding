@@ -2,6 +2,7 @@ import React from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import FooterFour from "@/components/footer/FooterFour";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
     title: 'Nanny Service',
@@ -89,7 +90,13 @@ const ServiceV3 = () => {
             {/* Nanny Application Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Family Application" width={400} height={400} />
+                <Image 
+                  src="/images/for-nannies-pics/application.jpg" 
+                  alt="Nanny Application" 
+                  width={400} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -104,7 +111,13 @@ const ServiceV3 = () => {
             {/* Interview Process Section */}
             <div className="row align-items-center mb-5 flex-row-reverse">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Matchmaking Process" width={400} height={400} />
+                <Image 
+                  src="/images/for-nannies-pics/interview.jpg" 
+                  alt="Interview" 
+                  width={250} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -119,7 +132,13 @@ const ServiceV3 = () => {
             {/* Matchmaking Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Interview Process" width={400} height={400} />
+                <Image 
+                  src="/images/for-nannies-pics/matching.jpg" 
+                  alt="Matchmaking Process" 
+                  width={300} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -142,7 +161,13 @@ const ServiceV3 = () => {
                 </div>
               </div>
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Interview Process" width={400} height={400} />
+                <Image 
+                  src="/images/for-nannies-pics/references.jpg" 
+                  alt="References" 
+                  width={500} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
             </div>
 
@@ -151,7 +176,13 @@ const ServiceV3 = () => {
             {/* Professional Support Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Successful Match" width={400} height={400} />
+                <Image 
+                  src="/images/for-nannies-pics/support.jpg" 
+                  alt="Support" 
+                  width={500} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">

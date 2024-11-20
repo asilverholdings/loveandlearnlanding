@@ -23,12 +23,6 @@ function WorkingHoursSelection({ workingHours, handleTimeChange }) {
               onClick={(e) => e.target.showPicker()}
               className="form-time-input"
             />
-            <input
-              type="text"
-              value={`${workingHours[day].totalHours} hours`}
-              readOnly
-              className="form-input total-hours"
-            />
           </div>
         </div>
       ))}
