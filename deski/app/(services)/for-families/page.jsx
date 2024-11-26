@@ -165,7 +165,6 @@ const ForFamilies = () => {
             <div className="container">
               <FooterFour />
             </div>
-            {/* /.container */}
           </div>
       </footer>
     </div>

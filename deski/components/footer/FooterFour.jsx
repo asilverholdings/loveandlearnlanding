@@ -10,7 +10,7 @@ const linksFooterContent = [
   },
   {
     itemName: "Our Story",
-    routePath: "/#our-story",
+    routePath: "/our-story",
   },
   {
     itemName: "Why Us",

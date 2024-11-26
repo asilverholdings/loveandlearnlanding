@@ -3,7 +3,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import ResolveHost from "@/utils/hostResolver";
 const API_HOST = process.env.API_HOST;
 
 const ContactForm = () => {

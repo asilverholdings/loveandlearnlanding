@@ -7,7 +7,7 @@ import MenuLink from "./MenuLink";
 const HomeDropdown = [
   {
     name: "Our Story",
-    routerPath: "/#our-story",
+    routerPath: "/our-story", 
   },
   {
     name: "Why Us",
@@ -35,7 +35,7 @@ const MegaMenu = () => {
   const [currentTopRoute, setCurrentTopRoute] = useState('');
 
   useEffect(() => {
-    if (pathname === '/') {
+    if (pathname === '/' || pathname === '/our-story' || pathname === '/why-us') {
       setCurrentTopRoute('Home');
     } else if (pathname === '/for-families' || pathname === '/for-nannies' || pathname === '/screening-and-matchmaking') {
       setCurrentTopRoute('Services');
@@ -50,8 +50,8 @@ const MegaMenu = () => {
     <ul className="navbar-nav">
       <li className={currentTopRoute === 'Home' ? "nav-item active dropdown" : "nav-item dropdown"}>
         <Link
-          href="/" 
-          className={currentTopRoute === 'Home' ? "nav-link dropdown-toggle active" : "nav-link dropdown-toggle"} 
+          href="/"
+          className={currentTopRoute === 'Home' ? "nav-link dropdown-toggle active" : "nav-link dropdown-toggle"}
           onClick={() => setCurrentTopRoute('Home')}
         >
           Home
@@ -65,33 +65,21 @@ const MegaMenu = () => {
 
       <li className={currentTopRoute === 'Services' ? "nav-item active dropdown" : "nav-item dropdown"}>
         <Link
-          href=""
+          href="#"
           className={currentTopRoute === 'Services' ? "nav-link dropdown-toggle active" : "nav-link dropdown-toggle"}
         >
           Services
         </Link>
         <ul className="dropdown-menu">
-          <div className={pathname === Services[0].routerPath ? "active" : ""}>
-            <li className="dropdown-item">
-              <Link href={Services[0].routerPath}>
-                For Families
-              </Link>
-            </li>
-          </div>
-          <div className={pathname === Services[1].routerPath ? "active" : ""}>
-            <li className="dropdown-item">
-              <Link href={Services[1].routerPath}>
-                For Nannies
-              </Link>
-            </li>
-          </div>
-          <div className={pathname === Services[2].routerPath ? "active" : ""}>
-            <li className="dropdown-item">
-              <Link href={Services[2].routerPath}>
-                Screening & Matchmaking
-              </Link>
-            </li>
-          </div>
+          {Services.map((service, i) => (
+            <div key={i} className={pathname === service.routerPath ? "active" : ""}>
+              <li className="dropdown-item">
+                <Link href={service.routerPath}>
+                  {service.name}
+                </Link>
+              </li>
+            </div>
+          ))}
         </ul>
       </li>
 
