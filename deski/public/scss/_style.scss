@@ -9411,6 +9411,27 @@ h3 {
   }
 }
 
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.header-text h2 {
+  font-size: 60px;
+  font-family: 'gilroy-bold';
+  margin-bottom: 10px;
+}
+
+.header-text p {
+  line-height: 1.5em;
+  font-size: 30px;
+  margin-top: 20px;
+  width: 70%;
+}
+
 /*--------------Error Page-------------------------*/
 
 
