@@ -43,11 +43,11 @@ const FamilyApplication = () => {
     zip: '',
     candidateType: [],
     workingHours: {
-      Monday: { start: '09:00', end: '17:00', totalHours: 8 },
-      Tuesday: { start: '09:00', end: '17:00', totalHours: 8 },
-      Wednesday: { start: '09:00', end: '17:00', totalHours: 8 },
-      Thursday: { start: '09:00', end: '17:00', totalHours: 8 },
-      Friday: { start: '09:00', end: '17:00', totalHours: 8 },
+      Monday: { start: '09:00', end: '17:00' },
+      Tuesday: { start: '09:00', end: '17:00' },
+      Wednesday: { start: '09:00', end: '17:00' },
+      Thursday: { start: '09:00', end: '17:00' },
+      Friday: { start: '09:00', end: '17:00' },
     },
     startDate: '',
     immunizations: '',
@@ -215,7 +215,6 @@ const FamilyApplication = () => {
         // Check if total hours are negative
         if (totalHours <= 0) {
           updatedFormData.workingHours[day][type] = ''; // Reset the invalid field
-          updatedFormData.workingHours[day].totalHours = 0; // Reset total hours
         } else {
           // Round total hours to the nearest hundredth
           totalHours = Math.round(totalHours * 100) / 100;

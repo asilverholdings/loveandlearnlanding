@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+const API_HOST = process.env.API_HOST;
 
 const ContactForm = () => {
   // for validation
@@ -20,12 +21,30 @@ const ContactForm = () => {
   const { register, handleSubmit, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  function onSubmit(data, e) {
-    // display form data on success
-    console.log("Message submited: " + JSON.stringify(data));
-    e.target.reset();
+  async function onSubmit(data, e) {
+    try {
+      const response = await fetch(`http://lovelearnnanny.com/api/sendEmail`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+  
+      const result = await response.json();
+      console.log("Message submitted successfully:", result);
+      alert("Your message has been sent successfully!");
+      e.target.reset();
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Failed to send your message. Please try again later.");
+    }
   }
-
+  
   return (
     <form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="messages"></div>
@@ -90,7 +109,7 @@ const ContactForm = () => {
               placeholder="Your message goes here.."
               name="sendMessage"
               type="text"
-              {...register("message")}
+              {...register("sendMessage")}
               className={`${errors.sendMessage ? "is-invalid" : ""}`}
             ></textarea>
             {errors.sendMessage && (

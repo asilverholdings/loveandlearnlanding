@@ -296,7 +296,7 @@ Primary use:  ib-themes
   --text-color: #73737b;
   --text-light: #888888;
   --heading: #101621;
-  --blue-dark: #6f55ff;
+  --blue-dark: #fa7f53;
   --orange: #fa7f53;
   --light-orange: #fbd6bc;
   --red-light: #fd6a5e;
@@ -3649,6 +3649,13 @@ body .shop-btn-two:hover {
 }
 
 /*-------------- For Families -------------*/
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+ 
+  .row > div {
+    margin-bottom: 20px; /* Add spacing between text and images */
+  }
+}
 .for-families p {
   font-size: 24px;
   line-height: 1.5em;
@@ -3982,7 +3989,7 @@ body .shop-btn-two:hover {
 .bubble-selection {
   display: flex;
   gap: 10px;
-  padding: 20px 0px 20px 0px;
+  padding: 10px 0px 20px 0px;
 }
 
 .bubble-label {
@@ -4005,7 +4012,15 @@ body .shop-btn-two:hover {
 }
 
 .bubble-label:hover {
-  background-color: #d6d6d6; /* Slight hover effect */
+  background-color: #007bff; /* Slight hover effect */
+}
+
+@media (max-width: 767px) {
+  .bubble-label {
+    padding: 8px 15px; /* Adjust padding for smaller bubbles */
+    font-size: 14px; /* Adjust font size */
+    border-radius: 20px; /* Slightly smaller border radius */
+  }
 }
 
 .form-submit-button {
@@ -9394,6 +9409,27 @@ h3 {
     height: 300px; /* Keep height equal to width to maintain the circle shape */
     margin: 0 auto; /* Center the image horizontally */
   }
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.header-text h2 {
+  font-size: 60px;
+  font-family: 'gilroy-bold';
+  margin-bottom: 10px;
+}
+
+.header-text p {
+  line-height: 1.5em;
+  font-size: 30px;
+  margin-top: 20px;
+  width: 70%;
 }
 
 /*--------------Error Page-------------------------*/

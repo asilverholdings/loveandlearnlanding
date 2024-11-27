@@ -1,6 +1,7 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
+const API_HOST = process.env.API_HOST;
 
 // CREATE
 const createItemUpdate = async (itemId, updateBody) => {
@@ -20,7 +21,7 @@ const createItemUpdate = async (itemId, updateBody) => {
     const body = typeof updateBody === 'string' ? updateBody : JSON.stringify(updateBody || "");
 
     try {
-        const response = await fetch("http://localhost:3000/api/proxy", {
+        const response = await fetch(`http://lovelearnnanny.com/api/proxy`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,4 +52,4 @@ const createItemUpdate = async (itemId, updateBody) => {
     }
 }
 
-module.exports = { createItemUpdate };
+export default { createItemUpdate };

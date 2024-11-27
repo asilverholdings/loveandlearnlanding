@@ -1,6 +1,8 @@
 import HeaderTwo from "../../../components/header/HeaderTwo";
 import FooterFour from "@/components/footer/FooterFour";
 import Link from "next/link";
+import Image from "next/image";
+
 export const metadata = {
   title: 'For Families',
 };
@@ -53,7 +55,13 @@ const ForFamilies = () => {
             {/* Family Application Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Family Application" width={400} height={400} />
+                <Image 
+                  src="/images/for-families-pics/application.jpg" 
+                  alt="Family Application" 
+                  width={500} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -68,7 +76,13 @@ const ForFamilies = () => {
             {/* Matchmaking Process Section */}
             <div className="row align-items-center mb-5 flex-row-reverse">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Matchmaking Process" width={400} height={400} />
+                <Image 
+                  src="/images/for-families-pics/matchmaking.jpg" 
+                  alt="Matchmaking Process" 
+                  width={400} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -83,7 +97,13 @@ const ForFamilies = () => {
             {/* Interview Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Interview Process" width={400} height={400} />
+                <Image 
+                  src="/images/for-families-pics/interview.jpg" 
+                  alt="Interview Process" 
+                  width={400} 
+                  height={300} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -98,7 +118,13 @@ const ForFamilies = () => {
             {/* Trial Period Section */}
             <div className="row align-items-center mb-5 flex-row-reverse">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Trial Period" width={400} height={400} />
+                <Image 
+                  src="/images/for-families-pics/trial.jpg" 
+                  alt="Trial Period" 
+                  width={400} 
+                  height={300} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -112,7 +138,13 @@ const ForFamilies = () => {
             {/* Match Section */}
             <div className="row align-items-center mb-5">
               <div className="col-lg-6">
-                <img src="https://placehold.co/400" alt="Successful Match" width={400} height={400} />
+                <Image 
+                  src="/images/for-families-pics/match.jpg" 
+                  alt="Successful Match" 
+                  width={550} 
+                  height={400} 
+                  layout="responsive"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="feature-box card-style">
@@ -133,7 +165,6 @@ const ForFamilies = () => {
             <div className="container">
               <FooterFour />
             </div>
-            {/* /.container */}
           </div>
       </footer>
     </div>

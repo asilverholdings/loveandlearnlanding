@@ -1,6 +1,7 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
+const API_HOST = process.env.API_HOST;
 
 // GET
 const getRowIds = (boardId) => {
@@ -17,7 +18,7 @@ const getRowIds = (boardId) => {
       }
     `;
   
-    return fetch("http://localhost:3000/api/proxy", {
+    return fetch(`http://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ const getRowIdByApplicantId = async (boardId, applicantId) => {
     `;
 
     try {
-        const response = await fetch("http://localhost:3000/api/proxy", {
+        const response = await fetch(`http://lovelearnnanny.com/api/proxy`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +113,7 @@ const createRow = (boardId, itemName, applicantId, columnValues = {}) => {
       }
     `;
   
-    return fetch("http://localhost:3000/api/proxy", {
+    return fetch(`http://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -157,7 +158,7 @@ const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
       }
     `;
   
-    return fetch("http://localhost:3000/api/proxy", {
+    return fetch(`http://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
