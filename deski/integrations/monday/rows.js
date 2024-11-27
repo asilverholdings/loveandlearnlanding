@@ -189,7 +189,58 @@ const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
       console.error('Error making the update request:', err);
       return null;
     });
-}
+
+  }
+
+  const getRowIdBySubject = async (boardId, subject) => {
+    const query = `
+      query getItemByColumnValue($boardId: ID!, $columnId: String!, $value: [String!]!) {
+        items_page_by_column_values(board_id: $boardId, columns: [{column_id: $columnId, column_values: $value}]) {
+          items {
+            id
+            name
+          }
+        }
+      }
+    `;
+  
+    try {
+      const response = await fetch(`http://lovelearnnanny.com/api/proxy`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': MONDAY_AUTH_TOKEN,
+          'API-Version': MONDAY_API_VERSION
+        },
+        body: JSON.stringify({
+          query: query,
+          variables: {
+            boardId: boardId.toString(), // boardId should be a string
+            columnId: "name", // The "Name" column ID
+            value: [subject], // The subject value to search for, as an array
+          }
+        })
+      });
+  
+      const res = await response.json();
+      console.log("Raw response:", JSON.stringify(res, null, 2));
+  
+      if (res.data && res.data.items_page_by_column_values && res.data.items_page_by_column_values.items.length > 0) {
+        const item = res.data.items_page_by_column_values.items[0];
+        console.log(`Found item with ID: ${item.id}`);
+        return item.id;
+      } else {
+        console.log(`No matches found for subject "${subject}"`);
+        return null;
+      }
+    } catch (err) {
+      console.error('Error fetching items:', err);
+      return null;
+    }
+  };
+  
+  
 
 // getRowIdByApplicantId("7845315412","6e3b38d8-55b9-418e-9c76-9d8b4e0e5812")
-module.exports = { getRowIds, createRow, updateRowById, getRowIdByApplicantId };
+//getRowIdBySubject("7887121862", "🆕➡📪 John Stamos");
+module.exports = { getRowIds, createRow, updateRowById, getRowIdByApplicantId, getRowIdBySubject };

@@ -1,6 +1,6 @@
 const { getBoardIdByName } = require('./board').default;
 const { createItemUpdate } = require('./updates').default;
-const { createRow, updateRowById, getRowIdByApplicantId } = require('./rows');
+const { createRow, updateRowById, getRowIdByApplicantId, getRowIdBySubject } = require('./rows');
 
 
 const storeNewApplicant = async (boardName, itemName, columnUpdates, applicantId) => {
@@ -87,4 +87,36 @@ const storeApplicantResponses = async (applicantId, updateBody, boardName) => {
     }
 };
 
-module.exports = { storeNewApplicant, storeApplicantResponses };
+const addEmailColumn = async (boardId, itemName, email) => {
+    try {
+        // Get the row ID by subject (item name)
+        const rowId = await getRowIdBySubject(boardId, itemName);
+
+        if (!rowId) {
+            console.error(`Row not found for item name: ${itemName}`);
+            return null;
+        }
+
+        console.log(`Row ID found: ${rowId}`);
+
+        // Update the row's email column
+        const columnUpdates = {
+            email__1: email,
+        };
+
+        const response = await updateRowById(boardId, rowId, itemName, columnUpdates);
+
+        if (response) {
+            console.log('Email column updated successfully:', response);
+            return response;
+        } else {
+            console.error('Failed to update email column');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error in addEmailColumn:', error.message);
+        return null;
+    }
+};
+
+module.exports = { storeNewApplicant, storeApplicantResponses, addEmailColumn };

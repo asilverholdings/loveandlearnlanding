@@ -1,9 +1,6 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
-import ResolveHost from '@/utils/hostResolver';
-
-const host = ResolveHost();
 
 // GET
 const getColumnIds = (boardId) => {
@@ -186,10 +183,7 @@ const updateColumnValues = (boardId, itemId, columnValues) => {
   });
 }
  // getColumnIds("7845315412");
- createColumn("7877205956", "First Name", "text");
- createColumn("7877205956", "Last Name", "text");
- createColumn("7877205956", "Email", "text");
- createColumn("7877205956", "Applicant ID", "text");
+ //createColumn("7887121862", "Email", "text");
 
 
 module.exports = { getColumnIds, createColumn, updateSingleColumnValue, updateColumnValues };
