@@ -54,11 +54,6 @@ const ContactCustomerSupport = () => {
               alt="shape"
               className="shapes shape-one"
             />
-            <Image width={196} height={196}
-              src="/images/shape/65.svg"
-              alt="shape"
-              className="shapes shape-two"
-            />
           </div>
           {/* /.contact-info-wrapper */}
 

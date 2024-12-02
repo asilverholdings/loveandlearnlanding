@@ -11,7 +11,7 @@ export const menuList = [
         links: [
             {
                 label: "Our Story",
-                href: "/#our-story",
+                href: "/our-story",
             },
             {
                 label: "Why Us",
