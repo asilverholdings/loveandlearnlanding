@@ -23,7 +23,7 @@ const ContactForm = () => {
 
   async function onSubmit(data, e) {
     try {
-      const response = await fetch(`http://lovelearnnanny.com/api/sendEmail`, {
+      const response = await fetch(`https://lovelearnnanny.com/api/sendEmail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
