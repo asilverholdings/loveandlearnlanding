@@ -21,7 +21,7 @@ const createItemUpdate = async (itemId, updateBody) => {
     const body = typeof updateBody === 'string' ? updateBody : JSON.stringify(updateBody || "");
 
     try {
-        const response = await fetch(`http://lovelearnnanny.com/api/proxy`, {
+        const response = await fetch(`https://lovelearnnanny.com/api/proxy`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',

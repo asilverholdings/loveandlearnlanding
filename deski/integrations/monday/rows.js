@@ -18,7 +18,7 @@ const getRowIds = (boardId) => {
       }
     `;
   
-    return fetch(`http://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const getRowIdByApplicantId = async (boardId, applicantId) => {
     `;
 
     try {
-        const response = await fetch(`http://lovelearnnanny.com/api/proxy`, {
+        const response = await fetch(`https://lovelearnnanny.com/api/proxy`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ const createRow = (boardId, itemName, applicantId, columnValues = {}) => {
       }
     `;
   
-    return fetch(`http://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
       }
     `;
   
-    return fetch(`http://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -205,7 +205,7 @@ const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
     `;
   
     try {
-      const response = await fetch(`http://lovelearnnanny.com/api/proxy`, {
+      const response = await fetch(`https://lovelearnnanny.com/api/proxy`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

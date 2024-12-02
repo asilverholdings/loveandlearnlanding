@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     try {
        // Make the request to Monday.com API
        const response = await fetch('https://api.monday.com/v2', {
-          method: 'POST', // Monday.com API might only support POST for some queries
+          method: 'POST',
           headers: {
              'Authorization': MONDAY_AUTH_TOKEN,
              'Content-Type': 'application/json',

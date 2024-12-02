@@ -14,7 +14,7 @@ const getBoardIds = () => {
       }
     `;
   
-    return fetch(`http://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const getBoardIdByName = (searchName) => {
       }
     `;
     console.log(process.env.MONDAY_API_VERSION);
-    return fetch(`http://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ const createBoard = (name) => {
         }
     }`;
 
-    return fetch(`http://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://lovelearnnanny.com/api/proxy`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
