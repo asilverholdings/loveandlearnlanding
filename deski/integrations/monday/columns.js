@@ -16,7 +16,7 @@ const getColumnIds = (boardId) => {
     }
   `;
 
-  return fetch(`https://lovelearnnanny.com/api/proxy`, {
+  return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const getColumnIds = (boardId) => {
       }
     `;
   
-    return fetch(`https://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const getColumnIds = (boardId) => {
       }
     `;
   
-    return fetch(`https://lovelearnnanny.com/api/proxy`, {
+    return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const updateColumnValues = (boardId, itemId, columnValues) => {
     }
   `;
 
-  return fetch(`https://lovelearnnanny.com/api/proxy`, {
+  return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
