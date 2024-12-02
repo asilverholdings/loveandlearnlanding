@@ -32,14 +32,7 @@ const Screening = () => {
                     We start by connecting with the family through a virtual meeting. Using a detailed and thorough questionnaire, we explore every aspect of the potential family-candidate relationship to ensure a perfect match that covers all possibilities.
                   </p>
                 </li>
-                <li>
-                  <p>
-                    The family and candidates will take a specialized personality assessment to ensure a higher chance of finding the perfect fit for the family, enhancing compatibility and long-term success.
-                  </p>
-                </li>
               </ul>
-              
-              
             </div>
           </div>
         </div>
