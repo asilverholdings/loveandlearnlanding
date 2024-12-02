@@ -53,7 +53,6 @@ const getBoardIdByName = (searchName) => {
         }
       }
     `;
-    console.log(process.env.MONDAY_API_VERSION);
     return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
       method: 'post',
       headers: {

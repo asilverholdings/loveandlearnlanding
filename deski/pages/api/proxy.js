@@ -1,7 +1,10 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
+const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
 
 export default async function handler(req, res) {
+   console.log('MONDAY_AUTH_TOKEN:', MONDAY_AUTH_TOKEN);
+
 
    res.setHeader('Access-Control-Allow-Origin', 'https://www.lovelearnnanny.com');
    res.setHeader('Access-Control-Allow-Methods', 'POST');
@@ -25,6 +28,7 @@ export default async function handler(req, res) {
           headers: {
              'Authorization': MONDAY_AUTH_TOKEN,
              'Content-Type': 'application/json',
+             'API-Version': MONDAY_API_VERSION,
           },
           body: JSON.stringify(req.body), // Forward the body from client request
        });
