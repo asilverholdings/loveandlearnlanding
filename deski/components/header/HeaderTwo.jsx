@@ -7,18 +7,18 @@ import MegaMenuMobile from "./mega-menu/MegaMenuMobile";
 import Image from "next/image";
 
 const HeaderTwo = () => {
-  const innerWidth = window.innerWidth;
+  const innerWidth = 0;
   const [navbar, setNavbar] = useState(false);
-  const [logoSize, setLogoSize] = useState(innerWidth <= 768 ? 120 : 200);
+  const [logoSize, setLogoSize] = useState(innerWidth <= 768 ? 120 : 400);
 
   const changeBackground = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY >= 68) {
         setNavbar(true);
-        setLogoSize(innerWidth <= 768 ? 50 : 100);
+        setLogoSize(innerWidth <= 768 ? 50 : 200);
       } else {
         setNavbar(false);
-        setLogoSize(innerWidth <= 768 ? 120 : 200);
+        setLogoSize(innerWidth <= 768 ? 120 : 400);
       }
     }
   };
