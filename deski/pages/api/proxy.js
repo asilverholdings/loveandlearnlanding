@@ -2,6 +2,16 @@ require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 
 export default async function handler(req, res) {
+
+   res.setHeader('Access-Control-Allow-Origin', 'https://www.lovelearnnanny.com');
+   res.setHeader('Access-Control-Allow-Methods', 'POST');
+   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+   if (req.method === 'OPTIONS') {
+       res.status(200).end(); // Handle preflight requests
+       return;
+   }
+
     // Check the HTTP method to handle different types of requests (e.g., GET, POST)
     if (req.method !== 'POST') {
        res.status(405).json({ message: 'Only POST requests are allowed' });
