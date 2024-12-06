@@ -1,12 +1,13 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
+const PROXY_URL = process.env.NEXT_PUBLIC_PROXY_URL;
 
 export default async function handler(req, res) {
    console.log('MONDAY_AUTH_TOKEN:', MONDAY_AUTH_TOKEN);
 
 
-   res.setHeader('Access-Control-Allow-Origin', 'https://www.lovelearnnanny.com');
+   res.setHeader('Access-Control-Allow-Origin', PROXY_URL);
    res.setHeader('Access-Control-Allow-Methods', 'POST');
    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
