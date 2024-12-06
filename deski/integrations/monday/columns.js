@@ -1,6 +1,7 @@
 require('dotenv').config();
 const MONDAY_AUTH_TOKEN = process.env.MONDAY_AUTH_TOKEN;
 const MONDAY_API_VERSION = process.env.MONDAY_API_VERSION;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // GET
 const getColumnIds = (boardId) => {
@@ -16,7 +17,7 @@ const getColumnIds = (boardId) => {
     }
   `;
 
-  return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
+  return fetch(API_URL, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ const getColumnIds = (boardId) => {
       }
     `;
   
-    return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
+    return fetch(API_URL, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +110,7 @@ const getColumnIds = (boardId) => {
       }
     `;
   
-    return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
+    return fetch(API_URL, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -151,7 +152,7 @@ const updateColumnValues = (boardId, itemId, columnValues) => {
     }
   `;
 
-  return fetch(`https://www.lovelearnnanny.com/api/proxy`, {
+  return fetch(API_URL, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',

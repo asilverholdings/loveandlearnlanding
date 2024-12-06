@@ -60,12 +60,13 @@ const NannyApplication = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+    const { name, value, files } = e.target;
+    if (name === 'resume') {
+        setFormData((prev) => ({ ...prev, resume: files[0] })); // Handle file input
+    } else {
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+};
 
   const handleValidation = (formData) => {
     const errors = {
@@ -93,39 +94,67 @@ const NannyApplication = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isSubmitted) {
-      return;
+        return;
     }
 
     const errors = handleValidation(formData);
     if (Object.keys(errors).length > 0) {
-      setErrors(errors);
+        setErrors(errors);
     } else {
-      // Clear errors and submit form data
-      setErrors({});
-      setModalVisible(true);
-      const itemName = `${formData.firstName} ${formData.lastName}`;
-      const columnUpdates = {
-        'first_name__1': formData.firstName,
-        'last_name__1': formData.lastName,
-        'email__1': formData.email,
-        'applicant_id__1': applicantId
-      };
+        // Clear errors and submit form data
+        setErrors({});
+        setModalVisible(true);
 
-      storeNewApplicant("Nanny Applications", itemName, columnUpdates, applicantId);
-      const updateBody = Object.entries(formData).map(([key, value]) => {
-        const serializedValue = typeof value === "object" ? JSON.stringify(value, null, 2) : value; // Pretty-print objects
-        return `${key}: ${serializedValue}`;
-      });
-      
-      storeApplicantResponses(applicantId, updateBody, "Nanny Applications");
+        const itemName = `${formData.firstName} ${formData.lastName}`;
+        const columnUpdates = {
+            'first_name__1': formData.firstName,
+            'last_name__1': formData.lastName,
+            'email__1': formData.email,
+            'applicant_id__1': applicantId,
+        };
 
-      setIsSubmitted(true);
+        try {
+            // Wait for storeNewApplicant to complete
+            const newApplicantResult = await storeNewApplicant(
+                'Nanny Applications',
+                itemName,
+                columnUpdates,
+                applicantId
+            );
+
+            if (newApplicantResult) {
+                // Serialize form data into update body
+                const updateBody = Object.entries(formData).map(([key, value]) => {
+                    const serializedValue =
+                        typeof value === 'object' ? JSON.stringify(value, null, 2) : value; // Pretty-print objects
+                    return `${key}: ${serializedValue}`;
+                });
+
+                // Pass the resume file if provided
+                const resumeFile = formData.resume || null; // Ensure null if no file is provided
+
+                // Wait for storeApplicantResponses to complete
+                await storeApplicantResponses(
+                    applicantId,
+                    updateBody,
+                    'Nanny Applications',
+                    resumeFile
+                );
+            } else {
+                console.error('Failed to store new applicant.');
+            }
+
+            setIsSubmitted(true);
+        } catch (error) {
+            console.error('Error during submission:', error);
+            setErrors({ submission: 'An error occurred during submission. Please try again.' });
+        }
     }
-  };
+};
 
   return (
     <div className="main-page-wrapper">

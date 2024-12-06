@@ -1,6 +1,7 @@
 const { getBoardIdByName } = require('./board').default;
 const { createItemUpdate } = require('./updates').default;
 const { createRow, updateRowById, getRowIdByApplicantId, getRowIdBySubject } = require('./rows');
+const { uploadResumeToMonday } = require('./fileUpload');
 
 
 const storeNewApplicant = async (boardName, itemName, columnUpdates, applicantId) => {
@@ -17,7 +18,7 @@ const storeNewApplicant = async (boardName, itemName, columnUpdates, applicantId
         if (applicantId) {
             rowId = await getRowIdByApplicantId(boardId, applicantId);
         } else {
-           console.log("Applicant ID not provided.");
+            console.log("Applicant ID not provided.");
         }
 
         console.log(`Board ID: ${boardId}`);
@@ -25,42 +26,47 @@ const storeNewApplicant = async (boardName, itemName, columnUpdates, applicantId
         if (rowId) {
             const response = await updateRowById(boardId, rowId, itemName, columnUpdates);
             console.log('Row updated successfully:', response);
+            return response; // Explicitly return the response for updated rows
         } else {
             // If row is not found, create a new row
             console.log("Creating new row...");
             const responseId = await createRow(boardId, itemName, applicantId, columnUpdates);
-
-            // Store the applicantId for future reference
             console.log('New row created successfully:', responseId);
-
-            return responseId;
+            return responseId; // Return the ID of the newly created row
         }
     } catch (error) {
         console.error('Error:', error.message);
-        return null;
+        return null; // Ensure a consistent return value on error
     }
 };
 
-const storeApplicantResponses = async (applicantId, updateBody, boardName) => {
+
+const storeApplicantResponses = async (applicantId, updateBody, boardName, resumeFile = null) => {
     try {
-        // Fetch boardId asynchronously
         const boardId = await getBoardIdByName(boardName);
-        
+
         if (!boardId) {
             console.error("Invalid boardId:", boardId);
             return null;
         }
 
-        // Fetch rowId asynchronously
         const row = await getRowIdByApplicantId(boardId, applicantId);
-        console.log('Row Id:', row);
-
         if (!row) {
-            console.error(`Row with id: ${row} not found with applicant id: ${applicantId}.`);
+            console.error(`Row with id: ${row} not found for applicant id: ${applicantId}.`);
             return null;
         }
 
-        // Combine all update bodies into a single string
+        // let resumeLink = null;
+        // if (resumeFile) {
+        //     try {
+        //         resumeLink = await uploadResumeToMonday(row, resumeFile);
+        //         console.log('Resume uploaded successfully:', resumeLink);
+        //     } catch (error) {
+        //         console.error('Failed to upload resume:', error.message);
+        //         return null;
+        //     }
+        // }
+
         let combinedUpdateBody;
         if (Array.isArray(updateBody)) {
             combinedUpdateBody = updateBody.join('\n\n');
@@ -72,20 +78,19 @@ const storeApplicantResponses = async (applicantId, updateBody, boardName) => {
             combinedUpdateBody = String(updateBody);
         }
 
-        // Create a single item update for the given row
-        const updateId = await createItemUpdate(row, combinedUpdateBody);
+        // if (resumeLink) {
+        //     combinedUpdateBody += `\n\nResume Link: [Download Resume](${resumeLink})`;
+        // }
 
-        if (updateId) {
-            return updateId;
-        } else {
-            console.error('Failed to create update for responses');
-            return null;
-        }
+        const updateId = await createItemUpdate(row, combinedUpdateBody);
+        return updateId || null;
     } catch (error) {
         console.error('Error creating update:', error);
         return null;
     }
 };
+
+
 
 const addEmailColumn = async (boardId, itemName, email) => {
     try {
