@@ -184,7 +184,7 @@ const updateColumnValues = (boardId, itemId, columnValues) => {
   });
 }
  // getColumnIds("7845315412");
- //createColumn("7887121862", "Email", "text");
+ // createColumn("8002627993", "First Name", "text");
 
 
 module.exports = { getColumnIds, createColumn, updateSingleColumnValue, updateColumnValues };

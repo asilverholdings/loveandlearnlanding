@@ -97,7 +97,7 @@ const getRowIdByApplicantId = async (boardId, applicantId) => {
 };
 
 // CREATE
-const createRow = (boardId, itemName, applicantId, columnValues = {}) => {
+const createApplicantRow = (boardId, itemName, applicantId, columnValues = {}) => {
     // Assume 'applicant_id' is the ID of your new Applicant ID column
     const updatedColumnValues = {
         ...columnValues,
@@ -143,6 +143,49 @@ const createRow = (boardId, itemName, applicantId, columnValues = {}) => {
       return null;
     });
 }
+
+// CREATE
+const createRow = (boardId, itemName, columnValues = {}) => {
+  const mutation = `
+    mutation createItem($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
+      create_item(board_id: $boardId, item_name: $itemName, column_values: $columnValues) {
+        id
+      }
+    }
+  `;
+
+  return fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': MONDAY_AUTH_TOKEN,
+      'API-Version': MONDAY_API_VERSION,
+    },
+    body: JSON.stringify({
+      query: mutation,
+      variables: {
+        boardId: boardId,
+        itemName: itemName,
+        columnValues: JSON.stringify(columnValues),
+      },
+    }),
+  })
+  .then((res) => res.json())
+  .then((res) => {
+    if (res.data && res.data.create_item) {
+      console.log('Item created with ID:', res.data.create_item.id);
+      return res.data.create_item.id;
+    } else {
+      console.error('Failed to create item:', res.errors);
+      return null;
+    }
+  })
+  .catch((err) => {
+    console.error('Error creating item:', err);
+    return null;
+  });
+};
+
 
 // UPDATE
 const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
@@ -237,9 +280,7 @@ const updateRowById = (boardId, itemId, rowName, columnValues = {}) => {
       return null;
     }
   };
-  
-  
 
 // getRowIdByApplicantId("7845315412","6e3b38d8-55b9-418e-9c76-9d8b4e0e5812")
 //getRowIdBySubject("7887121862", "🆕➡📪 John Stamos");
-module.exports = { getRowIds, createRow, updateRowById, getRowIdByApplicantId, getRowIdBySubject };
+module.exports = { getRowIds, createRow, createApplicantRow, updateRowById, getRowIdByApplicantId, getRowIdBySubject };
