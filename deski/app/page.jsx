@@ -5,9 +5,8 @@ import FooterFour from "../components/footer/FooterFour";
 import CallToActionFive from "../components/call-to-action/CallToActionFive";
 import Image from "next/image";
 import WhyUs from "../components/features/WhyUs";
-import Quote from "../components/quote/Quote";
 import HeaderTwo from "/components/header/HeaderTwo";
-
+import OfferPrompt from "@/components/offer/offerPrompt";
 
 export const metadata = {
   title: 'Love And Learn',
@@ -17,10 +16,11 @@ export default function Home() {
   return (
     <div className="main-page-wrapper p0">
       <HeaderTwo />
-      {/* End HeaderFour */}
+
+      {/* Promo Offer */}
+      <OfferPrompt />
 
       <HeroBannerFour />
-      {/* End Hero Banner Four */}
 
       {/* 
      =============================================

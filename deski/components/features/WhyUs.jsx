@@ -4,22 +4,22 @@ import Link from "next/link";
 
 const FeatureContent = [
   {
-    icon: "ils_15",
+    icon: "ils_09",
     meta: "Comprehensive Process",
     subTitle: `We make finding the perfect nanny easy and stress-free`,
   },
   {
-    icon: "ils_16",
+    icon: "ils_14",
     meta: "Dependable Service",
     subTitle: `We want to ensure that you always have high-quality care you can trust`,
   },
   {
-    icon: "ils_17",
+    icon: "ils_21",
     meta: "Continued Support",
-    subTitle: `We stand behind our service with a satisfaction guarantee`,
+    subTitle: `We foster open communication to provide seamless support for both families and nannies.`,
   },
   {
-    icon: "ils_15",
+    icon: "ils_20",
     meta: "Curriculum",
     subTitle: `Our curriculum equips nannies with structured activities to foster your child's development.`,
   },

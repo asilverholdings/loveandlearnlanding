@@ -74,3 +74,13 @@
     }
     return errors;
   };
+
+  export const validateOfferPromptEmail = (email) => {
+    let error = '';
+    if (!email) {
+      error = "Email is required.";
+  } else if (!isValidEmail(email)) {
+        error = "Please enter a valid email address.";
+    }
+    return error;
+  }
