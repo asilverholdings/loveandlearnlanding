@@ -7,6 +7,7 @@ import Image from "next/image";
 import WhyUs from "../components/features/WhyUs";
 import HeaderTwo from "/components/header/HeaderTwo";
 import OfferPrompt from "@/components/offer/offerPrompt";
+import Head from 'next/head';
 
 export const metadata = {
   title: 'Love And Learn',
@@ -15,6 +16,52 @@ export const metadata = {
 export default function Home() {
   return (
     <div className="main-page-wrapper p0">
+      <Head>
+        {/* Primary Meta Tags */}
+        <title>Love and Learn Nanny Agency | Gainesville FL | Personalized Childcare</title>
+        <meta
+          name="description"
+          content="Love and Learn Nanny Agency connects families in Gainesville, FL, with professional nannies trained in holistic, curriculum-based care."
+        />
+        <meta
+          name="keywords"
+          content="nanny services Gainesville FL, Montessori nannies Gainesville, personalized childcare Gainesville, Love and Learn Nanny Agency"
+        />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="Love and Learn Nanny Agency | Holistic Childcare in Gainesville, FL" />
+        <meta
+          property="og:description"
+          content="Providing dependable, curriculum-based nanny services to families in Gainesville, FL."
+        />
+        <meta property="og:url" content="https://lovelearnanny.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lovelearnanny.com/images/logo/love-and-learn-logo.svg" />
+
+        {/* Canonical Link */}
+        <link rel="canonical" href="https://lovelearnanny.com" />
+
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Love and Learn Nanny Agency",
+              "image": "https://lovelearnanny.com/images/logo/love-and-learn-logo.svg",
+              "email": "tessa@loveandlearnnanny.com",
+              "url": "https://lovelearnanny.com",
+              "description": "Love and Learn Nanny Agency provides curriculum-based childcare and holistic nanny services for families in Gainesville, FL.",
+              "sameAs": [
+                "https://www.facebook.com/people/Love-and-Learn-Nanny-Agency/61567023631948/",
+                "https://www.instagram.com/loveandlearnnanny/"
+              ]
+            }),
+          }}
+        />
+      </Head>
       <HeaderTwo />
 
       {/* Promo Offer */}
@@ -34,7 +81,7 @@ export default function Home() {
         alt="twins playing"
       />
       <div className="fancy-text-block-nineteen">
-        
+
       </div>
       {/* End  .fancy-text-block-nineteen*/}
 
@@ -84,11 +131,11 @@ export default function Home() {
 
         <div className="container">
           <div className="title-style-five text-center mb-60 md-mb-30">
-          <section id="why-us">
-            <h6>Love and Learn</h6>
-          </section>
+            <section id="why-us">
+              <h6>Love and Learn</h6>
+            </section>
             <h2>
-                <span>Why Us?</span>
+              <span>Why Us?</span>
             </h2>
           </div>
           {/* End title */}
@@ -97,7 +144,7 @@ export default function Home() {
         </div>
       </div>
 
-    {/* 
+      {/* 
     ==============================================
 				Client Feedback Slider
 		============================================== */}
