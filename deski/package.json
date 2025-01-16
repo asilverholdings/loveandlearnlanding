@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@babel/core": "^7.26.0",
@@ -18,6 +19,7 @@
     "eslint-config-next": "^14.1.0",
     "express": "^4.21.1",
     "next": "^14.1.0",
+    "next-sitemap": "^4.2.3",
     "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.16",
     "photoswipe": "^5.3.8",
