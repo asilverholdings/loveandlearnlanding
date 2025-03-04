@@ -179,14 +179,14 @@ function NannyPreferences({ formData, handleChange }) {
       />
 
       {/* Handling Discipline */}
-      <h4 className="form-subtitle">How do you expect the nanny to handle discipline?</h4>
+      {/* <h4 className="form-subtitle">How do you expect the nanny to handle discipline?</h4>
       <CustomTextArea
         name="discipline"
         placeholder="Discipline Approach"
         value={formData.discipline}
         onChange={handleChange}
         className="form-textarea"
-      />
+      /> */}
     </div>
   );
 }
