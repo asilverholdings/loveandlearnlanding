@@ -3,7 +3,7 @@ import CustomTextArea from '../custom-input-fields/CustomTextArea';
 
 function NannyPreferences({ formData, handleChange }) {
   const duties = [
-    "Laundry", "Cleaning", "Drive Children", "Care for pets", 
+    "Laundry", "Cleaning", "Drive Children", "Care for pets",
     "Cooking/Meal Preparation", "Swim with children", "Administer medications"
   ];
 
@@ -37,21 +37,21 @@ function NannyPreferences({ formData, handleChange }) {
       <h4 className="form-subtitle">Do you prefer a nanny who takes initiative or someone who strictly follows instructions?</h4>
       <div className="form-radio-options">
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="initiativePreference" 
-            value="takesInitiative" 
-            checked={formData.initiativePreference === 'takesInitiative'} 
+          <input
+            type="radio"
+            name="initiativePreference"
+            value="takesInitiative"
+            checked={formData.initiativePreference === 'takesInitiative'}
             onChange={handleChange}
           />
           Takes initiative
         </div>
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="initiativePreference" 
-            value="followsInstructions" 
-            checked={formData.initiativePreference === 'followsInstructions'} 
+          <input
+            type="radio"
+            name="initiativePreference"
+            value="followsInstructions"
+            checked={formData.initiativePreference === 'followsInstructions'}
             onChange={handleChange}
           />
           Follows instructions
@@ -62,21 +62,21 @@ function NannyPreferences({ formData, handleChange }) {
       <h4 className="form-subtitle">Would you like a nanny who can plan and organize daily activities, or do you prefer a more flexible, go-with-the-flow approach?</h4>
       <div className="form-radio-options">
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="activityPlanning" 
-            value="organized" 
-            checked={formData.activityPlanning === 'organized'} 
+          <input
+            type="radio"
+            name="activityPlanning"
+            value="organized"
+            checked={formData.activityPlanning === 'organized'}
             onChange={handleChange}
           />
           Can plan and organize activities
         </div>
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="activityPlanning" 
-            value="flexible" 
-            checked={formData.activityPlanning === 'flexible'} 
+          <input
+            type="radio"
+            name="activityPlanning"
+            value="flexible"
+            checked={formData.activityPlanning === 'flexible'}
             onChange={handleChange}
           />
           More flexible, go-with-the-flow
@@ -127,41 +127,41 @@ function NannyPreferences({ formData, handleChange }) {
       <h4 className="form-subtitle">How important is it that the nanny aligns with your values or lifestyle?</h4>
       <div className="form-radio-options">
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="importance" 
-            value="notImportant" 
-            checked={formData.importance === 'notImportant'} 
+          <input
+            type="radio"
+            name="importance"
+            value="notImportant"
+            checked={formData.importance === 'notImportant'}
             onChange={handleChange}
           />
           Not important
         </div>
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="importance" 
-            value="slightlyImportant" 
-            checked={formData.importance === 'slightlyImportant'} 
+          <input
+            type="radio"
+            name="importance"
+            value="slightlyImportant"
+            checked={formData.importance === 'slightlyImportant'}
             onChange={handleChange}
           />
           Slightly important
         </div>
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="importance" 
-            value="important" 
-            checked={formData.importance === 'important'} 
+          <input
+            type="radio"
+            name="importance"
+            value="important"
+            checked={formData.importance === 'important'}
             onChange={handleChange}
           />
           Important
         </div>
         <div className="radio-option">
-          <input 
-            type="radio" 
-            name="importance" 
-            value="veryImportant" 
-            checked={formData.importance === 'veryImportant'} 
+          <input
+            type="radio"
+            name="importance"
+            value="veryImportant"
+            checked={formData.importance === 'veryImportant'}
             onChange={handleChange}
           />
           Very important
@@ -183,7 +183,7 @@ function NannyPreferences({ formData, handleChange }) {
       <CustomTextArea
         name="discipline"
         placeholder="Discipline Approach"
-        value={formData.disciplineApproach}
+        value={formData.discipline}
         onChange={handleChange}
         className="form-textarea"
       />
